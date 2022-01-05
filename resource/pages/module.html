@@ -1,0 +1,218 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="cont-wrap">
+  <p style="font-weight: bold; color:royalblue; font-size: 1.8rem; margin-bottom: 3rem;">버튼형식은 a, button, input
+    type="button" 중 선택하여 해당 클래스만
+    넣어주시면
+    됩니다!</p>
+  <h2>button</h2>
+  <button type="button" class="button">버튼</button>
+  <button type="submit" class="button">버튼은 글자 갯수에 따라 늘어나요</button>
+  <button type="reset" class="button">버튼</button>
+  <input type="button" class="button" value="버튼" />
+  <a href="#" class="button">버튼</a>
+
+  <br /><br />
+  <h3>button full</h3>
+  <a href="#" class="button full">화면 가로에 꽉채우고 싶다면 full 클래스를 넣어줘요</a>
+
+  <br /><br />
+  <h2>button gray</h2>
+  <button type="button" class="button gray">버튼</button>
+  <button type="submit" class="button gray">버튼</button>
+  <button type="reset" class="button gray">버튼</button>
+  <input type="button" class="button gray" value="버튼" />
+  <a href="#" class="button gray">버튼</a>
+
+  <br /><br />
+  <h3>button gray full</h3>
+  <input type="button" class="button gray full" value="버튼" />
+
+
+  <br /><br />
+  <h2>button-medium</h2>
+  <button type="button" class="button-medium">버튼</button>
+  <button type="submit" class="button-medium">버튼</button>
+  <button type="reset" class="button-medium">버튼</button>
+  <input type="button" class="button-medium" value="버튼" />
+  <a href="#" class="button-medium ">버튼</a>
+
+  <br /><br />
+  <h2>button-medium line</h2>
+  <button type="button" class="button-medium line">버튼</button>
+  <button type="submit" class="button-medium line">버튼</button>
+  <button type="reset" class="button-medium line">버튼</button>
+  <input type="button" class="button-medium line" value="버튼" />
+  <a href="#" class="button-medium line">버튼</a>
+
+  <br /><br />
+  <h2>button-ms</h2>
+  <button type="button" class="button-ms">버튼</button>
+  <button type="submit" class="button-ms">버튼</button>
+  <button type="reset" class="button-ms">버튼</button>
+  <input type="button" class="button-ms" value="버튼" />
+  <a href="#" class="button-ms">버튼</a>
+
+  <br /><br />
+
+  <h2>button-small</h2>
+  <button type="button" class="button-small">버튼</button>
+  <button type="submit" class="button-small">버튼</button>
+  <button type="reset" class="button-small">버튼</button>
+  <input type="button" class="button-small" value="버튼" />
+  <a href="#" class="button-small">버튼</a>
+
+  <br /><br />
+  <h2>button-kakao</h2>
+  <a href="#" class="button-kakao">카카오톡 계정으로 로그인</a>
+  <br /><br />
+  <h2>button-google</h2>
+  <a href="#" class="button-google">구글 계정으로 로그인</a>
+  <br /><br />
+  <h2>button-facebook</h2>
+  <a href="#" class="button-facebook">페이스북 계정으로 로그인</a>
+
+  <br /><br />
+  <h2>imgbtn-message</h2>
+  <button type="button" class="imgbtn-message">메세지 보내기</button>
+
+  <br /><br />
+  <h2>imgbtn-share</h2>
+  <button type="button" class="imgbtn-share">공유하기</button>
+  <br /><br />
+  <h2>imgbtn-img</h2>
+  <button type="button" class="imgbtn-img">이미지</button>
+  <br /><br />
+  <h2>textbtn</h2>
+  <button type="button" class="textbtn">이미지</button>
+  <a href="#" class="textbtn">이메일로 회원가입</a>
+
+  <br /><br />
+  <h2>profile-set / set-img / imgbtn-img</h2>
+  <div class="profile-set">
+    <img src="./img/profile.svg" alt="프로필" class="set-img" />
+    <button type="button" class="imgbtn-img">이미지</button>
+  </div>
+
+</section>
+<section class="cont-wrap">
+  <h2>Input</h2>
+  <div class="label-input error">
+    <label for="email-id">이메일</label>
+    <input type="email" placeholder="이메일 주소를 입력해 주세요." id="email-id" />
+    <p class="error-message">*이미 가입된 이메일 주소입니다.</p>
+  </div>
+  <div class="label-input">
+    <label for="password-id">비밀번호</label>
+    <input type="password" placeholder="비밀 번호를 입력해주세요" id="text-id" />
+    <p class="error-message">*이메일 또는 비밀번호가 일치하지 않습니다.</p>
+  </div>
+
+  <div class="label-input">
+    <label for="text-id">텍스트</label>
+    <input type="text" placeholder="텍스트를 입력해주세요" id="text-id" />
+  </div>
+  <div class="label-input">
+    <label for="price-id">가격</label>
+    <input type="Number" placeholder="숫자만 입력 가능합니다" id="price-id" />
+  </div>
+  <div class="label-input">
+    <label for="url-id">판매링크</label>
+    <input type="url" placeholder="URL을 입력해 주세요" id="url-id" />
+  </div>
+</section>
+<section class="cont-wrap">
+  <h2 class="title">프로필 설정</h2>
+  <p class="title-sub">나중에 언제든지 변경할 수 있습니다.</p>
+
+  <div class="user-wrap">
+    <img src="../img/profile.svg" alt="프로필" class="profile" />
+    <div class="user-txt">
+      <p class="user-name">애월읍 위니브 감귤농장</p>
+      <p class="user-id">@ weniv_Mandarin</p>
+    </div>
+    <button class="button-small">팔로우</button>
+  </div>
+  <div class="user-wrap">
+    <img src="../img/test.jpg" alt="프로필" class="profile" />
+    <div class="user-txt">
+      <p class="user-name">애월읍 위니브 감귤농장애월읍 위니브 감귤농장애월읍 위니브 감귤농장애월읍 위니브 감귤농장</p>
+      <p class="user-id">@ weniv_Mandarin</p>
+    </div>
+    <button class="button-small">팔로우</button>
+  </div>
+  <div class="user-wrap">
+    <img src="../img/test.jpg" alt="프로필" class="profile" />
+    <div class="user-txt">
+      <p class="user-name"><mark>애월읍</mark> 위니브 감귤농장애월읍 위니브 감귤농장애월읍 위니브 감귤농장애월읍 위니브 감귤농장</p>
+      <p class="user-id">@ weniv_Mandarin</p>
+    </div>
+  </div>
+  <a href="#" class="user-wrap new">
+    <img src="../img/test.jpg" alt="프로필" class="profile" />
+    <span class="user-txt">
+      <span class="user-name"><mark>애월읍</mark> 위니브 감귤농장애월읍 위니브 감귤농장애월읍 위니브 감귤농장애월읍 위니브 감귤농장</span>
+      <span class="user-id">@ weniv_Mandarin@ weniv_Mandarin@ weniv_Mandarin@ weniv_Mandarin</span>
+    </span>
+    <span class="date">2020.10.25</span>
+  </a>
+
+  <div class="chat-wrap">
+    <img src="../img/test.jpg" alt="프로필" class="profile" />
+    <p class="chat-content">
+      옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.
+    </p>
+    <p class="date">12:39</p>
+  </div>
+  <div class="chat-wrap">
+    <img src="../img/test.jpg" alt="프로필" class="profile" />
+    <p class="chat-content">
+      안녕하세요. 감귤 사고싶어요요요요요
+    </p>
+    <p class="date">12:41</p>
+  </div>
+  <div class="chat-wrap">
+    <img src="../img/test.jpg" alt="프로필" class="profile" />
+    <p class="chat-img">
+      <img src="./img/test.jpg" alt="테스트" />
+    </p>
+    <p class="date">12:50</p>
+  </div>
+  <div class="chat-wrap my-chat">
+    <p class="chat-content">
+      말씀하세요
+    </p>
+    <p class="date">12:50</p>
+  </div>
+  <div class="chat-wrap my-chat">
+    <p class="chat-img">
+      <img src="./img/test4.jpg" alt="테스트" />
+    </p>
+    <p class="date">12:50</p>
+  </div>
+  <div class="chat-wrap my-chat">
+    <p class="chat-img">
+      <img src="./img/test3.jpg" alt="테스트" />
+    </p>
+    <p class="date">12:50</p>
+  </div>
+  <div class="chat-wrap my-chat">
+    <p class="chat-img">
+      <img src="./img/test2.jpg" alt="테스트" />
+    </p>
+    <p class="date">12:50</p>
+  </div>
+  <div class="chat-wrap my-chat">
+    <p class="chat-img">
+      <img src="./img/test.jpg" alt="테스트" />
+    </p>
+    <p class="date">12:50</p>
+  </div>
+  <article class="not-found">
+    <img src="./img/icon-404.svg" alt="404" />
+    <h2>페이지를 찾을 수 없습니다.:(</h2>
+    <a href="#" class="button">이전 페이지</a>
+  </article>
+</section>
+
+{% endblock %}
