@@ -329,8 +329,8 @@ a[class^="imgbtn"] {
   border-radius: 50%;
 }
 
-.user-wrap .date,
-.chat-wrap .date {
+.user-wrap .date-time,
+.chat-wrap .date-time {
   font-size: 1.2rem;
   color: #767676;
   line-height: 1.4;
@@ -368,8 +368,8 @@ a[class^="imgbtn"] {
   width: calc(100% - 12rem);
 }
 
-.user-wrap .user-txt .user-name,
-.user-wrap .user-txt .user-id {
+.user-wrap .user-txt .user-title,
+.user-wrap .user-txt .user-description {
   display: block;
   line-height: 1.4;
   overflow: hidden;
@@ -377,13 +377,13 @@ a[class^="imgbtn"] {
   white-space: nowrap;
 }
 
-.user-wrap .user-txt .user-name {
+.user-wrap .user-txt .user-title {
   color: #000;
   font-weight: 600;
   font-size: 1.6rem;
 }
 
-.user-wrap .user-txt .user-id {
+.user-wrap .user-txt .user-description {
   color: #767676;
   font-size: 1.4rem;
 }

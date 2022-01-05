@@ -373,7 +373,7 @@ a[class^="imgbtn"] {
     border-radius: 50%;
   }
 
-  .date {
+  .date-time {
     font-size: 1.2rem;
     color: #767676;
     line-height: 1.4;
@@ -404,8 +404,8 @@ a[class^="imgbtn"] {
     flex-grow: 1;
     width: calc(100% - 12rem);
 
-    .user-name,
-    .user-id {
+    .user-title,
+    .user-description {
       display: block;
       line-height: 1.4;
       overflow: hidden;
@@ -413,13 +413,13 @@ a[class^="imgbtn"] {
       white-space: nowrap;
     }
 
-    .user-name {
+    .user-title {
       color: #000;
       font-weight: 600;
       font-size: 1.6rem;
     }
 
-    .user-id {
+    .user-description {
       color: #767676;
       font-size: 1.4rem;
     }
