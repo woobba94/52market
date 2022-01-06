@@ -22,7 +22,7 @@ app.use('/', express.static(pathway));
 let env = nunjucks.configure('resource/pages', {
   autoescape: true,
   express: app,
-  watch: true
+  watch: true,
 });
 env.addFilter('date', dateFilter);
 
@@ -37,16 +37,14 @@ app.get('/', (req, res, next) => {
 
 app.use('/', marketRouter);
 
-
-
 app.use((req, res, next) => {
   res.sendStatus(404);
-})
+});
 
 app.use((err, req, res, next) => {
-  console.log('애러났음!')
+  console.log('애러났음!');
   console.log(err);
   res.sendStatus(500);
-})
+});
 
 app.listen(8080);

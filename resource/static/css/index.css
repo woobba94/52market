@@ -1,0 +1,28 @@
+.wrap-index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - (108px));
+  width: 100%;
+  background-color: #ffffff;
+  padding: 0;
+  margin-top: 48px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
+}
+
+.wrap-index p {
+  margin: 25px 0 20px 0;
+}
+.wrap-index .title {
+  display: none;
+}
+
+.symbol-logo-gray {
+  width: 74px;
+  height: 89px;
+  background: url('../img/index/symbol-logo-gray.png') no-repeat;
+  background-size: contain;
+}
