@@ -1,5 +1,7 @@
 @charset "utf-8";
 @import 'reset.css';
 @import 'module.css';
-@import 'header&footer.css';
+@import 'header.css';
+@import 'menu-bottom.css';
 @import 'index.css';
+@import 'search.css';
