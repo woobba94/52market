@@ -1,0 +1,18 @@
+.wrap-404 {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  z-index: 3;
+}
+.wrap-404 .title {
+  display: none;
+}
+.wrap-404 .button {
+  padding-top: 0;
+}

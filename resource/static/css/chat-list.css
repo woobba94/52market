@@ -1,0 +1,75 @@
+.wrap-chat-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: calc(100vh - (108px + 14px));
+  width: 100%;
+  background-color: #ffffff;
+  padding: 0;
+  margin: 0;
+  margin-top: calc(48px + 14px);
+  font-size: 14px;
+  font-weight: 400;
+  color: #767676;
+}
+.wrap-chat-list .title {
+  display: none;
+}
+
+.list-child {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 42px;
+  width: calc(100% - (32px));
+  margin: 10px 16px;
+}
+.list-child .badge {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--main-color);
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+}
+.list-child .img-profile {
+  width: 42px;
+  height: 42px;
+  background: url('../img/chat-list/default-profile-img.png') no-repeat;
+  background-size: contain;
+}
+.list-child .content {
+  width: 65%;
+  height: 100%;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.list-child .content .user-name {
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list-child .content .text {
+  margin-bottom: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #767676;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list-child .date {
+  position: absolute;
+  font-size: 10px;
+  color: #dbdbdb;
+  right: 0;
+  bottom: 3px;
+}
