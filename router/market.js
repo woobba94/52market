@@ -6,6 +6,9 @@ router.get('/', (req, res, next) => {
   res.render('index.html');
 });
 
+router.get('/home', (req, res, next) => {
+  res.render('home.html');
+});
 router.get('/chat', (req, res, next) => {
   res.render('chat-list.html');
 });
