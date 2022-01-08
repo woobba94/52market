@@ -150,7 +150,7 @@
 }
 
 .upload-wrap .upload-cont {
-  width: 100%;
+  width: calc(100% - 5rem - 1.2rem);
 }
 
 .upload-wrap .upload-img {
@@ -161,17 +161,17 @@
 }
 
 .upload-wrap .img-wrap {
+  overflow: hidden;
   overflow-x: scroll;
 }
 
 .upload-wrap .img-wrap ul {
   height: 12rem;
-  white-space: nowrap;
+  display: flex;
+  gap: 0.8rem;
 }
 
 .upload-wrap .img-wrap ul li {
-  display: inline-block;
-  float: left;
   height: 100%;
 }
 
