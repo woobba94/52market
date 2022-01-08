@@ -1,10 +1,65 @@
-{% extends 'layout.html' %}
+{% extends 'layout2.html' %}
 {% block content %}
-<section class="cont-wrap">
-  <h2 class="title">post</h2>
+
+{% include './template/header.html' %}
+<div class="padding-wrap mg-header">
+  <article class="post-article">
+    <a href="#" class="user-wrap">
+      <img src="../img/profile.svg" alt="프로필" class="profile" />
+      <span class="user-txt">
+        <span class="user-title">애월읍 위니브 감귤농장</span>
+        <span class="user-description">@ weniv_Mandarin</span>
+      </span>
+    </a>
+
+    <div class="post-cont">
+      <p class=" post-text">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게
+        뛰노는
+        인생의
+        힘있다.</p>
+      <img class="post-img" src="./img/test.jpg" alt="숲이 우거진 풍경" />
 
 
+      <p class="like-comment">
+        <button type="button" class="btn-like"><span class="a11y-hidden">좋아요</span>58</button>
+        <span class="btn-comment"><span class="a11y-hidden">댓글</span>12</span>
+      </p>
+      <p class="date">2020년 10월 21일</p>
+    </div>
+    <button class="imgbtn-more">더보기</button>
+  </article>
+</div>
 
+<section class="cont-comment magb-60">
+  <h2 class="a11y-hidden">댓글</h2>
+  <ul class="comment-wrap">
+    <li class="user-wrap">
+      <div href="#"><img src="../img/profile.svg" alt="프로필" class="profile" /></div>
+      <div class="user-txt">
+        <a href="#" class="user-title">서귀포시 무슨 농장</a>
+        <span class="time">5분전</span>
+        <p class="user-comment">게시글 답글 ~~ !! 최고최고</p>
+      </div>
+      <button class="imgbtn-more">더보기</button>
+    </li>
+    <li class="user-wrap">
+      <a href="#"><img src="../img/profile.svg" alt="프로필" class="profile" /></a>
+      <div class="user-txt">
+        <a href="#" class="user-title">감귤러버</a>
+        <span class="time">15분전</span>
+        <p class="user-comment">안녕하세요. 사진이 너무 멋있어요. 한라봉 언제 먹을 수 있나요? 기다리기 지쳤어요 땡뻘땡뻘...</p>
+      </div>
+      <button class="imgbtn-more">더보기</button>
+    </li>
+  </ul>
+
+  <div class="comment-in">
+    <img src="../img/profile.svg" alt="프로필" class="profile" />
+    <label for="comment-box" class="a11y-hidden">댓글</label>
+    <input type="text" id="comment-box" placeholder="댓글 입력하기" />
+    <button type="button">게시</button>
+    <!-- disalbe 처리 -->
+  </div>
 
 </section>
 {% endblock %}
