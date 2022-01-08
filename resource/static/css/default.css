@@ -12,8 +12,5 @@
 @import '404.css';
 
 @import 'login.css';
-/* 
-날짜 : 2022_01_07
-내용 : login.css 파일 추가
-       login.css 파일 새로 이용
-*/
+
+@import 'feed-list.css';

@@ -1,0 +1,307 @@
+.cont-wrap {
+  width: calc(100% - 6.8rem);
+  margin: 3.4rem auto;
+}
+
+.post-article {
+  position: relative;
+}
+
+.post-article .post-cont {
+  padding-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.post-article .post-cont .post-text {
+  line-height: 1.4;
+}
+
+.post-article .post-cont span.post-text {
+  display: block;
+}
+
+.post-article .post-cont .post-img {
+  max-height: 40rem;
+  max-width: 40rem;
+  border-radius: var(--border-img);
+}
+
+.post-article .post-cont .date {
+  font-size: 1.2rem;
+  color: #767676;
+}
+
+.post-article .imgbtn-more {
+  background: #eee;
+  position: absolute;
+  top: 0.9rem;
+  right: 0;
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.post-list {
+  margin: 2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.post-view-type {
+  display: flex;
+  justify-content: end;
+  border: 1px solid #dbdbdb;
+  border-width: 1px 0;
+  padding: 0.5rem 1.2rem;
+  gap: 0.4rem;
+}
+
+.post-album {
+  margin: 2rem 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  gap: 0.8rem;
+}
+
+.post-album li {
+  padding-top: 100%;
+  height: 0;
+  position: relative;
+}
+
+.post-album li .pack {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  background: url(../img/icon-pack.svg) no-repeat 50% 50%;
+}
+
+.post-album li a {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.post-album li a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.like-comment {
+  margin-left: -0.4rem;
+}
+
+.like-comment .btn-like,
+.like-comment .btn-comment {
+  padding: 0.6rem 0.6rem 0.4rem 2.8rem;
+  font-size: 1.2rem;
+  color: #767676;
+  border-radius: var(--border-radius);
+  transition: all 0.3s;
+}
+
+.like-comment .btn-like:hover, .like-comment .btn-like:focus, .like-comment .btn-like:active,
+.like-comment .btn-comment:hover,
+.like-comment .btn-comment:focus,
+.like-comment .btn-comment:active {
+  background-color: #eee;
+}
+
+.like-comment .btn-like {
+  background: #fff url(../img/icon-heart.svg) no-repeat 0.4rem 50%/2rem;
+}
+
+.like-comment .btn-like.on {
+  background: #fff url(../img/icon-heart-on.svg) no-repeat 0 50%/2rem;
+}
+
+.like-comment .btn-comment {
+  background: #fff url(../img/icon-message.svg) no-repeat 0.4rem 50%/2rem;
+}
+
+.upload-wrap {
+  padding: 2rem 1.6rem;
+}
+
+.upload-wrap .flex {
+  width: 100%;
+  overflow: hidden;
+}
+
+.upload-wrap textarea {
+  border: 0;
+  width: 100%;
+  outline: none;
+  margin-top: 1.6rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  line-height: 1.4;
+  overflow: hidden;
+}
+
+.upload-wrap .upload-cont {
+  width: 100%;
+}
+
+.upload-wrap .upload-img {
+  border-radius: var(--border-img);
+  width: 100%;
+  max-height: 40rem;
+  max-width: 40rem;
+}
+
+.upload-wrap .img-wrap {
+  overflow-x: scroll;
+}
+
+.upload-wrap .img-wrap ul {
+  height: 12rem;
+  white-space: nowrap;
+}
+
+.upload-wrap .img-wrap ul li {
+  display: inline-block;
+  float: left;
+  height: 100%;
+}
+
+.upload-wrap .img-wrap img {
+  height: 100%;
+  border-radius: var(--border-img);
+}
+
+.upload-wrap .imgbtn-img {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.flex {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.cont-comment .profile,
+.cont-comment .user-wrap .profile {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.cont-comment .comment-wrap {
+  border-top: 1px solid #ddd;
+  padding: 1rem 1.6rem;
+}
+
+.cont-comment .comment-wrap .user-wrap {
+  position: relative;
+  align-items: flex-start;
+}
+
+.cont-comment .comment-wrap .user-wrap .user-txt .user-title {
+  display: inline-block;
+  margin-top: 0.8rem;
+  vertical-align: middle;
+}
+
+.cont-comment .comment-wrap .user-wrap .user-txt .time {
+  font-size: 1.2rem;
+  color: #767676;
+}
+
+.cont-comment .comment-wrap .user-wrap .user-txt .time::before {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  background: #ccc;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin: 0 0.8rem;
+}
+
+.cont-comment .comment-wrap .user-wrap .user-txt .user-comment {
+  margin: 1.6rem 0 0.8rem;
+  padding-left: 0;
+  line-height: 1.4;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.cont-comment .comment-wrap .user-wrap .imgbtn-more {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cont-comment .comment-wrap .user-comment {
+  padding-left: 5rem;
+}
+
+.cont-comment .comment-in {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 6rem;
+  padding: 0.8rem 1.6rem;
+  border-top: 1px solid #ddd;
+  background: #fff;
+}
+
+.cont-comment .comment-in input,
+.cont-comment .comment-in button {
+  font-size: 1.4rem;
+  font-family: inherit;
+  height: 100%;
+}
+
+.cont-comment .comment-in input {
+  width: 100%;
+  border: 0;
+  color: #000;
+}
+
+.cont-comment .comment-in input::placeholder {
+  color: #c4c4c4;
+}
+
+.cont-comment .comment-in button {
+  font-weight: bold;
+  width: 8rem;
+  transition: all 0.3s;
+  border-radius: var(--border-radius);
+  color: var(--main-color);
+}
+
+.cont-comment .comment-in button:disabled {
+  color: #c4c4c4;
+}
+
+.cont-comment .comment-in button:not(:disabled):hover, .cont-comment .comment-in button:focus {
+  background: #f5f5f5;
+}
+
+.cont-comment .comment-in button:active {
+  background: #eee;
+}
+
+.padding-wrap {
+  padding: 2rem 1.6rem;
+}
+
+.magb-60 {
+  margin-bottom: 6rem;
+}

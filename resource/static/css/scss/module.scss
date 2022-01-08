@@ -1,6 +1,7 @@
 :root {
   --main-color: #78AD34;
   --border-radius: 0.4rem;
+  --border-img: 1rem
 }
 
 html {
@@ -32,9 +33,12 @@ body {
   clip: rect(0, 0, 0, 0);
 }
 
-.cont-wrap {
-  width: calc(100% - 6.8rem);
-  margin: 3.4rem auto;
+.mg-header {
+  margin-top: calc(48px + 1.6rem);
+}
+
+.mg-bottom {
+  margin-bottom: calc(60px + 5rem);
 }
 
 // 버튼
@@ -199,22 +203,35 @@ a[class^="imgbtn"] {
   }
 
   &.imgbtn-message,
-  &.imgbtn-share {
+  &.imgbtn-share,
+  &.imgbtn-more,
+  &.imgbtn-list,
+  &.imgbtn-album {
     width: 3.4rem;
     height: 3.4rem;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
   }
 
-
   &:hover,
   &:active,
   &:focus {
 
-    &.imgbtn-message::before,
-    &.imgbtn-share::before {
-      background-color: #f5f5f5;
+    &.imgbtn-message,
+    &.imgbtn-share,
+    &.imgbtn-more,
+    &.imgbtn-list,
+    &.imgbtn-album {
+      &::before {
+        background-color: #f5f5f5;
+      }
     }
+  }
+
+  &.imgbtn-more,
+  &.imgbtn-list,
+  &.imgbtn-album {
+    border: 0;
   }
 
   &.imgbtn-message::before {
@@ -223,6 +240,26 @@ a[class^="imgbtn"] {
 
   &.imgbtn-share::before {
     background: #fff url(../img/icon-share.svg) no-repeat 50% 50% / 2rem;
+  }
+
+  &.imgbtn-more::before {
+    background: #fff url(../img/icon-more.svg) no-repeat 50% 50% / 2rem;
+  }
+
+  &.imgbtn-list.active::before {
+    background: #fff url(../img/icon-post-list.svg) no-repeat 50% 50% / 2rem;
+  }
+
+  &.imgbtn-album.active::before {
+    background: #fff url(../img/icon-post-album.svg) no-repeat 50% 50% / 2rem;
+  }
+
+  &.imgbtn-list::before {
+    background: #fff url(../img/icon-post-list-off.svg) no-repeat 50% 50% / 2rem;
+  }
+
+  &.imgbtn-album::before {
+    background: #fff url(../img/icon-post-album-off.svg) no-repeat 50% 50% / 2rem;
   }
 
   &.imgbtn-img {
@@ -382,11 +419,12 @@ a[class^="imgbtn"] {
 }
 
 .user-wrap {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.8rem;
   position: relative;
-  padding: 1.2rem 0;
+  margin: 0.6rem 0;
+  padding: 0.6rem 0;
 
   &.new::before {
     @include content;
@@ -443,6 +481,8 @@ a[class^="imgbtn"] {
   .chat-img {
     max-width: 40rem;
     max-height: 40rem;
+    border-radius: var(--border-img);
+    overflow: hidden;
 
     img {
       max-width: 100%;
@@ -468,9 +508,6 @@ mark {
   color: var(--main-color);
   background: none;
 }
-
-
-
 
 .not-found {
   text-align: center;
