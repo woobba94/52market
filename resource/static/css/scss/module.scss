@@ -419,7 +419,12 @@ a[class^="imgbtn"] {
 }
 
 .user-wrap {
-  display: inline-flex;
+  display: flex;
+
+  &:not(li) {
+    display: inline-flex;
+  }
+
   align-items: center;
   gap: 0.8rem;
   position: relative;

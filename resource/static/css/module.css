@@ -367,12 +367,16 @@ a[class^="imgbtn"] {
 }
 
 .user-wrap {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.8rem;
   position: relative;
   margin: 0.6rem 0;
   padding: 0.6rem 0;
+}
+
+.user-wrap:not(li) {
+  display: inline-flex;
 }
 
 .user-wrap.new::before {
