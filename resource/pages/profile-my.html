@@ -1,10 +1,93 @@
 {% extends 'layout.html' %}
+
 {% block content %}
-<section class="cont-wrap">
-  <h2 class="title">profile-my</h2>
 
 
+<header>
+  <!-- top-basic-nav -->
+  <button class="btn-back"></button>
+  <button class="btn-more"></button>
+  </header>
 
+<section class="profile-my-wrapper">
+  <h2 class="a11y-hidden">profile-my</h2>
+  <div class="following-wrap">
+    <img src="/resource/static/img/profile/profile.png" alt="기본프로필사진">
+        <p class="title">
+          애월읍 위니브 감귤농장
+        </p>
+        <p class="title title-sub">@weniv_Mandarin</p>
+        <p class="user-wrap">
+        애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
+      <a class="follower-num" href="jacascript:void(0)">
+        <p class="title">
+          2950
+        </p>
+        <p class="title title-sub">followers</p>
+        <a class="following-num" href="jacascript:void(0)">
+            <p class="title">
+              128
+            </p>
+            <p class="title title-sub">followings</p>
+            </p>
+          </a>
+      <div class="btns-wrap">
+        <a class="button button-ms line" href="jacascript:void(0)"> 프로필 수정</a>
+        <a class="button button-ms line" href="jacascript:void(0)">상품 등록</a>
+      </div>
+    </div>
+    </section>
+    <section class="product-wrap">
+      <p class="title">판매중인 상품</p>
+    <ul class="product-list">
+      <li>
+        <a href="javascript:void(0)">
+        <img src="/resource/static/img/profile/product_1.png" alt="상품사진"></a>
+        <p>한라봉</p>
+        <em>34,000원</em>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+        <img src="/resource/static/img/profile/product_2.png" alt="상품사진"></a>
+        <p>한라 한라봉</p>
+        <em>34,000원</em>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+        <img src="/resource/static/img/profile/product_2.png" alt="상품사진"></a>
+        <a class="product-img" href="">
+        </a>
+        <p>끝내주는 감귤</p>
+        <em>34,000원</em>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+        <img src="/resource/static/img/profile/product_1.png" alt="상품사진"></a>
+        <p>제철 감귤</p>
+        <em>34,000원</em>
+      </li>
+      <li>
+        <img src="/resource/static/img/profile/product_2.png" alt="상품사진"></a>
+        <p>또 한라봉</p>
+        <em>34,000원</em>
+      </li>
+      <li>
+        <img src="/resource/static/img/profile/product_2.png" alt="상품사진"></a>
+        <p>굉장한 한라봉</p>
+        <em>34,000원</em>
+      </li>
+      <li>
+        <a href="javascript:void(0)"></a>
+        <img src="/resource/static/img/profile/product_2.png" alt="상품사진"></a>
+        <p>엄청난 한라봉</p>
+        <em>34,000원</em>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+        <img src="/resource/static/img/profile/product_2.png" alt="상품사진"></a>
+        <p>한라봉</p>
+        <em>34,000원</em>
+      </li>
+    </ul>
 
-</section>
-{% endblock %}
+    {% endblock %}

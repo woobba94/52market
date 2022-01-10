@@ -1,0 +1,50 @@
+.following-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    height: calc(100vh - (280px));
+    position: relative;
+    background-color: #ffffff;
+    border-bottom: 5.5px solid #bdbdbd;
+}
+.following-wrap img {
+    margin-bottom: 30px;
+}
+.following-wrap .user-wrap {
+    margin-top: 20px;
+    color: #767676;
+}
+.follower-num, .following-num{
+    position: absolute;
+    left: 350px;
+    bottom: 280px;
+}
+.following-num {
+    right: 120px;
+}
+
+.btns-wrap {
+    margin-top: 40px;
+}
+
+.product-list {
+    display: flex;
+    padding-top: 16px;
+    gap: 20px;
+    overflow-x: scroll;
+}
+.product-list li {
+    line-height: 1.4;
+}
+.product-list p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+.product-list em {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--main-color);
+}

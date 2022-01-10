@@ -1,0 +1,24 @@
+.wrap-profile-mod {
+    width: 100%;
+    padding: 50px;
+}
+.wrap-profile-mod .title {
+    display: none;
+}
+.profile-image-insert-wrap {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+}
+.profile-image-insert-wrap img {
+    position: relative;
+    top: 41.67%;
+    left: 35.83%;
+    bottom: 12.5%;
+    right: 12.5%;
+}
+.profile-image-insert-wrap button {
+    position: absolute;
+    top: 130px;
+    left: 48%;
+}
