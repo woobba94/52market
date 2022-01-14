@@ -19,13 +19,14 @@
 }
 .follower-num, .following-num{
     position: absolute;
-    left: 350px;
     bottom: 280px;
 }
-.following-num {
-    right: 120px;
+.follower-num {
+    left: 180px;
 }
-
+.following-num {
+    right: 180px;
+}
 .btns-wrap {
     margin-top: 40px;
 }
