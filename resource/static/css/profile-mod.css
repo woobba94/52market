@@ -1,5 +1,6 @@
 .wrap-profile-mod {
     width: 100%;
+    margin-top: calc(48px + 1.6rem);
     padding: 50px;
 }
 .wrap-profile-mod .title {
@@ -12,13 +13,16 @@
 }
 .profile-image-insert-wrap img {
     position: relative;
-    top: 41.67%;
+    top: 50.67%;
     left: 35.83%;
     bottom: 12.5%;
     right: 12.5%;
 }
 .profile-image-insert-wrap button {
     position: absolute;
-    top: 130px;
+    top: 175px;
     left: 48%;
+}
+.input-wrap {
+    margin-top: calc(48px + 2.6rem);
 }

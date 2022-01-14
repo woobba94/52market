@@ -4,7 +4,7 @@
 
 <header>
   <button class="btn-back"></button>
-  <button class="button-ms" disabled>저장</button>
+  <button class="button-ms" >저장</button>
 </header>
 <section class="wrap-profile-mod">
   <h2 class="title">profile-mod</h2>
@@ -12,6 +12,7 @@
     <img src="img/profile/profile.png" alt="기본프로필사진">
     <button class="imgbtn imgbtn-img"></button>
   </div>
+  <div class="input-wrap">
   <div class="label-input">
     <label for="text-id">사용자 이름</label>
     <input type="text" placeholder="2~10자 이내여야 합니다." id="text-id" />
@@ -24,6 +25,7 @@
     <label for="url-id">소개</label>
     <input type="url" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id="url-id" />
   </div>
+</div>
 </section>
 
 {% endblock %}
