@@ -1,10 +1,29 @@
-{% extends 'layout.html' %}
+{% extends 'layout2.html' %}
 {% block content %}
-<section class="cont-wrap">
-  <h2 class="title">이메일로 회원가입</h2>
-  <p>이것은 조인</p>
+<article class="main-login-container">
+    <section name="signup-page" class="email-login-page">
+        <h1 class="login-text">이메일로 회원가입</h1>
+        <!-- <div class="label-input error"> -->
+        <div id="signup-id-input" class="label-input">
+            <label for="email-id">이메일</label>
+            <input name="username" type="email" id="email-id" />
+            <p id="alert_username"class="error-message">*이미 가입된 이메일 주소입니다.</p>
+        </div>
+
+        <!-- <div class="label-input error"> -->
+        <div id="signup-pw-input" class="label-input">
+            <label for="password-id">비밀번호</label>
+            <input name="userPw"type="password" id="password-id" />
+            <p class="error-message">*비밀번호는 6자 이상이어야 합니다.</p>
+        </div>
+        <!-- <a class="login-to-profile" href=> -->
+          <button id="signup-check-btn" class="login-next-btn button full">다음
+          </button>
+        <!-- </a> -->
+        
+    </section>
 
 
-
-</section>
-{% endblock %}
+  </article>
+  
+  {% endblock %}
