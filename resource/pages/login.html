@@ -1,27 +1,28 @@
 {% extends 'layout2.html' %}
 {% block content %}
-<!-- <section class="cont-wrap"> -->
-<!-- <h2 class="title">로그인</h2> -->
 <article class="main-login-container">
-    <section class="login-loading-page">
-        <div class="loading-text-box">
-            <p>오늘부터 이웃</p>
-            <p>오이마켓</p>
+    <section class="email-login-page">
+        <h1 class="login-text">로그인</h1>
+        <div class="label-input">
+            <label for="email-id">이메일</label>
+            <input type="email" id="email-id" />
+            <p class="error-message">*이미 가입된 이메일 주소입니다.</p>
         </div>
 
-        <ul class="loading-sns-page">
-            <li><a href="#" class="button-kakao">카카오톡 계정으로 로그인</a></li>
-            <li><a href="#" class="button-google">구글 계정으로 로그인</a></li>
-            <li><a href="#" class="button-facebook">페이스북 계정으로 로그인</a></li>
-            <li><a href="#" class="email-login">이메일로 로그인</a>
-                <a href="#" class="signup">회원가입</a>
-            </li>
-        </ul>
+        <div class="label-input error">
+            <label for="password-id">비밀번호</label>
+            <input type="password" id="password-id" />
+            <p class="error-message">*이메일 또는 비밀번호가 일치하지 않습니다.</p>
+        </div>
+
+        <button class="login-next-btn button full">다음</button>
+        <div class="login-singup">
+            <a href="http://localhost:8080/join">이메일로 회원가입</a>
+        </div>
+
+
     </section>
 
+
 </article>
-
-
-
-<!-- </section> -->
 {% endblock %}

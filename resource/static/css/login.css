@@ -1,145 +1,96 @@
 @font-face {
-    font-family: 'GmarketSansLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main-login-container{
+  width: 100%;
+  height: 844px;
+  background-color: #fff;
+}
+
+.email-login-page{
+  padding: 0 5%;
+}
+.login-text{
+  text-align: center;
+  margin:54px auto 0;   
+  font-family: 'GmarketSansLight';
+  font-weight: 700;
+  font-size: 24px;
+
+}
+
+.label-input{
+  margin-top: 40px;
+  width: 100%;
+  color: #767676;
+  font-size: 12px;
+  font-weight: 500;
+
+}
+
+.email-login-page .login-next-btn{
+  margin-top: 5%;
+  background-color: #eee;
+  border-radius: 4px;
+  height: 44px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 400;
   
-  @font-face {
-    font-family: 'GmarketSansBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+}
+.login-to-profile{
+  pointer-events: none;
+  cursor: default;
+}
+
+.email-login-page .login-next-btn.success{
+  margin-top: 5%;
+  background-color: #78AD34;
+  border-radius: 4px;
+  height: 44px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  
+}
+
+.email-login-page .login-singup{
+  height: 15px;
+  text-align: center;
+  margin-top: 25px;
+  color: #767676;
+  font-size: 14px;
+}
+
+.email-login-page .login-singup a:hover{
+  color: #414141; 
+
+}
+
 
 /* ******************** 
-******** login *******
+******** 프로필 설정 *******
 ******************** */
-.login-loading-page{
-    /* display: none; */
-    position: relative;
-    width: 100%;
-    height: 844px;
-    background-color: #fff;
-    animation-delay: 1s;
-    animation-duration: 1s;
-    animation-name: main-slidein;
-    animation-fill-mode: forwards;
-  }
-  
-  @keyframes main-slidein{
-    from{
-        background-color: #fff;
-    }
-  
-    to{
-        background-color: #78ad34;
-    }
-  }
-  
-  .login-loading-page.active{
-    position: relative;
-    width: 390px;
-    height: 844px;
-    background-color: #78ad34;
-  }
-  
-  
-  
-  .login-loading-page .loading-text-box{
-    position: absolute;
-    width: 100%;
-    height: 84px;
-    text-align: center;
-    color:#78ad34;
-    /* left:25%; */
-    margin: 0 auto;
-    top:40%;
-    animation-delay: 1s;
-    animation-duration: 1s;
-    animation-name: loading-slidein;
-    animation-fill-mode: forwards;
-  }
-  
-  @keyframes loading-slidein{
-    from{
-        top:40%;
-        color:#78ad34;
-    }
-  
-    to{
-        top:30%;
-        color:#fff;
-    }
-  }
-  
-  /* 
-  .login-loading-page .loading-text-box.active{
-    position: absolute;
-    width: 147px;
-    height: 84px;
-    text-align: center;
-    color:#fff;
-    left:25%;
-    top:30%;
-  } */
-  
-  .loading-text-box p:nth-child(1){
-    font-size:24px;
-    line-height: 40px;
-    font-weight: bold;
-  }
-  
-  .loading-text-box p:nth-child(2){
-    font-size:37px;
-    line-height: 45px;
-    font-family: 'GmarketSansBold';
-  }
-  
-  .loading-sns-page{
-    position: absolute;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
-    width: 100%;
-    height: 525px;
-    padding: 50px 36px 0;
-    z-index: 5;
-    background-color: #fff;
-    top:1000px;
-    border-radius: 20px 20px 0 0;
-    animation-delay: 1.5s;
-    animation-duration: 1s;
-    animation-name: sns-login-slidein;
-    animation-fill-mode: forwards;
-  }
-  
-  
-  
-  @keyframes sns-login-slidein{
-    from{
-        opacity: 0;
-        top:850px;
-    }
-  
-    to{
-        opacity: 1;
-        top:525px;
-    }
-  }
-  
-  .loading-sns-page li+li{
-    margin-top : 15px;
-  }
-  
-  .loading-sns-page:last-child{
-    text-align: center;
-    /* margin-top : 15px; */
-    color: #767676;
-  }
-  
-  .loading-sns-page .email-login::after{
-    content: '';
-    border-right: #767676 1px solid;
-    margin: 0 15px;
-  }
+
+
+.profile-text{
+  color: #767676;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.profile-set{
+  margin: 0 auto;
+}
