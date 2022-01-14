@@ -1,0 +1,22 @@
+{% extends 'layout2.html' %}
+{% block content %}
+
+<article class="main-loading-container">
+    <section class="login-loading-page">
+        <div class="loading-text-box">
+            <p>오늘부터 이웃</p>
+            <p>오이마켓</p>
+        </div>
+
+        <ul class="loading-sns-page">
+            <li><a href="#" class="button-kakao">카카오톡 계정으로 로그인</a></li>
+            <li><a href="#" class="button-google">구글 계정으로 로그인</a></li>
+            <li><a href="#" class="button-facebook">페이스북 계정으로 로그인</a></li>
+            <li><a href="http://localhost:8080/login" class="email-login">이메일로 로그인</a>
+                <a href="http://localhost:8080/join" class="signup">회원가입</a>
+            </li>
+        </ul>
+    </section>
+</article>
+
+{% endblock %}
