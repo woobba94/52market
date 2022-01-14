@@ -12,16 +12,13 @@
     margin: 0 auto;
 }
 .profile-image-insert-wrap img {
-    position: relative;
-    top: 50.67%;
-    left: 35.83%;
-    bottom: 12.5%;
-    right: 12.5%;
+    display: block;
+    margin: 0 auto;
 }
 .profile-image-insert-wrap button {
     position: absolute;
     top: 175px;
-    left: 48%;
+    left: 52%;
 }
 .input-wrap {
     margin-top: calc(48px + 2.6rem);
