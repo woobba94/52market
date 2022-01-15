@@ -2,52 +2,29 @@
 
 {% block content %}
 
-{% include './template/top-upload.html' %}
-
 <section class="upload-wrap mg-header">
   <h2 class="a11y-hidden">게시물 입력</h2>
   <div class="flex">
-    <img src="../img/profile.svg" alt="프로필" class="profile" />
-    <div class="upload-cont">
-      <textarea placeholder="게시글 입력하기" rows="10"></textarea>
-    </div>
-  </div>
-  <button type="button" class="imgbtn-img">이미지 찾기</button>
-</section>
-<section class="upload-wrap">
-  <h2 class="a11y-hidden">게시물 입력</h2>
-  <div class="flex">
-    <img src="../img/profile.svg" alt="프로필" class="profile" />
-    <div class="upload-cont">
-      <textarea placeholder="게시글 입력하기" rows="3">사용자 간의 자유로운 의사소통과 정보 공유, 그리고 인맥 확대 등을 통해 사회적 관계를 생성하고 강화해주는 온라인 플랫폼을 의미한다.
-      </textarea>
+    <img src="/img/profile.svg" alt="프로필" class="profile" />
 
-      <img src="../img/test.jpg" alt="테스트" class="upload-img" />
-
-    </div>
-  </div>
-  <button type="button" class="imgbtn-img">이미지 찾기</button>
-</section>
-<section class="upload-wrap">
-  <h2 class="a11y-hidden">게시물 입력</h2>
-  <div class="flex">
-    <img src="../img/profile.svg" alt="프로필" class="profile" />
     <div class="upload-cont">
-      <textarea placeholder="게시글 입력하기" rows="3">사용자 간의 자유로운 의사소통과 정보 공유, 그리고 인맥 확대 등을 통해 사회적 관계를 생성하고 강화해주는 온라인 플랫폼을 의미한다.
-      </textarea>
+      <textarea placeholder="게시글 입력하기" class="textarea"></textarea>
       <div class="img-wrap">
         <ul>
-          <li><img src="../img/test.jpg" alt="테스트" /></li>
-          <li><img src="../img/test.jpg" alt="테스트" /></li>
-          <li><img src="../img/test.jpg" alt="테스트" /></li>
-          <li><img src="../img/test.jpg" alt="테스트" /></li>
-          <li><img src="../img/test.jpg" alt="테스트" /></li>
+
         </ul>
       </div>
-
     </div>
   </div>
-  <button type="button" class="imgbtn-img">이미지 찾기</button>
+  <input type="file" class="imgbtn-img" accept="image/*" multiple />
 </section>
 
+<header class="flex-reserve">
+  <button class="button-ms post-save" disabled>저장</button>
+  <button class="btn-back"><span class="a11y-hidden">뒤로</span></button>
+</header>
+
+<script src="/js/common.js"></script>
+<script src="/js/upload-common.js"></script>
+<script src="/js/upload.js"></script>
 {% endblock %}
