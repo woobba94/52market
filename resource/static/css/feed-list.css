@@ -22,6 +22,10 @@
   display: block;
 }
 
+.post-article .post-cont a .post-img {
+  margin-top: 1.2rem;
+}
+
 .post-article .post-cont .post-img {
   max-height: 40rem;
   max-width: 40rem;
@@ -110,10 +114,10 @@
   transition: all 0.3s;
 }
 
-.like-comment .btn-like:hover, .like-comment .btn-like:focus, .like-comment .btn-like:active,
-.like-comment .btn-comment:hover,
-.like-comment .btn-comment:focus,
-.like-comment .btn-comment:active {
+.like-comment .btn-like:not(span):hover, .like-comment .btn-like:not(span):focus, .like-comment .btn-like:not(span):active,
+.like-comment .btn-comment:not(span):hover,
+.like-comment .btn-comment:not(span):focus,
+.like-comment .btn-comment:not(span):active {
   background-color: #eee;
 }
 
@@ -122,7 +126,7 @@
 }
 
 .like-comment .btn-like.on {
-  background: #fff url(../img/icon-heart-on.svg) no-repeat 0 50%/2rem;
+  background: #fff url(../img/icon-heart-on.svg) no-repeat 0.4rem 50%/2rem;
 }
 
 .like-comment .btn-comment {
@@ -138,15 +142,21 @@
   overflow: hidden;
 }
 
-.upload-wrap textarea {
+.upload-wrap .textarea {
   border: 0;
   width: 100%;
+  height: 1em;
   outline: none;
   margin-top: 1.6rem;
   font-size: 1.6rem;
   font-family: inherit;
   line-height: 1.4;
   overflow: hidden;
+}
+
+.upload-wrap .textarea::placeholder {
+  color: #c4c4c4;
+  font-size: 1.4rem;
 }
 
 .upload-wrap .upload-cont {
@@ -161,23 +171,28 @@
 }
 
 .upload-wrap .img-wrap {
+  margin-top: 1rem;
   overflow: hidden;
   overflow-x: scroll;
 }
 
 .upload-wrap .img-wrap ul {
-  height: 12rem;
   display: flex;
   gap: 0.8rem;
 }
 
 .upload-wrap .img-wrap ul li {
-  height: 100%;
+  max-width: 40rem;
+  max-height: 40rem;
+  background: #eee;
+  border-radius: var(--border-img);
+  overflow: hidden;
 }
 
-.upload-wrap .img-wrap img {
+.upload-wrap .img-wrap ul li img {
+  width: 100%;
   height: 100%;
-  border-radius: var(--border-img);
+  object-fit: cover;
 }
 
 .upload-wrap .imgbtn-img {
@@ -304,4 +319,8 @@
 
 .magb-60 {
   margin-bottom: 6rem;
+}
+
+.flex-reserve {
+  flex-direction: row-reverse;
 }

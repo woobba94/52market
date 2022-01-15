@@ -20,6 +20,10 @@
       display: block;
     }
 
+    a .post-img {
+      margin-top: 1.2rem;
+    }
+
     .post-img {
       max-height: 40rem;
       max-width: 40rem;
@@ -110,10 +114,13 @@
     border-radius: var(--border-radius);
     transition: all 0.3s;
 
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: #eee;
+    &:not(span) {
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: #eee;
+      }
     }
   }
 
@@ -121,7 +128,7 @@
     background: #fff url(../img/icon-heart.svg) no-repeat 0.4rem 50% / 2rem;
 
     &.on {
-      background: #fff url(../img/icon-heart-on.svg) no-repeat 0 50% / 2rem;
+      background: #fff url(../img/icon-heart-on.svg) no-repeat 0.4rem 50% / 2rem;
     }
   }
 
@@ -139,9 +146,10 @@
     overflow: hidden;
   }
 
-  textarea {
+  .textarea {
     border: 0;
     width: 100%;
+    height: 1em;
     outline: none;
     margin-top: 1.6rem;
     font-size: 1.6rem;
@@ -149,6 +157,10 @@
     line-height: 1.4;
     overflow: hidden;
 
+    &::placeholder {
+      color: #c4c4c4;
+      font-size: 1.4rem;
+    }
   }
 
   .upload-cont {
@@ -163,25 +175,32 @@
   }
 
   .img-wrap {
-
+    margin-top: 1rem;
     overflow: hidden;
     overflow-x: scroll;
 
     ul {
-      height: 12rem;
       display: flex;
       gap: 0.8rem;
 
       li {
-        height: 100%;
+        max-width: 40rem;
+        max-height: 40rem;
+        background: #eee;
+        border-radius: var(--border-img);
+        overflow: hidden;
+
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
     }
 
 
-    img {
-      height: 100%;
-      border-radius: var(--border-img);
-    }
+
   }
 
   .imgbtn-img {
@@ -204,8 +223,6 @@
     width: 3.6rem;
     height: 3.6rem;
   }
-
-
 
   //댓글 리스트
   .comment-wrap {
@@ -325,4 +342,9 @@
 
 .magb-60 {
   margin-bottom: 6rem;
+}
+
+
+.flex-reserve {
+  flex-direction: row-reverse;
 }
