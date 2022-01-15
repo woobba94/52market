@@ -9,7 +9,8 @@
 
 
 
-
+const $loginBtn = document.querySelector('#login-btn');
+$loginBtn.addEventListener("click",login)
 
 // 로그인 
 function getInput() {
@@ -22,31 +23,26 @@ async function login() {
     // getInput();
     const email = document.querySelector("#email-id").value
     const pw = document.querySelector("#password-id").value
-    const url = "http://146.56.183.55:5050"
-    const loginData = {
-        "user": {
-            "email": email,
-            "password": pw
-        }
+    const url = 'http://146.56.183.55:5050'
+        const loginData = {
+                "user":{
+                        "email": email,
+                        "password": pw
+                        }
+                }
+        
+        const res = await fetch('http://146.56.183.55:5050/user/login',{
+            method:"POST",
+            headers:{
+                "Content-type" : "application/json"
+            },
+            body:JSON.stringify(loginData)
+        })
+        const json = await res.json()
+        localStorage.setItem("Token",json.user.token)
+        location.href = "./resource/pages/index.html"
+        
     }
-    const res = await fetch(url+'/user/login',{
-        //메소드 구분
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        // 오브젝트를 문자열로 바꾸어줌
-        body:JSON.stringify(loginData)
-
-    })
-    const json = await res.json();
-    localStorage.setItem("Token",json.user.token)
-    location.href = "./index.html"
-    // console.log(json);
-    // localStorage.setItem("Token",json.user.token);// 
-}
-const $loginBtn = document.querySelector('#login-btn');
-$loginBtn.addEventListener("click",login)
 
 // async function getFeed() {
 //     const url = localStorage.getItem("Url");
