@@ -1,3 +1,6 @@
+const frag = document.createDocumentFragment();
+const postId = location.href.split("/post/")[1];
+
 //게시 버튼 활성화
 function changeCommentBtn() {
   if (inputComment.value === '') {
@@ -113,7 +116,7 @@ async function reportComment(e) {
 //댓글 더보기 메뉴
 function showMenuModal(e) {
   const parent = e.currentTarget.closest('.user-wrap');
-  const thisUser = parent.querySelector('.user-title').innerText;
+  const thisUser = parent.querySelector('.user-title').getAttribute('href').split('/profile/')[1];
   const menuModal = document.createElement('section');
   menuModal.classList.add('menu-modal');
   if (userId === thisUser) {
@@ -128,7 +131,7 @@ function showMenuModal(e) {
     <div class="dim">
   `;
     parent.appendChild(menuModal);
-    parent.querySelector('.show-pop-delete').addEventListener('click', popDelteModal);
+    parent.querySelector('.show-pop-delete').addEventListener('click', openCommentModal);
   } else {
     menuModal.innerHTML = `
     <div class="inner">
@@ -141,55 +144,52 @@ function showMenuModal(e) {
     <div class="dim">
   `;
     parent.appendChild(menuModal);
-    parent.querySelector('.show-pop-report').addEventListener('click', popReportModal);
+    parent.querySelector('.show-pop-report').addEventListener('click', openCommentModal);
   }
   parent.querySelector('.close-modal').addEventListener('click', clearModal);
   parent.querySelector('.dim').addEventListener('click', clearModal);
 }
-//삭제하시겠습니까?
-function popDelteModal(e) {
+
+// 삭제/신고 버튼 클릭 - 모달
+function openCommentModal(e) {
+  const clickBtn = e.currentTarget.textContent; //클릭한 버튼 확인 (삭제/신고/수정)
   const parent = e.currentTarget.closest('.user-wrap');
   const popModal = document.createElement('div');
   popModal.classList.add('pop-modal');
-  popModal.innerHTML = `
+  if (clickBtn === '삭제') {
+    popModal.innerHTML = `
       <p>삭제하시겠습니까?</p>
       <div class="flex">
-      <button class='cancel'>취소</button>
-      <button class='delete-comment'>삭제</button>
+        <button class='cancel'>취소</button>
+        <button class='delete'>삭제</button>
       </div>
-  `;
-  parent.appendChild(popModal);
-  parent.querySelector('.delete-comment').addEventListener('click', deleteComment);
-  parent.querySelector('.cancel').addEventListener('click', clearModal);
-}
-
-//신고하시겠습니까?
-function popReportModal(e) {
-  const parent = e.currentTarget.closest('.user-wrap');
-  const popModal = document.createElement('div');
-  popModal.classList.add('pop-modal');
-  popModal.innerHTML = `
+    `;
+    parent.appendChild(popModal);
+    popModal.querySelector('.delete').addEventListener('click', deleteComment);
+    popModal.querySelector('.cancel').addEventListener('click', clearModal);
+  } else if (clickBtn === '신고') {
+    popModal.innerHTML = `
       <p>신고하시겠습니까?</p>
       <div class="flex">
-      <button class='cancel'>취소</button>
-      <button class='report-comment'>신고</button>
+        <button class='cancel'>취소</button>
+        <button class='report'>신고</button>
       </div>
-  `;
-  parent.appendChild(popModal);
-
-  parent.querySelector('.report-comment').addEventListener('click', reportComment);
-  parent.querySelector('.cancel').addEventListener('click', clearModal);
+    `;
+    parent.appendChild(popModal);
+    parent.querySelector('.report').addEventListener('click', reportComment);
+    parent.querySelector('.cancel').addEventListener('click', clearModal);
+  }
 }
 
-
-
 //댓글 이미지
-const commentProfile = document.querySelector('.comment-in .profile');
-commentProfile.src = userProfile;
-commentProfile.setAttribute('alt', `${userId}님의 프로필`);
-
+function profileImg() {
+  const commentProfile = document.querySelector('.comment-in .profile');
+  commentProfile.src = userProfile;
+  commentProfile.setAttribute('alt', `${userId}님의 프로필`);
+}
 
 commentBtn.addEventListener('click', createComment);
 inputComment.addEventListener('input', changeCommentBtn);
 
 getPostComments();
+profileImg();

@@ -1,5 +1,3 @@
-const postId = location.href.split("/post/")[1];
-const frag = document.createDocumentFragment();
 const detailSection = document.querySelector('.detail');
 const commentUl = document.querySelector('.comment-wrap');
 const commentBtn = document.querySelector('.comment-save');
@@ -10,9 +8,9 @@ if (token) {
 } else {
   location.href = './login';
 }
-
 //게시글 상세보기
 async function getPostDetail() {
+  const postId = location.href.split("/post/")[1];
   const res = await fetch(`${url}/post/${postId}`, {
     method: "GET",
     headers: {
@@ -62,3 +60,7 @@ async function getPostDetail() {
   const likeBtn = postArticle.querySelector('.btn-like');
   likeBtn.addEventListener('click', likeEvent);
 }
+
+
+//이전버튼
+btnBack.addEventListener('click', clickBack);

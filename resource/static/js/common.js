@@ -5,8 +5,9 @@ const userId = localStorage.getItem('accountname');
 const userProfile = localStorage.getItem('profileImg');
 
 
-//모달 지우기
-function clearModal() {
-  document.querySelector('.menu-modal').remove();
-  document.querySelector('.pop-modal').remove();
-}
+
+const btnBack = document.querySelector('header .btn-back');
+// 이전버튼
+function clickBack() {
+  history.back();
+};

@@ -40,11 +40,6 @@ router.get('/post/:accountname/userpost', (req, res, next) => {
   res.render('profile-list.html');
 });
 
-//임시:피드리스트
-router.get('/home', (req, res, next) => {
-  res.render('home.html');
-});
-
 //게시글 상세
 router.get('/post/:post_id', (req, res, next) => {
   res.render('post.html');

@@ -7,8 +7,6 @@ if (!token) {
   location.href = './login';
 }
 
-
-
 //컨텐츠 입력부분 자동 높이 조절
 function changeHeight(e) {
   this.style.height = '1px';
@@ -56,3 +54,5 @@ textarea.addEventListener('input', changeHeight);
 inputFile.addEventListener('input', imgCheck);
 
 
+//이전버튼
+btnBack.addEventListener('click', clickBack);

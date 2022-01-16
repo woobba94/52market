@@ -19,6 +19,16 @@ async function myFeed() {
   posts.forEach(post => {
     const date = `${post.updatedAt.split('-')[0]}년 ${post.updatedAt.split('-')[1]}월 ${post.updatedAt.split('-')[2].split('T')[0]}일`;
     const postLi = document.createElement('li');
+    let postImg = '';
+    if (post.image) {
+      let imgArr = post.image.split(',');
+      for (let i = 0; i < imgArr.length; i++) {
+        postImg += `<img src="${imgArr[i]}" alt="${post.content}" class="post-img" />`
+      }
+      if (imgArr.length > 1) {
+        postImg = `<span class="post-imgs">${postImg}</span>`
+      }
+    }
     postLi.innerHTML = `
       <article class="post-article" id="${post.id}">
         <a href="/profile/${post.id}" class="user-wrap">
@@ -32,7 +42,7 @@ async function myFeed() {
         <div class="post-cont">
           <a href="/post/${post.id}">
             <span class=" post-text">${post.content}</span>
-            <img src="${post.image}" alt="${post.content}" class="post-img"/>
+            ${postImg}
           </a>
 
           <p class="like-comment">
@@ -64,3 +74,4 @@ async function myFeed() {
   });
 
 }
+
