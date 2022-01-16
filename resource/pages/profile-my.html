@@ -32,8 +32,8 @@
             </p>
           </a>
       <div class="btns-wrap">
-        <a class="button button-ms line" href="jacascript:void(0)"> 프로필 수정</a>
-        <a class="button button-ms line" href="jacascript:void(0)">상품 등록</a>
+        <button type="button" class="button button-ms line btn-mod profile-edit"> 프로필 수정</button>
+        <button type="button" class="button button-ms line move-product">상품 등록</button>
       </div>
     </div>
     </section>
@@ -90,4 +90,16 @@
       </li>
     </ul>
 
+<!-- <script> 
+function movingSearchPage() {
+const SEARCH_PAGES = document.querySelector(".btn-mod");
+
+SEARCH_PAGES.addEventListener("click",function() {
+ location.href = "profile-mod.html";
+})
+}
+movingSearchPage();
+</script> -->
+
+<script src="/js/profile-my.js"></script>
     {% endblock %}
