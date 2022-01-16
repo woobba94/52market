@@ -26,10 +26,16 @@ let env = nunjucks.configure('resource/pages', {
 });
 env.addFilter('date', dateFilter);
 
+
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(morgan('tiny'));
+app.use((req, res, next) => {
+  res.removeHeader("Cross-Origin-Resource-Policy")
+  res.removeHeader("Cross-Origin-Embedder-Policy")
+  next()
+})
 
 app.get('/', (req, res, next) => {
   res.render('index.html');
