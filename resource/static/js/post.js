@@ -22,13 +22,23 @@ async function getPostDetail() {
   const post = json.post;
   const date = `${post.updatedAt.split('-')[0]}년 ${post.updatedAt.split('-')[1]}월 ${post.updatedAt.split('-')[2].split('T')[0]}일`;
 
+  let postImg = '';
+  if (post.image) {
+    let imgArr = post.image.split(',');
+    for (let i = 0; i < imgArr.length; i++) {
+      postImg += `<img src="${imgArr[i]}" alt="${post.content}" class="post-img" />`
+    }
+    if (imgArr.length > 1) {
+      postImg = `<span class="post-imgs">${postImg}</span>`
+    }
+  }
+
   const postArticle = document.createElement('article');
   postArticle.classList.add('post-article');
   postArticle.setAttribute('id', `${post.id}`);
   postArticle.innerHTML = `
   <a href="/profile/${post.author.accountname}" class="user-wrap">
    <img src="${post.author.image}" alt="${post.author.username}님의 프로필" class="profile" />
-
     <span class="user-txt">
       <span class="user-title">${post.author.username}</span>
       <span class="user-description">@${post.author.accountname}</span>
@@ -37,8 +47,7 @@ async function getPostDetail() {
 
   <div class="post-cont">
     <p class=" post-text">${post.content}</p>
-    <img src="${post.image}" alt="${post.content}" class="post-img" />
-    
+    ${postImg}    
     <p class="like-comment">
           <button type="button" class="btn-like ${post.hearted ? 'on' : ''}">
             <span class="a11y-hidden">좋아요</span > 

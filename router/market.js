@@ -54,9 +54,10 @@ router.get('/post/:post_id/edit', (req, res, next) => {
 router.get('/profile', (req, res, next) => {
   res.render('profile-my.html');
 });
+
 //개인프로필
 router.get('/profile/:accountname', (req, res, next) => {
-  res.render('profile-list.html');
+  res.render('profile.html');
 });
 
 router.get('/product', (req, res, next) => {

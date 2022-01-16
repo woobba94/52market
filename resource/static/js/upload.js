@@ -29,7 +29,8 @@ async function createPost(e) {
     })
   })
   const data = await res.json();
-  location.href = `/profile`;
+  const post = data.post;
+  location.href = `/profile/${post.author.accountname}`;
 }
 
 saveBtn.addEventListener('click', createPost);

@@ -54,9 +54,9 @@ async function putEdit() {
       }
     })
   })
-  const json = await res.json();
-  console.log(json);
-  location.href = '/profile';
+  const data = await res.json();
+  const post = data.post;
+  location.href = `/profile/${post.author.accountname}`;
 }
 
 editBtn.addEventListener('click', putEdit);

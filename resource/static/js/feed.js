@@ -1,7 +1,12 @@
 const frag = document.createDocumentFragment();
+const hrefLink = location.href;
 
 if (token) {
-  getFeed();
+  if (hrefLink.indexOf('/profile/') !== -1) {
+    getProfile();
+  } else {
+    getFeed();
+  }
 } else {
   location.href = './login';
 }
@@ -17,20 +22,31 @@ async function getFeed() {
   });
   const json = await res.json();
   const posts = json.posts;
-  console.log(posts);
   if (posts.length > 0) {
     feedList(posts);
   } else {
     noFeed();
   }
 }
+async function getProfile() {
+  const accountName = location.href.split("/profile/")[1];
+  const res = await fetch(`${url}/post/${accountName}/userpost`, {
+    // ${url}/post/${userId}/userpost
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  });
+  const json = await res.json();
+  const posts = json.post;
+  feedList(posts);
+}
 
 function feedList(posts) {
   const h2Title = document.createElement('h2');
   h2Title.textContent = '피드 리스트';
   h2Title.classList.add('a11y-hidden');
-
-  console.log(h2Title);
   const postUl = document.createElement('ul');
   postUl.classList.add('post-list');
   posts.forEach(post => {
@@ -48,7 +64,7 @@ function feedList(posts) {
     }
     postLi.innerHTML = `
       <article class="post-article" id="${post.id}">
-        <a href="/profile/${post.id}" class="user-wrap">
+        <a href="/profile/${post.author.accountname}" class="user-wrap">
         <img src="${post.author.image}" alt="${post.author.username}님의 프로필" class="profile" />
         
         <span class="user-txt">
@@ -102,3 +118,4 @@ function noFeed() {
   `;
   document.querySelector('section').append(div);
 }
+
