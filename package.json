@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "helmet": "^5.0.1",
+    "helmet-csp": "^3.4.0",
     "morgan": "^1.10.0",
     "nunjucks": "^3.2.3",
     "nunjucks-date-filter": "^0.1.1"

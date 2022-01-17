@@ -1,13 +1,15 @@
-// npm init --yes
-// npm i nunjucks express cors helmet morgan nunjucks-date-filter
-// npm i nodemon --save-dev
-// -> nodemon app 으로 실행 가능
+// npm init --yes
+// npm i nunjucks express cors helmet morgan nunjucks-date-filter
+// npm i nodemon --save-dev
+// -> nodemon app 으로 실행 가능
 
 const nunjucks = require('nunjucks');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const csp = require('helmet-csp')
+
 const marketRouter = require('./router/market.js');
 const dateFilter = require('nunjucks-date-filter');
 const path = require('path');
@@ -25,17 +27,19 @@ let env = nunjucks.configure('resource/pages', {
   watch: true,
 });
 env.addFilter('date', dateFilter);
-
+app.use(
+  csp({
+    directives: {
+      defaultSrc: ["'self'","*","'unsafe-inline'"],
+      styleSrc: ["'self'","*","'unsafe-inline'"],
+      scriptSrc: ["'self'","*","'unsafe-inline'"],
+    },
+  }));
 
 app.use(express.json());
-app.use(helmet());
+
 app.use(cors());
 app.use(morgan('tiny'));
-app.use((req, res, next) => {
-  res.removeHeader("Cross-Origin-Resource-Policy")
-  res.removeHeader("Cross-Origin-Embedder-Policy")
-  next()
-})
 
 app.get('/', (req, res, next) => {
   res.render('index.html');

@@ -30,8 +30,7 @@ async function login() {
                         "password": pw
                         }
                 }
-        
-        const res = await fetch('http://146.56.183.55:5050/user/login',{
+        const res = await fetch(url+'/user/login',{
             method:"POST",
             headers:{
                 "Content-type" : "application/json"
@@ -40,8 +39,7 @@ async function login() {
         })
         const json = await res.json()
         localStorage.setItem("Token",json.user.token)
-        location.href = "./resource/pages/index.html"
-        
+        location.href = "./"
     }
 
 // async function getFeed() {

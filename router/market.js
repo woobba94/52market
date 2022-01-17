@@ -23,6 +23,10 @@ router.get('/join-profile', (req, res, next) => {
   res.render('join-profile.html');
 });
 
+router.get('/loading', (req, res, next) => {
+  res.render('loading.html');
+});
+
 router.get('/login', (req, res, next) => {
   res.render('login.html');
 });
