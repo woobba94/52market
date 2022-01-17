@@ -38,8 +38,9 @@ async function login() {
             body:JSON.stringify(loginData)
         })
         const json = await res.json()
-        localStorage.setItem("Token",json.user.token)
-        location.href = "./"
+        localStorage.setItem("token",json.user.token)
+        location.href = "./";
+        // console.log(json);
     }
 
 // async function getFeed() {
