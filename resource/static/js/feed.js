@@ -7,6 +7,8 @@ const albumBtn = document.querySelector('.imgbtn-album');
 if (token) {
   if (hrefLink.indexOf('/profile/') !== -1) {
     getProfile(state);
+    listBtn.addEventListener('click', changeList);
+    albumBtn.addEventListener('click', changeAlbum);
   } else {
     getFeed();
   }
@@ -22,6 +24,7 @@ function changeList() {
   document.querySelector('.post-album').remove();
   getProfile(state);
 }
+
 function changeAlbum() {
   state = 'album';
   listBtn.classList.remove('active');
@@ -30,9 +33,6 @@ function changeAlbum() {
   document.querySelector('.post-list').remove();
   getProfile(state);
 }
-
-listBtn.addEventListener('click', changeList);
-albumBtn.addEventListener('click', changeAlbum);
 
 
 //피드 목록(팔로워 게시글)
@@ -47,7 +47,7 @@ async function getFeed() {
   const json = await res.json();
   const posts = json.posts;
   if (posts.length > 0) {
-    feedList(posts);
+    feedList(posts, state);
   } else {
     noFeed();
   }
