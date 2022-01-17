@@ -46,6 +46,7 @@
 .post-article .post-cont .post-img {
   max-height: 32rem;
   max-width: 32rem;
+  background: #eee;
   border-radius: var(--border-img);
 }
 
@@ -110,12 +111,26 @@
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: var(--border-img);
+  overflow: hidden;
+}
+
+.post-album li a.imgs::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(../img/layers.svg) no-repeat 50% 50%;
+  width: 4rem;
+  height: 4rem;
 }
 
 .post-album li a img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background: #eee;
 }
 
 .like-comment {

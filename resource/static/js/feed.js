@@ -1,15 +1,39 @@
 const frag = document.createDocumentFragment();
 const hrefLink = location.href;
+let state = 'list';
+const listBtn = document.querySelector('.imgbtn-list');
+const albumBtn = document.querySelector('.imgbtn-album');
 
 if (token) {
   if (hrefLink.indexOf('/profile/') !== -1) {
-    getProfile();
+    getProfile(state);
   } else {
     getFeed();
   }
 } else {
   location.href = './login';
 }
+
+function changeList() {
+  state = 'list';
+  listBtn.classList.add('active');
+  albumBtn.classList.remove('active');
+  document.querySelector('h2.a11y-hidden').remove();
+  document.querySelector('.post-album').remove();
+  getProfile(state);
+}
+function changeAlbum() {
+  state = 'album';
+  listBtn.classList.remove('active');
+  albumBtn.classList.add('active');
+  document.querySelector('h2.a11y-hidden').remove();
+  document.querySelector('.post-list').remove();
+  getProfile(state);
+}
+
+listBtn.addEventListener('click', changeList);
+albumBtn.addEventListener('click', changeAlbum);
+
 
 //피드 목록(팔로워 게시글)
 async function getFeed() {
@@ -28,7 +52,8 @@ async function getFeed() {
     noFeed();
   }
 }
-async function getProfile() {
+
+async function getProfile(state) {
   const accountName = location.href.split("/profile/")[1];
   const res = await fetch(`${url}/post/${accountName}/userpost`, {
     // ${url}/post/${userId}/userpost
@@ -40,29 +65,44 @@ async function getProfile() {
   });
   const json = await res.json();
   const posts = json.post;
-  feedList(posts);
+  feedList(posts, state);
 }
 
-function feedList(posts) {
+
+function feedList(posts, state) {
   const h2Title = document.createElement('h2');
   h2Title.textContent = '피드 리스트';
   h2Title.classList.add('a11y-hidden');
+  document.querySelector('section').appendChild(h2Title);
+
   const postUl = document.createElement('ul');
-  postUl.classList.add('post-list');
   posts.forEach(post => {
     const date = `${post.updatedAt.split('-')[0]}년 ${post.updatedAt.split('-')[1]}월 ${post.updatedAt.split('-')[2].split('T')[0]}일`;
-    const postLi = document.createElement('li');
     let postImg = '';
     if (post.image) {
       let imgArr = post.image.split(',');
+      firstImg = `
+      <a href="/post/${post.id}">
+        <img src="${imgArr[0]}" alt="${post.content}" class="post-img" />
+      </a>
+      `;
       for (let i = 0; i < imgArr.length; i++) {
         postImg += `<img src="${imgArr[i]}" alt="${post.content}" class="post-img" />`
       }
       if (imgArr.length > 1) {
         postImg = `<span class="post-imgs">${postImg}</span>`
+        firstImg = `
+        <a href="/post/${post.id}" class="imgs">
+          <img src="${imgArr[0]}" alt="${post.content}" class="post-img" />
+        </a>
+        `;
       }
+
     }
-    postLi.innerHTML = `
+    if (state === 'list') {
+      postUl.classList.add('post-list');
+      const postLi = document.createElement('li');
+      postLi.innerHTML = `
       <article class="post-article" id="${post.id}">
         <a href="/profile/${post.author.accountname}" class="user-wrap">
         <img src="${post.author.image}" alt="${post.author.username}님의 프로필" class="profile" />
@@ -91,20 +131,31 @@ function feedList(posts) {
         <button class="imgbtn-more">더보기</button>
       </article>
     `
-    frag.appendChild(postLi);
-  });
-  document.querySelector('section').appendChild(h2Title);
-  document.querySelector('section').appendChild(postUl).appendChild(frag);
+      frag.appendChild(postLi);
+      document.querySelector('section').appendChild(postUl).appendChild(frag);
 
-  const detailMore = postUl.querySelectorAll('.imgbtn-more');
-  detailMore.forEach((item) => {
-    item.addEventListener('click', showMenuPostModal);
-  });
+      const detailMore = postUl.querySelectorAll('.imgbtn-more');
+      detailMore.forEach((item) => {
+        item.addEventListener('click', showMenuPostModal);
+      });
 
-  const likeBtn = document.querySelectorAll('.btn-like');
-  likeBtn.forEach((item) => {
-    item.addEventListener('click', likeEvent);
-  })
+      const likeBtn = document.querySelectorAll('.btn-like');
+      likeBtn.forEach((item) => {
+        item.addEventListener('click', likeEvent);
+      })
+
+    } else if (state === 'album') {
+      postUl.classList.add('post-album');
+      if (post.image) {
+        const postLi = document.createElement('li');
+        postLi.innerHTML = `
+        ${firstImg}
+      `;
+        frag.appendChild(postLi);
+      }
+      document.querySelector('section').appendChild(postUl).appendChild(frag);
+    }
+  });
 }
 
 function noFeed() {
@@ -118,4 +169,5 @@ function noFeed() {
   `;
   document.querySelector('section').append(div);
 }
+
 
