@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% include './template/menu.html' %}
+
 <header>
-  <p class="title-main">오이마켓 피드</p>
-  <button class="btn-search"><span class="a11y-hidden">유저 검색</span></button>
+  <h1 class="title-main">오이마켓 피드</h1>
+  <a href="/search" class="btn-search"><span class="a11y-hidden">유저 검색</span></a>
 </header>
 <section class="mg-header mg-bottom">
 
 </section>
 
-{% include './template/menu-bottom.html' %}
+
 
 <script src="/js/common.js"></script>
 <script src="/js/like.js"></script>
