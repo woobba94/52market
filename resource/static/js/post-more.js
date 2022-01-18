@@ -95,7 +95,7 @@ async function deleteEvent(e) {
   })
   const json = await res.json();
   setTimeout(function () {
-    location.href = `/post/${userId}/userpost`;
+    location.href = `/profile/${userId}`;
   }, 800);
 }
 

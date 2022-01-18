@@ -56,7 +56,6 @@ async function getFeed() {
 async function getProfile(state) {
   const accountName = location.href.split("/profile/")[1];
   const res = await fetch(`${url}/post/${accountName}/userpost`, {
-    // ${url}/post/${userId}/userpost
     method: "GET",
     headers: {
       "Authorization": `Bearer ${token}`,

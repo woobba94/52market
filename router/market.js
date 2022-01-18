@@ -39,10 +39,6 @@ router.get('/post', (req, res, next) => {
   res.render('post.html');
 });
 
-//나의 게시글 게시물
-router.get('/post/:accountname/userpost', (req, res, next) => {
-  res.render('profile-list.html');
-});
 
 //게시글 상세
 router.get('/post/:post_id', (req, res, next) => {
