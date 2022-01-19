@@ -1,16 +1,27 @@
-// 이메일로 회원가입
-// document.getElementById('signup-check-btn').addEventListener('click', signUpCheck);
-
-
-// function signUpCheck(){
-//     console.log('hello');
-//     return location.href = "http://localhost:8080/login";
-// }
-
-
-
 const $loginBtn = document.querySelector('#login-btn');
-$loginBtn.addEventListener("click",login)
+const loginInputVal = document.querySelector(".email-inp");
+const pwInputVal = document.querySelector(".pw-inp");
+
+// id 입력시 버튼 활성화
+loginInputVal.addEventListener('input', changeBtn);
+// pw 입력시 버튼 활성화 (changeBtn 내에서 교차검증)
+pwInputVal.addEventListener('input', changeBtn);
+// login 기능
+$loginBtn.addEventListener("click", login)
+//로그인버튼 활성화
+function changeBtn() {
+    if (document.querySelector(".email-inp").value !== '' &&
+        document.querySelector(".pw-inp").value !== '') {
+        $loginBtn.disabled = false;
+    } else {
+        $loginBtn.disabled = true;
+    }
+}
+
+// 아이디 비밀번호 검증
+function changeInp(){
+    // 
+}
 
 // 로그인 
 function getInput() {
@@ -18,70 +29,30 @@ function getInput() {
     console.log(document.querySelector("#password-id").value);
 }
 
+// 로그인
 // 비동기로 쓸것이기 때문에 async
 async function login() {
     // getInput();
     const email = document.querySelector("#email-id").value
     const pw = document.querySelector("#password-id").value
     const url = 'http://146.56.183.55:5050'
-        const loginData = {
-                "user":{
-                        "email": email,
-                        "password": pw
-                        }
-                }
-        const res = await fetch(url+'/user/login',{
-            method:"POST",
-            headers:{
-                "Content-type" : "application/json"
-            },
-            body:JSON.stringify(loginData)
-        })
-        const json = await res.json()
-        localStorage.setItem("token",json.user.token)
-        location.href = "./";
-        // console.log(json);
+    const loginData = {
+        "user": {
+            "email": email,
+            "password": pw
+        }
     }
+    const res = await fetch(url + '/user/login', {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(loginData)
+    })
+    const json = await res.json()
+    localStorage.setItem("token", json.user.token)
+    location.href = "./";
+}
 
-// async function getFeed() {
-//     const url = localStorage.getItem("Url");
-//     const token = localStorage.getItem("Token");
-//     const res = await fetch(url + "/post/feed",
-//         {
-//             method: "POST",
-//             headers: {
-//                 "Authorization": `Bearer ${token}`,
-//                 "Content-type": "application/json"
-//             }
-//         });
-//     const json = await res.json()
-//     console.log(json.posts);
-//     const posts = json.posts
-//     posts.forEach(post => {
-//         const authorImage = post.author.image
-//         const authorAccount = post.author.accountname
-//         const authorName = post.author.username
-//         const commentCount = post.commentCount
-//         const content = post.content
-//         const heartCount = post.heartCount
-//         const hearted = post.hearted
-//         document.querySelector(".container").innerHTML+=`
-//             <div class="post-container">
-//                 <img class="profileimg" src="${authorImage}"/>
-//                 <div class="h">${authorAccount}</div>
-//                 <div class="h">${authorName}</div>
-//                 <div class="h">${content}</div>
-//                 <div class="h">${commentCount}</div>
-//                 <div class="${hearted ?"yes":"no"}">${hearted}</div>
-                
-//             </div>                
-//             `
-//     });
-// }
-
-
-// const data = await fetch();
-// const json = await data.json();
-// data가 끝날때 json을 해라
 
 
