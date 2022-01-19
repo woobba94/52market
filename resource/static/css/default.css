@@ -20,7 +20,7 @@
 @import 'profile-my.css';
 @import 'profile-your.css';
 
-
+@import 'follower&following.css';
 
 /* 삭제필요 :layout 대체 */
 @import 'menu-bottom.css';
