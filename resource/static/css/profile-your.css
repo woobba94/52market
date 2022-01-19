@@ -6,4 +6,8 @@
     margin-top: 40px;
 }
 
-
+.button-ms.active-button.show{
+    background-color: white;
+    border: 1px solid #bdbdbd;
+    color: #767676;
+}

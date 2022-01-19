@@ -4,29 +4,33 @@
 
 <header>
   <button class="btn-back"></button>
-  <button class="button-ms" >저장</button>
+  <button class="button-ms  submit-btn" >저장</button>
 </header>
 <section class="wrap-profile-mod">
   <h2 class="title">profile-mod</h2>
   <div class="profile-image-insert-wrap">
-    <img src="img/profile/profile.png" alt="기본프로필사진">
-    <button class="imgbtn imgbtn-img"></button>
+  <label for="chooseImg" class="chooseImg-label">
+    <img src="img/profile/profile.png" alt="기본프로필사진" class="imgPre">
+  </label>
+    <input type="file" id="chooseImg" name="profile-img" accept="image/*" class="ir" />
   </div>
   <div class="input-wrap">
   <div class="label-input">
-    <label for="text-id">사용자 이름</label>
-    <input type="text" placeholder="2~10자 이내여야 합니다." id="text-id" />
+    <label for="user-name">사용자 이름</label>
+    <input type="text" minlength="2" maxlength="10" placeholder="2~10자 이내여야 합니다." id="user-name" />
   </div>
   <div class="label-input">
-    <label for="price-id">계정 ID</label>
-    <input type="Number" placeholder="영문,숫자,특수문자(.),(_)만 사용가능합니다." id="price-id" />
+    <label for="user-id">계정 ID</label>
+    <input type="text" placeholder="영문,숫자,특수문자(.),(_)만 사용가능합니다." id="user-id" class="warning-msg"/>
+    <strong class="input-warning-msg">이미 사용중인 ID입니다.</strong>
   </div>
   <div class="label-input">
-    <label for="url-id">소개</label>
-    <input type="url" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id="url-id" />
+    <label for="intro-input">소개</label>
+    <input type="text" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id="intro-input" />
   </div>
 </div>
 </section>
 
+<script src="/js/profile-mod.js"></script>
 {% endblock %}
 
