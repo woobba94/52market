@@ -50,9 +50,14 @@ router.get('/post/:post_id/edit', (req, res, next) => {
   res.render('upload-edit.html');
 });
 
+//프로필:임시
+router.get('/profile-my', (req, res, next) => {
+  res.render('profile-my.html');
+});
+
 //프로필
 router.get('/profile', (req, res, next) => {
-  res.render('profile-my.html');
+  res.render('profile-me.html');
 });
 
 //개인프로필

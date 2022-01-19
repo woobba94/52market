@@ -3,7 +3,7 @@ const commentUl = document.querySelector('.comment-wrap');
 const commentBtn = document.querySelector('.comment-save');
 const inputComment = document.querySelector('.comment-box');
 
-if (token) {
+if (token && nowUrl.indexOf('/post/') !== -1) {
   getPostDetail();
 } else {
   location.href = './login';
@@ -20,6 +20,7 @@ async function getPostDetail() {
   })
   const json = await res.json();
   const post = json.post;
+  console.log(post);
   const date = `${post.updatedAt.split('-')[0]}년 ${post.updatedAt.split('-')[1]}월 ${post.updatedAt.split('-')[2].split('T')[0]}일`;
 
   let postImg = '';
@@ -64,12 +65,50 @@ async function getPostDetail() {
   detailSection.appendChild(postArticle);
 
   const detailMore = postArticle.querySelector('.imgbtn-more');
-  detailMore.addEventListener('click', showMenuPostModal);
+  detailMore.addEventListener('click', showMenu);
 
   const likeBtn = postArticle.querySelector('.btn-like');
   likeBtn.addEventListener('click', likeEvent);
 }
 
+//게시글 삭제
+async function deleteEvent(e) {
+  const postId = e.currentTarget.closest('article').id;
+  const popModal = document.querySelector('.pop-modal');
+  popModal.innerHTML = `
+      <p>삭제되었습니다.</p>
+  `;
+  const res = await fetch(`${url}/post/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  })
+  const json = await res.json();
+  setTimeout(function () {
+    location.href = `/profile/${userId}`;
+  }, 800);
+}
 
-//이전버튼
-btnBack.addEventListener('click', clickBack);
+//게시글 신고
+async function reportEvent(e) {
+  const postId = e.currentTarget.closest('article').id;
+  const popModal = document.querySelector('.pop-modal');
+  popModal.innerHTML = `
+      <p>처리되었습니다.</p>
+  `;
+  const res = await fetch(`${url}/post/${postId}/report`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  })
+  const data = await res.json();
+  console.log(data);
+  setTimeout(function () {
+    clearModal()
+  }, 800);
+}
+

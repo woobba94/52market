@@ -75,6 +75,7 @@ function removeFile(e) {
   Array.from(files).filter((file, index) => `${index}id${file.lastModified}` != removeTargetId).forEach(file => { dataTranster.items.add(file) });
   inputFile.files = dataTranster.files;
   removeTarget.remove();
+  changeBtn();
 };
 
 //이미지 업로드
@@ -131,8 +132,6 @@ uploadProfile.src = userProfile;
 uploadProfile.setAttribute('alt', `${userId}님의 프로필`);
 
 
-
-
 //수정 게시물 정보 가져오기
 async function getEdit() {
   const postId = location.href.split('/post/')[1].split('/')[0];
@@ -155,9 +154,15 @@ async function getEdit() {
   if (post.image) {
     const imgArr = post.image.split(',');
     for (let i = 0; i < imgArr.length; i++) {
-      const imgList = document.createElement('li');
-      imgList.innerHTML = `<img src='${imgArr[i]}' alt='${imgArr[0].split(url + '/')[1].split('.')[0]}' />`
-      imgUl.appendChild(imgList);
+      const imgList = `
+      <li>
+        <img src='${imgArr[i]}' alt='${imgArr[0].split(url + '/')[1].split('.')[0]}' />
+        <button button type = "button" class="delete-img">
+          <span class="a11y-hidden">이미지 삭제</span>
+        </button>
+      </li>
+      `
+      imgUl.insertAdjacentHTML('beforeend', imgList);
 
     }
   }
@@ -168,9 +173,16 @@ async function putEdit() {
   const postId = location.href.split('/post/')[1].split('/')[0];
   const inputText = textarea.value;
   const imgArr = [];
-  (imgUl.querySelectorAll('img')).forEach((item) => {
-    imgArr.push(item.src);
-  });
+  // (imgUl.querySelectorAll('img')).forEach((item) => {
+  //   imgArr.push(item.src);
+  // });
+
+  const files = inputFile.files;
+  for (let index = 0; index < files.length; index++) {
+    const imgurl = await imgUpload(files, index);
+    imgArr.push(`${url}/${imgurl}`);
+  }
+
   const res = await fetch(`${url}/post/${postId}`, {
     method: "PUT",
     headers: {
@@ -186,7 +198,7 @@ async function putEdit() {
   })
   const data = await res.json();
   const post = data.post;
-  location.href = `/profile/${post.author.accountname}`;
+  location.href = `/profile`;
 }
 
 //버튼 활성화

@@ -1,11 +1,15 @@
 const frag = document.createDocumentFragment();
-const hrefLink = location.href;
 let state = 'list';
 const listBtn = document.querySelector('.imgbtn-list');
 const albumBtn = document.querySelector('.imgbtn-album');
+const postUl = document.querySelector('.post-list');
 
 if (token) {
-  if (hrefLink.indexOf('/profile/') !== -1) {
+  if (nowUrl.split('/profile')[1] === '') {
+    myFeed(state);
+    listBtn.addEventListener('click', changeList);
+    albumBtn.addEventListener('click', changeAlbum);
+  } else if (nowUrl.indexOf('/profile/') !== -1) {
     getProfile(state);
     listBtn.addEventListener('click', changeList);
     albumBtn.addEventListener('click', changeAlbum);
@@ -22,7 +26,13 @@ function changeList() {
   albumBtn.classList.remove('active');
   document.querySelector('h2.a11y-hidden').remove();
   document.querySelector('.post-album').remove();
-  getProfile(state);
+  if (nowUrl.split('/profile')[1] === '') {
+    myFeed(state);
+  } else {
+    getProfile(state);
+  }
+
+
 }
 
 function changeAlbum() {
@@ -31,11 +41,14 @@ function changeAlbum() {
   albumBtn.classList.add('active');
   document.querySelector('h2.a11y-hidden').remove();
   document.querySelector('.post-list').remove();
-  getProfile(state);
+  if (nowUrl.split('/profile')[1] === '') {
+    myFeed(state);
+  } else {
+    getProfile(state);
+  }
 }
 
-
-//피드 목록(팔로워 게시글)
+//피드 목록(팔로워 게시글) - /index
 async function getFeed() {
   const res = await fetch(`${url}/post/feed`, {
     method: "GET",
@@ -53,6 +66,20 @@ async function getFeed() {
   }
 }
 
+//나의 피드 - /profile
+async function myFeed() {
+  const res = await fetch(`${url}/post/${userId}/userpost`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  });
+  const json = await res.json();
+  const posts = json.post;
+  feedList(posts, state);
+}
+
 async function getProfile(state) {
   const accountName = location.href.split("/profile/")[1];
   const res = await fetch(`${url}/post/${accountName}/userpost`, {
@@ -66,7 +93,6 @@ async function getProfile(state) {
   const posts = json.post;
   feedList(posts, state);
 }
-
 
 function feedList(posts, state) {
   const h2Title = document.createElement('h2');
@@ -96,7 +122,6 @@ function feedList(posts, state) {
         </a>
         `;
       }
-
     }
     if (state === 'list') {
       postUl.classList.add('post-list');
@@ -112,10 +137,10 @@ function feedList(posts, state) {
           </span>
         </a>
         <div class="post-cont">
-          <a href="/post/${post.id}">
+          <p>
             <span class="post-text">${post.content}</span>
             ${postImg}
-          </a>
+          </p>
           <p class="like-comment">
             <button type="button" class="btn-like ${post.hearted ? 'on' : ''}">
               <span class="a11y-hidden">좋아요</span > 
@@ -135,7 +160,7 @@ function feedList(posts, state) {
 
       const detailMore = postUl.querySelectorAll('.imgbtn-more');
       detailMore.forEach((item) => {
-        item.addEventListener('click', showMenuPostModal);
+        item.addEventListener('click', showMenu);
       });
 
       const likeBtn = document.querySelectorAll('.btn-like');
@@ -168,5 +193,4 @@ function noFeed() {
   `;
   document.querySelector('section').append(div);
 }
-
 
