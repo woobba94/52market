@@ -10,7 +10,10 @@
 <section class="profile-my-wrapper">
   <h2 class="a11y-hidden">profile-my</h2>
   <div class="following-wrap">
-    <img src="img/profile/profile.png" alt="">
+    <label for="chooseImg" class="chooseImg-label">
+      <img src="img/profile/profile.png" alt="기본프로필사진" class="imgPre">
+    </label>
+      <input type="file" id="chooseImg" name="profile-img" accept="image/*" class="ir" />
         <p class="title">
           애월읍 위니브 감귤농장
         </p>
@@ -31,7 +34,7 @@
           </a>
     <div class="profile-btns">
       <a class="imgbtn imgbtn-message" href=""> </a>
-      <button class="button-ms ">팔로우</button>
+      <button class="button-ms active-button">팔로우</button>
       <a class="imgbtn imgbtn-share" href="jacascript:void(0)">
       </a>
     </div>
@@ -92,4 +95,5 @@
       </ul>
   </section>
 
+<script src="/js/profile-your.js"></script>
     {% endblock %}

@@ -1,8 +1,9 @@
 @charset "utf-8";
 @import 'reset.css';
 @import 'module.css';
+@import 'layout.css';
+
 @import 'header.css';
-@import 'menu-bottom.css';
 @import 'index.css';
 @import 'search.css';
 @import 'product.css';
@@ -18,3 +19,8 @@
 @import 'profile-mod.css';
 @import 'profile-my.css';
 @import 'profile-your.css';
+
+
+
+/* 삭제필요 :layout 대체 */
+@import 'menu-bottom.css';

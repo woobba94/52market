@@ -10,10 +10,12 @@
 </head>
 
 <body>
+  {% include './template/menu.html' %}
   <!-- 헤더 삭제 : 각 페이지에서 <header> 작성 -->
   {% block content %}
   {% endblock %}
-  {% include './template/menu-bottom.html' %}
+
+  <script src="/js/common.js"></script>
 </body>
 
 </html>

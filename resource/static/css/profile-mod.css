@@ -1,3 +1,17 @@
+/* .button-ms.disabled {
+    background: #eee;
+    color: #ccc;
+    cursor: not-allowed;
+} */
+.ir {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 .wrap-profile-mod {
     width: 100%;
     margin-top: calc(48px + 1.6rem);
@@ -11,15 +25,40 @@
     width: 100%;
     margin: 0 auto;
 }
-.profile-image-insert-wrap img {
+.profile-image-insert-wrap .chooseImg-label {
     display: block;
-    margin: 0 auto;
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 26px;
+    border: 1px solid #bdbdbd;
+    border-radius: 50%;
+    cursor: pointer;
 }
-.profile-image-insert-wrap button {
+.profile-image-insert-wrap .chooseImg-label .imgPre {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+.profile-image-insert-wrap .chooseImg-label::after {
     position: absolute;
-    top: 175px;
-    left: 52%;
+    content: "";
+    right: 0;
+    bottom: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--main-color) url(../img/icon-image.svg) no-repeat 50% 50%/50%;
+    border-radius: 50%;
 }
 .input-wrap {
     margin-top: calc(48px + 2.6rem);
+}
+.label-input .input-warning-msg {
+    display: block;
+    margin-top: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: #eb5757;
 }

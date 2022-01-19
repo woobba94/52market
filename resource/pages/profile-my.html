@@ -12,7 +12,12 @@
 <section class="profile-my-wrapper">
   <h2 class="a11y-hidden">profile-my</h2>
   <div class="following-wrap">
-    <img src="img/profile/profile.png" alt="기본프로필사진">
+      <label for="chooseImg" class="chooseImg-label">
+        <img src="img/profile/profile.png" alt="기본프로필사진" class="imgPre">
+      </label>
+        <input type="file" id="chooseImg" name="profile-img" accept="image/*" class="ir" />
+      
+
         <p class="title">
           애월읍 위니브 감귤농장
         </p>
@@ -90,16 +95,21 @@
       </li>
     </ul>
 
-<!-- <script> 
-function movingSearchPage() {
-const SEARCH_PAGES = document.querySelector(".btn-mod");
+    <section class="hidden-menu active">
+<ul class="hidden-menu-list">
+  <li>
+    <button class="delete-product" type="button">삭제</button>
+  </li>
+  <li>
+    <a href="./product" class="edit-product">수정</a>
+  </li>
+  <li>
+    <a href="#" class="product-page-link">웹사이트에서 상품 보기</a>
+  </li>
+</ul>
+    </section>
 
-SEARCH_PAGES.addEventListener("click",function() {
- location.href = "profile-mod.html";
-})
-}
-movingSearchPage();
-</script> -->
+
 
 <script src="/js/profile-my.js"></script>
     {% endblock %}
