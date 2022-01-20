@@ -1,23 +1,28 @@
-const textarea = document.querySelector('.textarea');
-const inputFile = document.querySelector('.imgbtn-img');
-const imgUl = document.querySelector('.img-wrap ul')
-const profileImg = document.querySelector('.profile');
-const hrefLink = location.href;
+/*
+  Kang Hyejin
+  강혜진 작성파일
+*/
+
+const textarea = document.querySelector('.textarea'); //내용 입력
+const inputFile = document.querySelector('.imgbtn-img'); // file
 const saveBtn = document.querySelector('.post-save'); //저장버튼
 const editBtn = document.querySelector('.post-edit'); //수정버튼
-let state = 'upload';
+const imgUl = document.querySelector('.img-wrap ul')
+const profileImg = document.querySelector('.profile'); //프로필 이미지
+
+let state = 'upload'; // 수정, 새게시물 구분
 
 if (!token) {
   location.href = './login';
 }
 
 //게시글 수정/업로드 여부 체크
-if (hrefLink.indexOf('/edit') !== -1) {
+if (nowUrl.indexOf('/edit') !== -1) {
   //수정
   state = 'edit';
   getEdit();
   editBtn.addEventListener('click', putEdit); //수정
-} else if (hrefLink.indexOf('/upload') !== -1) {
+} else if (nowUrl.indexOf('/upload') !== -1) {
   //업로드
   saveBtn.addEventListener('click', createPost); //업로드
 }
@@ -27,13 +32,13 @@ function changeBtn() {
   if (textarea.value !== '' || inputFile.value !== '') {
     if (state === 'upload') {
       saveBtn.disabled = false;
-    } else {
+    } else if (state === 'edit') {
       editBtn.disabled = false;
     }
   } else {
     if (state === 'upload') {
       saveBtn.disabled = true;
-    } else {
+    } else if (state === 'edit') {
       editBtn.disabled = true;
     }
   }
@@ -134,7 +139,7 @@ uploadProfile.setAttribute('alt', `${userId}님의 프로필`);
 
 //수정 게시물 정보 가져오기
 async function getEdit() {
-  const postId = location.href.split('/post/')[1].split('/')[0];
+  const postId = nowUrl.split('/post/')[1].split('/')[0];
   const res = await fetch(`${url}/post/${postId}`, {
     method: "GET",
     headers: {

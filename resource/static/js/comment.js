@@ -1,5 +1,11 @@
-const frag = document.createDocumentFragment();
-const postId = location.href.split("/post/")[1];
+/*
+  Kang Hyejin
+  강혜진 작성파일
+*/
+const commentUl = document.querySelector('.comment-wrap');
+const commentBtn = document.querySelector('.comment-save');
+const inputComment = document.querySelector('.comment-box');
+const postId = nowUrl.split("/post/")[1];
 
 //게시 버튼 활성화
 function changeCommentBtn() {
