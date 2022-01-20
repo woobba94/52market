@@ -26,7 +26,7 @@ if (mainMenu) {
   if (nowUrl.indexOf('/chat') !== -1) {
     // '/chat' 페이지
     mainMenu.querySelector('.btn-chat').closest('li').classList.add('active');
-  } else if (nowUrl.indexOf('/profile') !== -1) {
+  } else if (nowUrl.indexOf('/profile/') === -1 && nowUrl.indexOf('/profile') !== -1) {
     // '/profile' 페이지
     mainMenu.querySelector('.btn-user').closest('li').classList.add('active');
   } else {
@@ -59,7 +59,6 @@ function showMenu(e) {
     typeText = '댓글';
     thisParent = e.currentTarget.closest('.user-wrap');
     thisUser = thisParent.querySelector('.user-title').getAttribute('href').split('/profile/')[1];
-
   } else {
     //게시글일 경우
     typeText = '게시글';
@@ -69,9 +68,11 @@ function showMenu(e) {
     // const postId = thisParent.id; //게시글 아이디
   }
   // 나의 글일때
-  if (userId === thisUser) {
+  if (userId === thisUser && typeText === '게시글') {
     inButton = `<button class='show-pop-delete'>삭제</button>
     <button type='button' class='modify'>수정</button>`;
+  } else if (userId === thisUser && typeText === '댓글') {
+    inButton = `<button class='show-pop-delete'>삭제</button>`;
   } else {
     inButton = `<button class='show-pop-report'>신고</button>`;
   }
