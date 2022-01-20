@@ -1,3 +1,8 @@
+/*
+  Kang Hyejin
+  강혜진 작성파일
+*/
+
 //게시글 좋아요
 async function likePost(postId) {
   const res = await fetch(`${url}/post/${postId}/heart`, {

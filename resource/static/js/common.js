@@ -1,35 +1,50 @@
-const url = "http://146.56.183.55:5050";
-//localStorage
+/*
+  Kang Hyejin
+  강혜진 작성파일
+*/
+
+const url = "http://146.56.183.55:5050"; // API url
+
+//로그인시 저장된 localStorage
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('accountname');
 const userProfile = localStorage.getItem('profileImg');
 
-
+//flagment
+const frag = document.createDocumentFragment();
 //현재 주소
 const nowUrl = location.href;
+
+//이전버튼
+const btnBack = document.querySelector('header .btn-back');
+const prevBtn = document.querySelector('.btn-prev-back'); //404 페이지
 
 //메인메뉴
 const mainMenu = document.querySelector('.main-menu');
 
 if (mainMenu) {
   if (nowUrl.indexOf('/chat') !== -1) {
-    // '/chat' 포함
+    // '/chat' 페이지
     mainMenu.querySelector('.btn-chat').closest('li').classList.add('active');
   } else if (nowUrl.indexOf('/profile') !== -1) {
+    // '/profile' 페이지
     mainMenu.querySelector('.btn-user').closest('li').classList.add('active');
   } else {
+    // '/' 페이지
     mainMenu.querySelector('.btn-home').closest('li').classList.add('active');
   }
 }
 
-//이전버튼
-const btnBack = document.querySelector('header .btn-back');
+//이전버튼 클릭 이벤트
 if (btnBack) {
   btnBack.addEventListener('click', clickBack);
+} else if (prevBtn) {
+  prevBtn.addEventListener('click', clickBack);
 }
 function clickBack() {
   history.back();
 };
+
 
 //하단 메뉴 등장
 function showMenu(e) {
@@ -70,21 +85,24 @@ function showMenu(e) {
       ${inButton}
       <button class='close-modal'><span class='a11y-hidden'>${typeText} 메뉴 닫기</span></button>
     </div>
-    <div class="dim">
+    <div class="dim"></div>
   `;
   thisParent.appendChild(menuModal);
   const firstFocus = thisParent.querySelector('.menu-modal button');
-  // if (type.indexOf('comment') !== -1) {
-  // }
+
   firstFocus.focus();
   firstFocus.addEventListener('click', openModal);
   firstFocus.addEventListener('keydown', keyShiftTabEvent);
+
   thisParent.querySelector('.close-modal').addEventListener('keydown', keyTabEvent);
   thisParent.querySelector('.close-modal').addEventListener('click', clearModal);
-  thisParent.querySelector('.modify').addEventListener('click', function () {
-    location.href = `/post/${thisParent.id}/edit`;
-  });
   thisParent.querySelector('.dim').addEventListener('click', clearModal);
+
+  if (userId === thisUser) {
+    thisParent.querySelector('.modify').addEventListener('click', function () {
+      location.href = `/post/${thisParent.id}/edit`;
+    });
+  }
 }
 
 // 팝업 모달 등장

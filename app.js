@@ -30,9 +30,9 @@ env.addFilter('date', dateFilter);
 app.use(
   csp({
     directives: {
-      defaultSrc: ["'self'","*","'unsafe-inline'"],
-      styleSrc: ["'self'","*","'unsafe-inline'"],
-      scriptSrc: ["'self'","*","'unsafe-inline'"],
+      defaultSrc: ["'self'", "*", "'unsafe-inline'"],
+      styleSrc: ["'self'", "*", "'unsafe-inline'"],
+      scriptSrc: ["'self'", "*", "'unsafe-inline'"],
     },
   }));
 
@@ -48,8 +48,9 @@ app.get('/', (req, res, next) => {
 app.use('/', marketRouter);
 
 app.use((req, res, next) => {
-  res.sendStatus(404);
+  res.status(404).render('404.html');
 });
+
 
 app.use((err, req, res, next) => {
   console.log('애러났음!');
