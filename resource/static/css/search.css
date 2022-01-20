@@ -1,8 +1,8 @@
 .wrap-search {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: flex-start;
   height: calc(100vh - (108px));
   width: 100%;
   background-color: #ffffff;
@@ -15,4 +15,14 @@
 }
 .wrap-search .title {
   display: none;
+}
+.wrap-search .search-child {
+  width: 100%;
+}
+.wrap-search .user-wrap {
+  width: 100%;
+}
+.wrap-search .user-wrap .profile {
+  margin-left: 16px;
+  margin-right: 12px;
 }
