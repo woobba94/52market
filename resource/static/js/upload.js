@@ -1,23 +1,28 @@
-const textarea = document.querySelector('.textarea');
-const inputFile = document.querySelector('.imgbtn-img');
-const imgUl = document.querySelector('.img-wrap ul')
-const profileImg = document.querySelector('.profile');
-const hrefLink = location.href;
+/*
+  Kang Hyejin
+  강혜진 작성파일
+*/
+
+const textarea = document.querySelector('.textarea'); //내용 입력
+const inputFile = document.querySelector('.imgbtn-img'); // file
 const saveBtn = document.querySelector('.post-save'); //저장버튼
 const editBtn = document.querySelector('.post-edit'); //수정버튼
-let state = 'upload';
+const imgUl = document.querySelector('.img-wrap ul')
+const profileImg = document.querySelector('.profile'); //프로필 이미지
+
+let state = 'upload'; // 수정, 새게시물 구분
 
 if (!token) {
   location.href = './login';
 }
 
 //게시글 수정/업로드 여부 체크
-if (hrefLink.indexOf('/edit') !== -1) {
+if (nowUrl.indexOf('/edit') !== -1) {
   //수정
   state = 'edit';
   getEdit();
   editBtn.addEventListener('click', putEdit); //수정
-} else if (hrefLink.indexOf('/upload') !== -1) {
+} else if (nowUrl.indexOf('/upload') !== -1) {
   //업로드
   saveBtn.addEventListener('click', createPost); //업로드
 }
@@ -27,13 +32,13 @@ function changeBtn() {
   if (textarea.value !== '' || inputFile.value !== '') {
     if (state === 'upload') {
       saveBtn.disabled = false;
-    } else {
+    } else if (state === 'edit') {
       editBtn.disabled = false;
     }
   } else {
     if (state === 'upload') {
       saveBtn.disabled = true;
-    } else {
+    } else if (state === 'edit') {
       editBtn.disabled = true;
     }
   }
@@ -75,6 +80,7 @@ function removeFile(e) {
   Array.from(files).filter((file, index) => `${index}id${file.lastModified}` != removeTargetId).forEach(file => { dataTranster.items.add(file) });
   inputFile.files = dataTranster.files;
   removeTarget.remove();
+  changeBtn();
 };
 
 //이미지 업로드
@@ -131,11 +137,9 @@ uploadProfile.src = userProfile;
 uploadProfile.setAttribute('alt', `${userId}님의 프로필`);
 
 
-
-
 //수정 게시물 정보 가져오기
 async function getEdit() {
-  const postId = location.href.split('/post/')[1].split('/')[0];
+  const postId = nowUrl.split('/post/')[1].split('/')[0];
   const res = await fetch(`${url}/post/${postId}`, {
     method: "GET",
     headers: {
@@ -155,9 +159,15 @@ async function getEdit() {
   if (post.image) {
     const imgArr = post.image.split(',');
     for (let i = 0; i < imgArr.length; i++) {
-      const imgList = document.createElement('li');
-      imgList.innerHTML = `<img src='${imgArr[i]}' alt='${imgArr[0].split(url + '/')[1].split('.')[0]}' />`
-      imgUl.appendChild(imgList);
+      const imgList = `
+      <li>
+        <img src='${imgArr[i]}' alt='${imgArr[0].split(url + '/')[1].split('.')[0]}' />
+        <button button type = "button" class="delete-img">
+          <span class="a11y-hidden">이미지 삭제</span>
+        </button>
+      </li>
+      `
+      imgUl.insertAdjacentHTML('beforeend', imgList);
 
     }
   }
@@ -168,9 +178,16 @@ async function putEdit() {
   const postId = location.href.split('/post/')[1].split('/')[0];
   const inputText = textarea.value;
   const imgArr = [];
-  (imgUl.querySelectorAll('img')).forEach((item) => {
-    imgArr.push(item.src);
-  });
+  // (imgUl.querySelectorAll('img')).forEach((item) => {
+  //   imgArr.push(item.src);
+  // });
+
+  const files = inputFile.files;
+  for (let index = 0; index < files.length; index++) {
+    const imgurl = await imgUpload(files, index);
+    imgArr.push(`${url}/${imgurl}`);
+  }
+
   const res = await fetch(`${url}/post/${postId}`, {
     method: "PUT",
     headers: {
@@ -186,7 +203,7 @@ async function putEdit() {
   })
   const data = await res.json();
   const post = data.post;
-  location.href = `/profile/${post.author.accountname}`;
+  location.href = `/profile`;
 }
 
 //버튼 활성화

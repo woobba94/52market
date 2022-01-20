@@ -1,0 +1,22 @@
+.follow-list-header {
+  justify-content: start;
+}
+
+.follow-list-header .btn-back {
+  margin-right: 10px;
+}
+
+.follow-list-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.follow-list-child .profile {
+  margin-left: 16px;
+  margin-right: 12px;
+}
+
+.follow-list-child .button-small {
+  margin-right: 16px;
+}

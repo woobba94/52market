@@ -1,14 +1,25 @@
-const frag = document.createDocumentFragment();
-const hrefLink = location.href;
-let state = 'list';
+/*
+  Kang Hyejin
+  강혜진 작성파일
+*/
 const listBtn = document.querySelector('.imgbtn-list');
 const albumBtn = document.querySelector('.imgbtn-album');
+const postUl = document.querySelector('.post-list');
+const detailSection = document.querySelector('.detail');
+
+let state = 'list'; // 목록/앨범 상태 구분
 
 if (token) {
-  if (hrefLink.indexOf('/profile/') !== -1) {
+  if (nowUrl.split('/profile')[1] === '') {
+    myFeed(state);
+    listBtn.addEventListener('click', changeList);
+    albumBtn.addEventListener('click', changeAlbum);
+  } else if (nowUrl.indexOf('/profile/') !== -1) {
     getProfile(state);
     listBtn.addEventListener('click', changeList);
     albumBtn.addEventListener('click', changeAlbum);
+  } else if (nowUrl.indexOf('/post/') !== -1) {
+    getPostDetail();
   } else {
     getFeed();
   }
@@ -22,7 +33,13 @@ function changeList() {
   albumBtn.classList.remove('active');
   document.querySelector('h2.a11y-hidden').remove();
   document.querySelector('.post-album').remove();
-  getProfile(state);
+  if (nowUrl.split('/profile')[1] === '') {
+    myFeed(state);
+  } else {
+    getProfile(state);
+  }
+
+
 }
 
 function changeAlbum() {
@@ -31,11 +48,14 @@ function changeAlbum() {
   albumBtn.classList.add('active');
   document.querySelector('h2.a11y-hidden').remove();
   document.querySelector('.post-list').remove();
-  getProfile(state);
+  if (nowUrl.split('/profile')[1] === '') {
+    myFeed(state);
+  } else {
+    getProfile(state);
+  }
 }
 
-
-//피드 목록(팔로워 게시글)
+//피드 목록(팔로워 게시글) - /index
 async function getFeed() {
   const res = await fetch(`${url}/post/feed`, {
     method: "GET",
@@ -53,6 +73,20 @@ async function getFeed() {
   }
 }
 
+//나의 피드 - /profile
+async function myFeed() {
+  const res = await fetch(`${url}/post/${userId}/userpost`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  });
+  const json = await res.json();
+  const posts = json.post;
+  feedList(posts, state);
+}
+
 async function getProfile(state) {
   const accountName = location.href.split("/profile/")[1];
   const res = await fetch(`${url}/post/${accountName}/userpost`, {
@@ -66,7 +100,6 @@ async function getProfile(state) {
   const posts = json.post;
   feedList(posts, state);
 }
-
 
 function feedList(posts, state) {
   const h2Title = document.createElement('h2');
@@ -96,7 +129,6 @@ function feedList(posts, state) {
         </a>
         `;
       }
-
     }
     if (state === 'list') {
       postUl.classList.add('post-list');
@@ -112,10 +144,10 @@ function feedList(posts, state) {
           </span>
         </a>
         <div class="post-cont">
-          <a href="/post/${post.id}">
+          <p>
             <span class="post-text">${post.content}</span>
             ${postImg}
-          </a>
+          </p>
           <p class="like-comment">
             <button type="button" class="btn-like ${post.hearted ? 'on' : ''}">
               <span class="a11y-hidden">좋아요</span > 
@@ -135,7 +167,7 @@ function feedList(posts, state) {
 
       const detailMore = postUl.querySelectorAll('.imgbtn-more');
       detailMore.forEach((item) => {
-        item.addEventListener('click', showMenuPostModal);
+        item.addEventListener('click', showMenu);
       });
 
       const likeBtn = document.querySelectorAll('.btn-like');
@@ -170,3 +202,110 @@ function noFeed() {
 }
 
 
+
+
+
+//게시글 삭제
+async function deleteEvent(e) {
+  const postId = e.currentTarget.closest('article').id;
+  const popModal = document.querySelector('.pop-modal');
+  popModal.innerHTML = `
+      <p>삭제되었습니다.</p>
+  `;
+  const res = await fetch(`${url}/post/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  })
+  const json = await res.json();
+  setTimeout(function () {
+    location.href = `/profile/${userId}`;
+  }, 800);
+}
+
+//게시글 신고
+async function reportEvent(e) {
+  const postId = e.currentTarget.closest('article').id;
+  const popModal = document.querySelector('.pop-modal');
+  popModal.innerHTML = `
+      <p>처리되었습니다.</p>
+  `;
+  const res = await fetch(`${url}/post/${postId}/report`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  })
+  const data = await res.json();
+  console.log(data);
+  setTimeout(function () {
+    clearModal()
+  }, 800);
+}
+
+
+//게시글 상세보기
+async function getPostDetail() {
+  const postId = nowUrl.split("/post/")[1];
+  const res = await fetch(`${url}/post/${postId}`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  })
+  const json = await res.json();
+  const post = json.post;
+  console.log(post);
+  const date = `${post.updatedAt.split('-')[0]}년 ${post.updatedAt.split('-')[1]}월 ${post.updatedAt.split('-')[2].split('T')[0]}일`;
+
+  let postImg = '';
+  if (post.image) {
+    let imgArr = post.image.split(',');
+    for (let i = 0; i < imgArr.length; i++) {
+      postImg += `<img src="${imgArr[i]}" alt="${post.content}" class="post-img" />`
+    }
+    if (imgArr.length > 1) {
+      postImg = `<span class="post-imgs">${postImg}</span>`
+    }
+  }
+
+  const postArticle = document.createElement('article');
+  postArticle.classList.add('post-article');
+  postArticle.setAttribute('id', `${post.id}`);
+  postArticle.innerHTML = `
+  <a href="/profile/${post.author.accountname}" class="user-wrap">
+   <img src="${post.author.image}" alt="${post.author.username}님의 프로필" class="profile" />
+    <span class="user-txt">
+      <span class="user-title">${post.author.username}</span>
+      <span class="user-description">@${post.author.accountname}</span>
+    </span>
+  </a>
+
+  <div class="post-cont">
+    <p class=" post-text">${post.content}</p>
+    ${postImg}    
+    <p class="like-comment">
+          <button type="button" class="btn-like ${post.hearted ? 'on' : ''}">
+            <span class="a11y-hidden">좋아요</span > 
+            <span class="heart-count">${post.heartCount}</span>
+          </button>
+      <span class="btn-comment">
+        <span class="a11y-hidden">댓글</span>${post.commentCount}
+      </span>
+    </p>
+    <p class="date">${date}</p>
+  </div>
+  <button class="imgbtn-more">더보기</button>
+  `;
+  detailSection.appendChild(postArticle);
+
+  const detailMore = postArticle.querySelector('.imgbtn-more');
+  detailMore.addEventListener('click', showMenu);
+
+  const likeBtn = postArticle.querySelector('.btn-like');
+  likeBtn.addEventListener('click', likeEvent);
+}
