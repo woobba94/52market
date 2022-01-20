@@ -29,13 +29,14 @@ if (nowUrl.indexOf('/edit') !== -1) {
 
 //저장버튼 활성화
 function changeBtn() {
-  if (textarea.value !== '' || inputFile.value !== '') {
+  if (textarea.value !== '') {
     if (state === 'upload') {
       saveBtn.disabled = false;
     } else if (state === 'edit') {
       editBtn.disabled = false;
     }
   } else {
+
     if (state === 'upload') {
       saveBtn.disabled = true;
     } else if (state === 'edit') {
@@ -43,6 +44,10 @@ function changeBtn() {
     }
   }
 }
+
+
+
+
 
 //이미지 미리보기
 function preview() {
@@ -56,7 +61,7 @@ function preview() {
       reader.onload = function (e) {
         let imgList = `
         <li id='${index}id${file.lastModified}'>
-            <img src='${e.target.result}' alt='${file.name}' />
+            <img src='${e.target.result}' alt='첨부파일' />
             <button button type = "button" data-index='${index}id${file.lastModified}' class="delete-img" > <span class="a11y-hidden">이미지 삭제</span></button >
         </li >
       `;
@@ -163,7 +168,7 @@ async function getEdit() {
     for (let index = 0; index < imgArr.length; index++) {
       const imgList = `
       <li>
-        <img src='${imgArr[index]}' alt='${imgArr[0].split(url + '/')[1].split('.')[0]}' />
+        <img src='${imgArr[index]}' alt='첨부파일' />
         <button button type = "button" class="delete-img" id="idx${index}">
           <span class="a11y-hidden">이미지 삭제</span>
         </button>
