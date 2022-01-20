@@ -3,13 +3,13 @@ const loginInputVal = document.querySelector(".email-inp");
 const pwInputVal = document.querySelector(".pw-inp");
 
 // id 입력시 버튼 활성화
-loginInputVal.addEventListener('input', changeBtn);
+loginInputVal.addEventListener('input', loginchangeBtn);
 // pw 입력시 버튼 활성화 (changeBtn 내에서 교차검증)
-pwInputVal.addEventListener('input', changeBtn);
+pwInputVal.addEventListener('input', loginchangeBtn);
 // login 기능
 $loginBtn.addEventListener("click", login)
 //로그인버튼 활성화
-function changeBtn() {
+function loginchangeBtn() {
     if (document.querySelector(".email-inp").value !== '' &&
         document.querySelector(".pw-inp").value !== '') {
         $loginBtn.disabled = false;
@@ -19,9 +19,9 @@ function changeBtn() {
 }
 
 // 아이디 비밀번호 검증
-function changeInp(){
-    // 
-}
+// function changeInp(){
+//     // 
+// }
 
 // 로그인 
 function getInput() {

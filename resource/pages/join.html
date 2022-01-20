@@ -17,13 +17,75 @@
             <p class="error-message">*비밀번호는 6자 이상이어야 합니다.</p>
         </div>
         <!-- <a class="login-to-profile" href=> -->
-          <button id="signup-check-btn" class="login-next-btn button full">다음
+          <button id="signup-check-btn" class="button full login-next-btn" disabled="">다음
           </button>
         <!-- </a> -->
         
     </section>
 
-
+ 
   </article>
-  
+  <script>
+    const $signUpBtn = document.querySelector('#signup-check-btn');
+    const signUpidInput = document.querySelector("#email-id");
+    const signUppwInput = document.querySelector("#password-id");
+
+    const signUpError = document.querySelector('.error-message');
+
+    const signUpidVal = signUpidInput.value;
+    const signUppwVal = signUppwInput.value;
+    
+    // 이메일 중복체크
+async function checkEmailValid(email){
+    const res = await fetch(localStorage.getItem("url")+'/user/emailvalid',{
+        method:"POST",
+        headers: {
+            "Content-Type":"application/json",
+        },
+        body:JSON.stringify({
+            "user":{
+                "email":email
+            }
+        })
+    })
+    // 이 이메일이 사용가능한지
+    const json = await res.json();
+    return json.message == "사용 가능한 이메일 입니다." ? true : false;
+}
+
+//이메일 패스워드 유효성 검사
+document.querySelector("#signup-check-btn").addEventListener("click",async ()=>{
+    if(signUppwVal.length >5){
+        const emailisValid = await checkEmailValid(signUpidVal)
+        if(emailisValid){
+            // changeBtn();
+            signUpError.style.display = "block";
+        }else{
+            signUpError.style.display = "block";
+            
+        }
+    }else{
+        signUpError.style.display = "block";
+    }
+})
+
+    // 이메일 입력시 버튼 활성화
+signUpidInput.addEventListener('input', changeBtn);
+// pw 입력시 버튼 활성화 (changeBtn 내에서 교차검증)
+signUppwInput.addEventListener('input', changeBtn);
+// login 기능
+// $loginBtn.addEventListener("click", login)
+//로그인버튼 활성화
+function changeBtn() {
+    if (document.querySelector("#email-id").value !== '' &&
+        document.querySelector("#password-id").value !== '') {
+        $signUpBtn.disabled = false;
+    } else {
+        $signUpBtn.disabled = true;
+    }
+}
+
+
+
+</script>
   {% endblock %}
