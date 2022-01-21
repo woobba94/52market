@@ -22,7 +22,7 @@ async function search(inputVal) {
     },
   });
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
 
   data.forEach((element) => {
     searchListBox.innerHTML += `
