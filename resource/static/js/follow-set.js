@@ -14,6 +14,7 @@ async function setFollowList(accountname, isFollowerPage) {
   const data = await res.json();
 
   data.forEach((element) => {
+    console.log(element);
     section.innerHTML += `
   <article class="follow-list-child" id="${element._id}">
     <a href="/profile/${element.accountname}" class="user-wrap">
@@ -35,11 +36,6 @@ async function setFollowList(accountname, isFollowerPage) {
       btn.textContent = '팔로우';
       btn.classList += ' btn-follow';
     }
-
-    // btn.func = toggleFollow;
-    // btn.addEventListener('click', function () {
-    //   btn.func(element.accountname);
-    // });
   });
   btnList = document.querySelectorAll('.toggle-btn-follow');
   btnList.forEach(function (item) {
