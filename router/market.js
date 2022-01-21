@@ -37,14 +37,14 @@ router.get('/upload', (req, res, next) => {
 });
 
 //프로필
-router.get('/profile', (req, res, next) => {
-  res.render('profile-me.html');
+// router.get('/profile', (req, res, next) => {
+//   res.render('profile-me.html');
   //하령님 작업 확인 필요 :   'profile-my.html'
-});
+// });
 
 //개볗프로필
 router.get('/profile/:accountname', (req, res, next) => {
-  res.render('profile.html');
+  res.render('profile-me.html');
   //하령님 작업 확인 필요 :  'profile-your.html'
 });
 

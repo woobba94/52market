@@ -1,5 +1,1 @@
-const accountName = localStorage.getItem('accountname');
-
-const target = document.querySelector('.btn-user');
-
-target.href += `/${accountName}`;
+document.querySelector('.btn-user').href += `/${localStorage.getItem('accountname')}`;
