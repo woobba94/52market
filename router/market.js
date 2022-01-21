@@ -70,12 +70,20 @@ router.get('/join-profile', (req, res, next) => {
 });
 
 
-
+// 상품 등록/수정 페이지
 router.get('/product', (req, res, next) => {
   res.render('product.html');
 });
 
+// 팔로잉 리스트
+router.get('/following', (req, res, next) => {
+  res.render('following.html');
+});
 
+// 팔로워 리스트
+router.get('/follower', (req, res, next) => {
+  res.render('follower.html');
+});
 
 //프로필:추후 삭제 및 정리 필요 -------------------------------------------------------------
 router.get('/profile-my', (req, res, next) => {
@@ -101,6 +109,5 @@ router.get('/profile-mod', (req, res, next) => {
 router.get('/module', (req, res, next) => {
   res.render('module.html');
 });
-
 
 module.exports = router;
