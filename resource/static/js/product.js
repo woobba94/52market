@@ -2,6 +2,15 @@ const mainElement = document.querySelector('.container');
 const saveBtn = document.querySelector('.button-save');
 const inputBox = document.querySelectorAll('.label-input input');
 
+const productUrlBox = document.querySelector('#product-url');
+
+productUrlBox.addEventListener('focus', (event) => {
+  if (event.target.value == '') event.target.value = 'http://';
+});
+productUrlBox.addEventListener('blur', (event) => {
+  if (event.target.value == 'http://') event.target.value = '';
+});
+
 // input 값 변경 리스너 -> 저장버튼 활성화 시도
 [].forEach.call(inputBox, function (input) {
   input.addEventListener('input', (event) => {
@@ -24,20 +33,16 @@ function postProductImg() {
   // console.log(productImgElement);
   imgInputBtn.addEventListener('change', (e) => {
     this.productImgName = '';
-
     // 최초 업로드일 경우 img태그 새로 만들기
     if (!productImgElement) {
       productImgElement = document.createElement('img');
       productImgBox.append(productImgElement);
+      activeCheckSaveButton();
     }
-    console.log(e.target);
-    console.log(`e.target.files : ${e.target.files}`);
-    console.log(`e.target.files[0] : ${e.target.files[0]}`);
-    console.log(`e.target : ${e.target}`);
+
     if (e.target.files && e.target.files[0]) {
       imgInputBtn.setAttribute('data-state', 1);
       let reader = new FileReader();
-
       reader.onload = (e) => {
         productImgElement.src = e.target.result;
       };
@@ -64,7 +69,6 @@ function postProductImg() {
 async function postProductData() {
   const productName = document.querySelector('#product-name');
   const productPrice = document.querySelector('#product-price');
-  const storeLink = document.querySelector('#product-url');
   const productImgName = window.productImgName;
   // console.log(productImgName);
   const price = parseInt(productPrice.value.replaceAll(',', ''), 10);
@@ -79,7 +83,7 @@ async function postProductData() {
       product: {
         itemName: productName.value,
         price: price,
-        link: storeLink.value,
+        link: productUrlBox.value,
         itemImage: `http://146.56.183.55:5050/${productImgName}`,
       },
     }),
@@ -194,7 +198,6 @@ function dataReset() {
 
 // url 형식 올바른지 체크
 function isValidUrl() {
-  const urlBoxVal = document.querySelector('#product-url').value;
   const urlRegexData = new RegExp(
     '^(https?:\\/\\/)?' + // protocol
       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -205,7 +208,7 @@ function isValidUrl() {
     'i'
   );
 
-  return urlRegexData.test(urlBoxVal) === true ? true : false;
+  return urlRegexData.test(productUrlBox.value) === true ? true : false;
 }
 
 // 값이 모두 채워졌는지 체크
@@ -224,8 +227,10 @@ function isFilledAll() {
 
 // 저장 버튼 활성화 여부
 function activeCheckSaveButton() {
+  const imgBox = document.querySelector('.image-input-field img');
+  // console.log(imgBox);
   const saveBtn = document.querySelector('.button-save');
-  if (isFilledAll() && isValidUrl()) saveBtn.disabled = false;
+  if (isFilledAll() && isValidUrl() && imgBox) saveBtn.disabled = false;
   else saveBtn.disabled = true;
 }
 
