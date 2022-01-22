@@ -1,4 +1,4 @@
-const accountName = location.href.split('/profile/')[1];
+let accountName = location.href.split('/profile/')[1];
 const hrefLink = location.href;
 const followersNum = document.querySelector('.followers-num');
 const followingsNum = document.querySelector('.followings-num');
@@ -8,6 +8,10 @@ const followingsNum = document.querySelector('.followings-num');
 // console.log(accountName);
 //user 정보 가져와서 뿌려주기
 async function getUserData() {
+  // '/profile'`로 접속시 - 내 아이디로
+  if (nowUrl.split('/profile')[1] === '') {
+    accountName = userId;
+  }
   const res = await fetch(`${url}/profile/${accountName}`, {
     method: 'GET',
     headers: {
@@ -161,7 +165,7 @@ function openModal(e) {
   const modal = document.querySelector('hidden-menu');
 
   const clickImgBtn = document.querySelector('.product-img');
-  clickImgBtn.addEventListener('click', () => {});
+  clickImgBtn.addEventListener('click', () => { });
 }
 
 // 팔로워 페이지로 이동

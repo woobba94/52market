@@ -36,16 +36,19 @@ router.get('/upload', (req, res, next) => {
   res.render('upload.html');
 });
 
-//프로필
-// router.get('/profile', (req, res, next) => {
-//   res.render('profile-me.html');
-  //하령님 작업 확인 필요 :   'profile-my.html'
-// });
 
-//개볗프로필
+// 프로필
+router.get('/profile', (req, res, next) => {
+  res.render('profile.html');
+});
+
+//개별프로필
 router.get('/profile/:accountname', (req, res, next) => {
-  res.render('profile-me.html');
-  //하령님 작업 확인 필요 :  'profile-your.html'
+  res.render('profile.html');
+});
+
+router.get('/profile-mod', (req, res, next) => {
+  res.render('profile-mod.html');
 });
 
 
@@ -83,31 +86,6 @@ router.get('/following', (req, res, next) => {
 // 팔로워 리스트
 router.get('/follower', (req, res, next) => {
   res.render('follower.html');
-});
-
-//프로필:추후 삭제 및 정리 필요 -------------------------------------------------------------
-router.get('/profile-my', (req, res, next) => {
-  res.render('profile-my.html');
-});
-
-//프로필:추후 삭제
-router.get('/profile-your', (req, res, next) => {
-  res.render('profile-your.html');
-});
-
-//확인
-router.get('/profile-list', (req, res, next) => {
-  res.render('profile-list.html');
-});
-
-//확인
-router.get('/profile-mod', (req, res, next) => {
-  res.render('profile-mod.html');
-});
-
-//모듈: 추후 삭제
-router.get('/module', (req, res, next) => {
-  res.render('module.html');
 });
 
 module.exports = router;
