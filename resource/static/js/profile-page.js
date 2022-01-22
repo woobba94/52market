@@ -166,8 +166,6 @@ movefollowersPage();
 //   });
 // }
 // movefollowersPage();
->>>>>>> a41dfe2f40662f64f3a9841acef0e290527bd62f
-
 // // 팔로잉 페이지로 이동
 // function movefollowingPage() {
 //   followingsNum.addEventListener('click', function () {
