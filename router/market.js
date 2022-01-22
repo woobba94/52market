@@ -88,4 +88,8 @@ router.get('/follower', (req, res, next) => {
   res.render('follower.html');
 });
 
+//게시글 수정
+router.get('/module', (req, res, next) => {
+  res.render('module.html');
+});
 module.exports = router;
