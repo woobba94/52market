@@ -4,6 +4,7 @@ async function setFollowList(accountname, isFollowerPage) {
   const section = document.querySelector(`.${val}-list`);
   const url = `http://146.56.183.55:5050/profile/${accountname}/${val}`;
   const token = localStorage.getItem('token');
+  console.log(isFollowerPage);
   const res = await fetch(url, {
     method: 'GET',
     headers: {
@@ -12,9 +13,7 @@ async function setFollowList(accountname, isFollowerPage) {
     },
   });
   const data = await res.json();
-
   data.forEach((element) => {
-    console.log(element);
     section.innerHTML += `
   <article class="follow-list-child" id="${element._id}">
     <a href="/profile/${element.accountname}" class="user-wrap">
