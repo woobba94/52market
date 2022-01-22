@@ -140,7 +140,6 @@ function 내프로필버튼() {
   moveProductPage();
 }
 
-<<<<<<< HEAD
 // 팔로워 페이지로 이동
 function movefollowersPage() {
   followersNum.addEventListener('click', function () {
@@ -148,7 +147,6 @@ function movefollowersPage() {
   });
 }
 movefollowersPage();
-=======
 // else
 // 팔로우, 언팔로우 버튼
 
