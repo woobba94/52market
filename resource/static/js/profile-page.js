@@ -8,14 +8,14 @@ const followingLink = document.querySelector('.following-num');
 //user 정보 가져와서 뿌려주기
 async function getUserData() {
   // '/profile'`로 접속시 - 내 아이디로
-  if (nowUrl.split('/profile')[1] === '') {
-    accountName = userId;
-    followerLink.href = `/follower`;
-    followingLink.href = `/following`;
-  } else {
-    followerLink.href = `/follower/${accountName}`;
-    followingLink.href = `/following/${accountName}`;
-  }
+  // if (nowUrl.split('/profile')[1] === '') {
+  //   accountName = userId;
+  //   followerLink.href = `/follower`;
+  //   followingLink.href = `/following`;
+  // } else {
+  //   followerLink.href = `/follower/${accountName}`;
+  //   followingLink.href = `/following/${accountName}`;
+  // }
   const res = await fetch(`${url}/profile/${accountName}`, {
     method: 'GET',
     headers: {
@@ -41,6 +41,8 @@ async function getUserData() {
 
   followersNum.innerText = result.profile.followerCount;
   followingsNum.innerText = result.profile.followingCount;
+  followerLink.href = `/follower/${accountName}`;
+  followingLink.href = `/following/${accountName}`;
 }
 
 getUserData();

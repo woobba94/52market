@@ -35,10 +35,10 @@ router.get('/upload', (req, res, next) => {
   res.render('upload.html');
 });
 
-// 프로필
-router.get('/profile', (req, res, next) => {
-  res.render('profile.html');
-});
+// // 프로필
+// router.get('/profile', (req, res, next) => {
+//   res.render('profile.html');
+// });
 
 //개별프로필
 router.get('/profile/:accountname', (req, res, next) => {
@@ -73,15 +73,15 @@ router.get('/join-profile', (req, res, next) => {
 router.get('/product', (req, res, next) => {
   res.render('product.html');
 });
-// 내팔로잉 리스트
-router.get('/following', (req, res, next) => {
-  res.render('following.html');
-});
+// // 내팔로잉 리스트
+// router.get('/following', (req, res, next) => {
+//   res.render('following.html');
+// });
 
-// 내팔로워 리스트
-router.get('/follower', (req, res, next) => {
-  res.render('follower.html');
-});
+// // 내팔로워 리스트
+// router.get('/follower', (req, res, next) => {
+//   res.render('follower.html');
+// });
 
 // 팔로잉 리스트
 router.get('/following/:accountname', (req, res, next) => {
@@ -90,6 +90,7 @@ router.get('/following/:accountname', (req, res, next) => {
 
 // 팔로워 리스트
 router.get('/follower/:accountname', (req, res, next) => {
+  console.log('넘어가나?');
   res.render('follower.html');
 });
 
