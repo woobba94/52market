@@ -2,12 +2,19 @@ let accountName = nowUrl.split('/profile/')[1];
 const hrefLink = location.href;
 const followersNum = document.querySelector('.followers-num');
 const followingsNum = document.querySelector('.followings-num');
+const followerLink = document.querySelector('.follower-num');
+const followingLink = document.querySelector('.following-num');
 
 //user 정보 가져와서 뿌려주기
 async function getUserData() {
   // '/profile'`로 접속시 - 내 아이디로
   if (nowUrl.split('/profile')[1] === '') {
     accountName = userId;
+    followerLink.href = `/follower`;
+    followingLink.href = `/following`;
+  } else {
+    followerLink.href = `/follower/${accountName}`;
+    followingLink.href = `/following/${accountName}`;
   }
   const res = await fetch(`${url}/profile/${accountName}`, {
     method: 'GET',
@@ -34,7 +41,6 @@ async function getUserData() {
 
   followersNum.innerText = result.profile.followerCount;
   followingsNum.innerText = result.profile.followingCount;
-
 }
 
 getUserData();
@@ -102,8 +108,8 @@ async function setFollowBtn() {
 
     // isfollow 체크 -> 버튼 텍스트 최초 세팅 (팔로우/언팔로우)
     const isfollow = await getIsFollow(accountName);
-    if (isfollow) tempBtn.innerHTML = '언팔로우';
-    else tempBtn.innerHTML = '팔로우';
+    if (isfollow) followBtn.innerHTML = '언팔로우';
+    else followBtn.innerHTML = '팔로우';
 
     // 리스너 연결
     followBtn.func = toggleFollow;
@@ -149,21 +155,21 @@ function 내프로필버튼() {
 //   clickImgBtn.addEventListener('click', () => { });
 // }
 
-// 팔로워 페이지로 이동
-function movefollowersPage() {
-  followersNum.addEventListener('click', function () {
-    location.href = '/follower';
-  });
-}
-movefollowersPage();
+// // 팔로워 페이지로 이동
+// function movefollowersPage() {
+//   followersNum.addEventListener('click', function () {
+//     location.href = '/follower';
+//   });
+// }
+// movefollowersPage();
 
-// 팔로잉 페이지로 이동
-function movefollowingPage() {
-  followingsNum.addEventListener('click', function () {
-    location.href = '/following';
-  });
-}
-movefollowingPage();
+// // 팔로잉 페이지로 이동
+// function movefollowingPage() {
+//   followingsNum.addEventListener('click', function () {
+//     location.href = '/following';
+//   });
+// }
+// movefollowingPage();
 
 async function getIsFollow(accountname) {
   const url = `http://146.56.183.55:5050/profile/${accountname}`;
