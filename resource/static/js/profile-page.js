@@ -40,7 +40,6 @@ async function getUserData() {
 getUserData();
 
 const mainElement = document.querySelector('.container');
-
 //user가 등록한 상품 정보 가져오기
 async function getProductList() {
   const response = await fetch(`http://146.56.183.55:5050/product/${accountName}`, {
@@ -72,13 +71,9 @@ async function setCurrentProduct() {
         <a href="${data.link}">
         <img src="${data.itemImage}" class="product-img" alt="상품사진"></a>
         <p class="product-name">${data.itemName}</p>
-        <em class="product-price">${data.price}</em>
+        <em class="product-price">${data.price}원</em>
         `;
     productList.appendChild(productBox);
-    // data.product.forEach((ele) => {
-    //     console.log(ele);
-    // })
-    // console.log(data.product);
   });
 }
 
@@ -136,18 +131,6 @@ function 내프로필버튼() {
   }
   moveProductPage();
 }
-
-// else
-// 팔로우, 언팔로우 버튼
-
-//공통
-//이미지 클릭 시 모달창 함수
-// function openModal(e) {
-//   const modal = document.querySelector('hidden-menu');
-
-//   const clickImgBtn = document.querySelector('.product-img');
-//   clickImgBtn.addEventListener('click', () => { });
-// }
 
 // 팔로워 페이지로 이동
 function movefollowersPage() {
