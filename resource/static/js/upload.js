@@ -13,7 +13,7 @@ const profileImg = document.querySelector('.profile'); //프로필 이미지
 let state = 'upload'; // 수정, 새게시물 구분
 
 if (!token) {
-  location.href = './login';
+  location.href = './loading';
 }
 
 //게시글 수정/업로드 여부 체크
