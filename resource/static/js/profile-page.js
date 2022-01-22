@@ -2,10 +2,7 @@ let accountName = location.href.split('/profile/')[1];
 const hrefLink = location.href;
 const followersNum = document.querySelector('.followers-num');
 const followingsNum = document.querySelector('.followings-num');
-// const urls = "http://146.56.183.55:5050";
-// const tokens = localStorage.getItem('token');
 
-// console.log(accountName);
 //user 정보 가져와서 뿌려주기
 async function getUserData() {
   // '/profile'`로 접속시 - 내 아이디로
@@ -38,14 +35,13 @@ async function getUserData() {
   followersNum.innerText = result.profile.followerCount;
   followingsNum.innerText = result.profile.followingCount;
 
-  //등록한 상품 정보 불러오기
 }
 
 getUserData();
 
 const mainElement = document.querySelector('.container');
 
-// 상품 정보 가져오기
+//user가 등록한 상품 정보 가져오기
 async function getProductList() {
   const response = await fetch(`http://146.56.183.55:5050/product/${accountName}`, {
     headers: {
@@ -57,7 +53,7 @@ async function getProductList() {
   // console.log(productList);
 }
 
-// 현재 상품 정보 세팅
+// user가 등록한 상품 정보 세팅
 async function setCurrentProduct() {
   const productName = document.querySelector('.product-name');
   const productPrice = document.querySelector('.product-price');
@@ -71,11 +67,6 @@ async function setCurrentProduct() {
   datas.map((data) => {
     const productList = document.querySelector('.product-list');
     let productBox = document.createElement('li');
-    // this.productImgName = data['itemImage'];
-    // productImgInput.src = this.productImgName;
-    // productName.innerText = data['itemName'];
-    // productPrice.innerText = data['price']+ "원";
-    // console.log(data);
 
     productBox.innerHTML = `
         <a href="${data.link}">
@@ -87,21 +78,12 @@ async function setCurrentProduct() {
     // data.product.forEach((ele) => {
     //     console.log(ele);
     // })
-
     // console.log(data.product);
   });
-
-  // productImgInput.setAttribute('data-state', 1);
-  // productName.setAttribute('data-state', 1);
-  // productPrice.setAttribute('data-state', 1);
-  // this.btnActive();
 }
 
 setCurrentProduct();
 getProductList();
-
-// addFollowBtn.insertAdjacentHTML('afterEnd', `<button type="button" class="button button-ms line btn-mod profile-edit"> 프로필 수정</button>
-// <button type="button" class="button button-ms line move-product">상품 등록</button>`);
 
 async function setFollowBtn() {
   const addFollowBtn = document.querySelector('.btns-wrap');
@@ -111,7 +93,6 @@ async function setFollowBtn() {
     <a class="button button-ms line move-product" href="/product">상품 등록</a>`;
   } else {
     // getIsFollow(accountName);
-
     addFollowBtn.innerHTML = `<a class="imgbtn imgbtn-message" href="/chat">메시지</a>
     <button class="button-ms active-button" name="${accountName}"></button>
     <a class="imgbtn imgbtn-share" href="#">공유버튼
@@ -137,9 +118,9 @@ setFollowBtn();
 function 내프로필버튼() {
   // 프로필 페이지로 이동
   function moveProfileModPage() {
-    const PROFILE_MOD_PAGE = document.querySelector('.profile-edit');
+    const profileModPage = document.querySelector('.profile-edit');
 
-    PROFILE_MOD_PAGE.addEventListener('click', function () {
+    profileModPage.addEventListener('click', function () {
       location.href = './profile-mod';
     });
   }
@@ -147,9 +128,9 @@ function 내프로필버튼() {
 
   // 상품등록 페이지로 이동
   function moveProductPage() {
-    const PRODUCT_PAGE = document.querySelector('.move-product');
+    const productPage = document.querySelector('.move-product');
 
-    PRODUCT_PAGE.addEventListener('click', function () {
+    productPage.addEventListener('click', function () {
       location.href = './product';
     });
   }
@@ -183,14 +164,6 @@ function movefollowingPage() {
   });
 }
 movefollowingPage();
-
-// followersNum.addEventListener('click', function () {
-//   location.href = '/follower';
-// });
-
-// followingsNum.addEventListener('click', function () {
-//   location.href = '/following';
-// });
 
 async function getIsFollow(accountname) {
   const url = `http://146.56.183.55:5050/profile/${accountname}`;
