@@ -2,9 +2,8 @@ async function setFollowList(accountname, isFollowerPage) {
   let val = '';
   isFollowerPage ? (val = 'follower') : (val = 'following');
   const section = document.querySelector(`.${val}-list`);
-  const url = `http://146.56.183.55:5050/profile/${accountname}/${val}`;
+  const url = `http://146.56.183.55:5050/profile/${accountname}/${val}?limit=1000`;
   const token = localStorage.getItem('token');
-  console.log(isFollowerPage);
   const res = await fetch(url, {
     method: 'GET',
     headers: {
