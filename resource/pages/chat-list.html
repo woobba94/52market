@@ -1,10 +1,12 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 {% block content %}
+{% include './template/menu.html' %}
+<h2 class="a11y-hidden">채팅</h2>
 <header>
-  <!-- top-basic-nav -->
-  <button class="btn-back"></button>
-  <button class="btn-more"></button>
+  <button class="btn-back"><span class="a11y-hidden">뒤로</span></button>
+  <button class="btn-more"><span class="a11y-hidden">채팅 메뉴</span></button>
 </header>
+
 <section class="wrap-chat-list">
   <h2 class="title">chat-list</h2>
   <div class="list-child">
@@ -26,5 +28,6 @@
     <p class="date">2020.10.25</p>
   </div>
 </section>
+
 <script src="/js/common.js"></script>
 {% endblock %}
