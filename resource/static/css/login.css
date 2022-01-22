@@ -77,7 +77,85 @@
 
 .email-login-page .login-singup a:hover{
   color: #414141; 
+}
 
+.id-error-message{
+  display: block;
+  color:red;
+  margin-top: 5px;
+}
+
+
+.pw-error-message{
+  display: none;
+  color:red;
+  margin-top: 5px;
+}
+
+.login-id-label-input input,
+.login-pw-label-input input{
+  color: #666;
+  font-size: 1.6rem;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-width: 0 0 1px;
+  height: 4rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-id-label-input.error label::after,
+.login-pw-label-input.error label::after {
+  content: '!';
+  display: block;
+  position: absolute;
+  top: 2.6rem;
+  right: 1em;
+  color: #fff;
+  background: #eb5757;
+  margin-left: 0.4rem;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  font-size: 0.8em;
+  text-align: center;
+  padding-top: 0.4rem;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.login-id-label-input.error input,
+.login-pw-label-input.error input {
+  border-color: #eb5757;
+  box-shadow: 0 1px 0 #f26e22;
+}
+
+
+.label-input-pw.error label::after,
+.label-input-id.error label::after {
+  content: '!';
+  display: block;
+  position: absolute;
+  top: 2.6rem;
+  right: 1em;
+  color: #fff;
+  background: #eb5757;
+  margin-left: 0.4rem;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  font-size: 0.8em;
+  text-align: center;
+  padding-top: 0.4rem;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.label-input-pw.error input,
+.label-input-id.error input {
+  border-color: #eb5757;
+  box-shadow: 0 1px 0 #f26e22;
 }
 
 
@@ -85,7 +163,9 @@
 ******** 프로필 설정 *******
 ******************** */
 
-
+/* .login-next-btn{
+  margin-top: 15px;
+} */
 .profile-text{
   color: #767676;
   text-align: center;
@@ -94,4 +174,9 @@
 
 .profile-set{
   margin: 0 auto;
+}
+
+.email-login-page .set-img{
+  object-fit: cover;
+  border-radius: 50%;
 }

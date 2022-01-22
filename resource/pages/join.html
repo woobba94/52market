@@ -1,91 +1,299 @@
 {% extends 'layout2.html' %}
 {% block content %}
 <article class="main-login-container">
-    <section name="signup-page" class="email-login-page">
+    <section name="signup-page" class="email-login-page" id="singup-emailpw">
         <h1 class="login-text">이메일로 회원가입</h1>
-        <!-- <div class="label-input error"> -->
+        <div class="label-input-id">
         <div id="signup-id-input" class="label-input">
             <label for="email-id">이메일</label>
             <input name="username" type="email" id="email-id" />
-            <p id="alert_username"class="error-message">*이미 가입된 이메일 주소입니다.</p>
+            <p id="alert_username" class="id-error-message" style="display: none;">
+                *이미 가입된 이메일 주소입니다.</p>
+        </div>
+    </div>
+        <div class="label-input-pw">
+        <div id="signup-pw-input" class="label-input">
+            <label for="password-id">비밀번호</label>
+            <input name="userPw" type="password" id="password-id" />
+            <p class="pw-error-message" style="display: none;">*비밀번호는 대소문자 구분 6자 이상이어야 합니다.</p>
+        </div>
+    </div>
+        <!-- <a class="login-to-profile" href=> -->
+        <button id="signup-check-btn" class="button full login-next-btn" disabled="">다음
+        </button>
+        <!-- </a> -->
+
+    </section>
+    <!-- <section class="email-login-page" id="singup-profile" style="display: none;"> -->
+    <section class="email-login-page" id="singup-profile" style="display: none;">
+        <h1 class="login-text">프로필 설정</h1>
+        <h2 class="profile-text">나중에 언제든지 변경할 수 있습니다.</h1>
+        <div class="profile-set">
+          <img id="signUpimagePre"class="set-img"src="./img/profile.svg" alt="">
+          <input type="file" class="imgbtn-img" accept="image/*"></button>
+        </div> 
+        <div class="label-input">
+            <label for="signup-nickname">사용자 이름</label>
+            <input type="text" id="signup-nickname" placeholder="2~10자 이내여야 합니다"/>
         </div>
 
         <!-- <div class="label-input error"> -->
-        <div id="signup-pw-input" class="label-input">
-            <label for="password-id">비밀번호</label>
-            <input name="userPw"type="password" id="password-id" />
-            <p class="error-message">*비밀번호는 6자 이상이어야 합니다.</p>
+        <div class="label-input">
+            <label for="signup-id">계정 ID</label>
+            <input type="text" id="profile-id" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다." />
+            <p class="error-message 1" style="display:none">*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.</p>
+            <p class="error-message 2" style="display:none">*이미 사용 중인 ID입니다.</p>
         </div>
-        <!-- <a class="login-to-profile" href=> -->
-          <button id="signup-check-btn" class="button full login-next-btn" disabled="">다음
-          </button>
-        <!-- </a> -->
         
+        <div class="label-input">
+            <label for="signup-id">소개</label>
+            <input type="text" id="profile-introduce-id" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다." />
+            <p class="error-message">*이메일 또는 비밀번호가 일치하지 않습니다.</p>
+        </div>
+        
+        <button id="profile-next-btn" class="button full login-next-btn" disabled="">다음</button>
+        <!-- <button class="test-btn"> 확인</button> -->
     </section>
 
- 
-  </article>
-  <script>
+
+</article>
+<script>
+    
+    // email, 프로필 페이지
+    const $signupEmailPw = document.querySelector("#singup-emailpw")
+    const $signupProfile = document.querySelector("#singup-profile")
+
     const $signUpBtn = document.querySelector('#signup-check-btn');
     const signUpidInput = document.querySelector("#email-id");
     const signUppwInput = document.querySelector("#password-id");
 
-    const signUpError = document.querySelector('.error-message');
+    // 에러메시지
+    const erroremail = document.querySelector(".id-error-message");
+    const errorpw = document.querySelector(".pw-error-message");
 
-    const signUpidVal = signUpidInput.value;
-    const signUppwVal = signUppwInput.value;
+    // 에러 Input
+    const erroremailInp = document.querySelector(".label-input-id");
+    const errorpwInp = document.querySelector(".label-input-pw");
+
+    // 아이디 비밀번호 검증
+    const checkpw = /^[a-zA-Z0-9]{6,12}$/
     
-    // 이메일 중복체크
-async function checkEmailValid(email){
-    const res = await fetch(localStorage.getItem("url")+'/user/emailvalid',{
-        method:"POST",
-        headers: {
-            "Content-Type":"application/json",
-        },
-        body:JSON.stringify({
-            "user":{
-                "email":email
-            }
-        })
-    })
-    // 이 이메일이 사용가능한지
-    const json = await res.json();
-    return json.message == "사용 가능한 이메일 입니다." ? true : false;
-}
 
-//이메일 패스워드 유효성 검사
-document.querySelector("#signup-check-btn").addEventListener("click",async ()=>{
-    if(signUppwVal.length >5){
-        const emailisValid = await checkEmailValid(signUpidVal)
-        if(emailisValid){
-            // changeBtn();
-            signUpError.style.display = "block";
-        }else{
-            signUpError.style.display = "block";
-            
-        }
-    }else{
-        signUpError.style.display = "block";
+    // 이메일 중복체크
+    async function checkEmailValid(email) {
+        // const url = 'http://146.56.183.55:5050'
+        const res = await fetch(url + '/user/emailvalid', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "user": {
+                    "email": email
+                }
+            })
+        })
+        const json = await res.json()
+        return json.message == "사용 가능한 이메일 입니다." ? true : false
+
+        // return 이 이메일이 사용가능하지 체크를 할거에요.
     }
-})
+    document.querySelector("#signup-check-btn").addEventListener("click", async () => {
+        const email = document.querySelector("#email-id").value
+        const pw = document.querySelector("#password-id").value
+
+        // 이메일 패스워드 유효성
+        if (pw.length > 5) {
+            const emailValid = await checkEmailValid(email)
+            if (emailValid) {
+                $signupEmailPw.style.display = "none";
+                $signupProfile.style.display = "block";
+            } 
+            // 아이디 검증
+            else {
+                signUpErrorOn(1);
+            }
+        } else // 비밀번호 검증
+        { 
+            signUpErrorOn(2);
+        }
+    })
 
     // 이메일 입력시 버튼 활성화
-signUpidInput.addEventListener('input', changeBtn);
-// pw 입력시 버튼 활성화 (changeBtn 내에서 교차검증)
-signUppwInput.addEventListener('input', changeBtn);
-// login 기능
-// $loginBtn.addEventListener("click", login)
-//로그인버튼 활성화
-function changeBtn() {
-    if (document.querySelector("#email-id").value !== '' &&
-        document.querySelector("#password-id").value !== '') {
-        $signUpBtn.disabled = false;
-    } else {
-        $signUpBtn.disabled = true;
+    signUpidInput.addEventListener('input', changeBtn);
+    // pw 입력시 버튼 활성화 (changeBtn 내에서 교차검증)
+    signUppwInput.addEventListener('input', changeBtn);
+    //로그인버튼 활성화
+    function changeBtn() {
+        if (signUpidInput.value !== '' && signUppwInput.value !== '') 
+        {
+            $signUpBtn.disabled = false;
+            signUpErrorOff(1);
+            signUpErrorOff(2);
+
+        } else {
+            $signUpBtn.disabled = true;
+            
+        }
     }
-}
+
+    // 이메일 정규식 체크
+    function email_check(email){
+        const checkid = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){6,10}$/;
+        return checkid.test(email);
+    }
+
+    // 에러 걸어줘야할때
+    function signUpErrorOn(val){
+        switch(val){
+            case 1:
+                erroremailInp.classList.add('error');
+                erroremail.style.display = "block";
+                break;
+            case 2:
+                errorpwInp.classList.add('error');
+                errorpw.style.display = "block";
+                break;
+            default:
+                console.log(val);                    
+        }
+    }
+
+    // 에러 해제 해줘야할떄
+    function signUpErrorOff(val){
+        switch(val){
+            case 1:
+                erroremailInp.classList.remove('error');
+                erroremail.style.display = "none";
+                break;
+            case 2:
+                errorpwInp.classList.remove('error');
+                errorpw.style.display = "none";
+                break;                    
+            default:
+                console.log(val);
+        }
+    }
+
+    ///////////////////////// 프로필
+    const $profilenextBtn = document.querySelector("#profile-next-btn");
+    const profileidInput = document.querySelector("#profile-id");
+    const profilenameInput = document.querySelector("#signup-nickname");
+    const $signUpimagePre = document.querySelector("#signUpimagePre");
+
+    profileidInput.addEventListener('input', profilechangeBtn);
+    profilenameInput.addEventListener('input', profilechangeBtn);
+    //프로필 버튼 활성화
+    async function profilechangeBtn() {
+        if (profileidInput.value !== '' && profilenameInput.value !== '') 
+        {
+            $profilenextBtn.disabled = false;
+        } else {
+            $profilenextBtn.disabled = true;
+        }
+        await profileBtnText();
+
+    }
+
+    // 비동기 프로필 버튼 텍스트 변경
+    async function profileBtnText(){
+        if(profileidInput.value !== '' && profilenameInput.value !== ''){
+            $profilenextBtn.innerText = "오이마켓 시작하기"
+        }else{
+            $profilenextBtn.innerText = "다음"
+        }
+    }
+   
+    async function imageUpload(files) {
+        // 서버로 날아가긴위한 임의의 폼 형식
+        const formData = new FormData();
+        // console.log(url);
+        formData.append("image", files[0]);//formData.append("키이름","값")
+        const res = await fetch(url+ '/image/uploadfile', {
+            method: "POST",
+            body: formData
+        })
+        const data = await res.json()
+        const productImgName = data["filename"];
+        return productImgName
+    }
 
 
+    async function profileImage(e) {
+        const files = e.target.files
+        const result = await imageUpload(files)
+        $signUpimagePre.src = url + "/" + result;
+
+    }
+    document.querySelector(".imgbtn-img").addEventListener("change", profileImage)
+    // document.querySelector(".imgbtn-img").addEventListener("click", profileImage)
+
+    async function join() {
+        const email = document.querySelector("#email-id").value;
+        const password = document.querySelector("#password-id").value;
+        const userName = document.querySelector("#signup-nickname").value;
+        const userId = document.querySelector("#profile-id").value;
+        const intro = document.querySelector("#profile-introduce-id").value;
+        const imageUrl = document.querySelector("#signUpimagePre").src
+        try {
+            const res = await fetch(url +"/user", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "user": {
+                        "email": email,
+                        "password": password,
+                        "username": userName,
+                        "accountname": userId,
+                        "intro": intro,
+                        "image": imageUrl,
+                        // "token":token,
+                    }
+                })
+            })
+            
+            console.log(res)
+            const json = await res.json()
+            const message = json.message
+            // 서버에 image, accountname 올리기
+            if (res.status == 200) {
+                // location.href = "./"
+                localStorage.setItem("accountname", json.user.username);
+                localStorage.setItem("profileImg", json.user.image);
+                // localStorage.setItem("token", json.user.token);
+                console.log(token);
+                console.log(localStorage.getItem(`${token}`));
+                localStorage.getItem(`${token}`);
+                localStorage.setItem(`${token}`, token);
+                // console.log(localStorage.getItem("token"));
+                // console.log(json.user.token);
+                console.log(json);
+
+            }
+            else {
+                console.log(json)
+                // alert(email, password, userName, userId, intro, imageUrl);
+            }
+        } catch (err) {
+            alert(err)
+        }
+    }
+    $profilenextBtn.addEventListener("click", join)
+    
+
+    
+    // const testBtn = document.querySelector(".test-btn");
+    // testBtn.addEventListener("click", Onetest);
+    // async function Onetest(){
+    //     console.log("끝나고 받아와보기");
+    //     console.log(localStorage.getItem("profileImg")); // undefined
+    //     console.log(localStorage.getItem("image")); // undefined
+
+    // }
+
+    
 
 </script>
-  {% endblock %}
+{% endblock %}

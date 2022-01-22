@@ -35,7 +35,7 @@ async function login() {
     // getInput();
     const email = document.querySelector("#email-id").value
     const pw = document.querySelector("#password-id").value
-    const url = 'http://146.56.183.55:5050'
+    // const url = 'http://146.56.183.55:5050'
     const loginData = {
         "user": {
             "email": email,
@@ -50,9 +50,49 @@ async function login() {
         body: JSON.stringify(loginData)
     })
     const json = await res.json()
+    console.log(url);
     localStorage.setItem("token", json.user.token)
+    console.log(json.user.token);
+    console.log(json.user.imagePre);
     location.href = "./";
 }
 
+ // 에러메시지
+ const loginerroremail = document.querySelector("#login-id-error-message");
+    const loginerrorpw = document.querySelector("#login-pw-error-message");
 
+    // 에러 Input
+    const loginerroremailInp = document.querySelector("#login-id-label-input");
+    const loginerrorpwInp = document.querySelector("#login-pw-label-input");
 
+// 에러 걸어줘야할때
+function loginErrorOn(val){
+        switch(val){
+            case 1:
+            loginerroremailInp.classList.add('error');
+            loginerroremail.style.display = "block";
+                break;
+            case 2:
+            loginerrorpwInp.classList.add('error');
+            loginerrorpw.style.display = "block";
+                break;
+            default:
+                console.log(val);                    
+        }
+    }
+
+    // 에러 해제 해줘야할떄
+    function loginErrorOff(val){
+        switch(val){
+            case 1:
+            loginerroremailInp.classList.remove('error');
+                loginerroremail.style.display = "none";
+                break;
+            case 2:
+            loginerrorpwInp.classList.remove('error');
+                loginerrorpw.style.display = "none";
+                break;                    
+            default:
+                console.log(val);
+        }
+    }
