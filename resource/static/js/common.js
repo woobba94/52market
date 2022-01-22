@@ -3,13 +3,15 @@
   강혜진 작성파일
 */
 
-const url = "http://146.56.183.55:5050"; // API url
+const url = 'http://146.56.183.55:5050'; // API url
 
 //로그인시 저장된 localStorage
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('accountname');
 const userProfile = localStorage.getItem('profileImg');
-
+// 우진추가
+const link = document.querySelector('.btn-user');
+link.href = `/profile/${userId}`;
 //flagment
 const frag = document.createDocumentFragment();
 //현재 주소
@@ -51,7 +53,7 @@ if (btnBack) {
 }
 function clickBack() {
   history.back();
-};
+}
 
 //하단 메뉴 등장
 function showMenu(e) {
@@ -82,10 +84,12 @@ function showMenu(e) {
   if (thisUser === '' && typeText === '더보기') {
     inButton = `<button class='setting-profile'>설정 및 개인정보</button>
     <button class='show-pop-logout'>로그아웃</button>`;
-  } else if (thisUser === userId && typeText === '게시글') { //나의 게시글일때 
+  } else if (thisUser === userId && typeText === '게시글') {
+    //나의 게시글일때
     inButton = `<button class='show-pop-delete'>삭제</button>
     <button type='button' class='modify'>수정</button>`;
-  } else if (thisUser === userId && typeText === '댓글') { //나의 댓글일때
+  } else if (thisUser === userId && typeText === '댓글') {
+    //나의 댓글일때
     inButton = `<button class='show-pop-delete'>삭제</button>`;
   } else {
     //나의 글이 아닐때
@@ -106,7 +110,6 @@ function showMenu(e) {
   thisParent.appendChild(menuModal);
   const firstFocus = thisParent.querySelector('.menu-modal button');
 
-
   firstFocus.focus();
   firstFocus.addEventListener('click', openModal);
   firstFocus.addEventListener('keydown', keyShiftTabEvent);
@@ -126,8 +129,6 @@ function showMenu(e) {
   });
 
   thisParent.querySelector('.show-pop-logout').addEventListener('click', openModal);
-
-
 }
 
 // 팝업 모달 등장
@@ -140,8 +141,8 @@ function openModal(e) {
   let inButton = '';
   let thisUser = '';
 
-
-  console.log('dddd'); if (type === '댓글') {
+  console.log('dddd');
+  if (type === '댓글') {
     thisParent = e.currentTarget.closest('.user-wrap');
     thisUser = thisParent.querySelector('.user-title').getAttribute('href').split('/profile/')[1];
   } else if (type === '게시글') {
@@ -193,7 +194,7 @@ function openModal(e) {
     popModal.querySelector('.delete').addEventListener('click', deleteEvent);
   } else if (type === '게시글' && userId !== thisUser) {
     popModal.querySelector('.report').addEventListener('click', reportEvent);
-  } else if (type = '더보기' && thisUser === '') {
+  } else if ((type = '더보기' && thisUser === '')) {
     popModal.querySelector('.logout').addEventListener('click', function () {
       localStorage.removeItem('profileImg');
       localStorage.removeItem('accountname');
@@ -223,7 +224,11 @@ function keyTabEvent(e) {
 function keyShiftTabEvent(e) {
   const targetClass = e.currentTarget.className;
   const lastButton = e.currentTarget.closest('div').querySelector('button:last-child');
-  if (targetClass === 'show-pop-report' || targetClass === 'show-pop-delete' || targetClass === 'cancel') {
+  if (
+    targetClass === 'show-pop-report' ||
+    targetClass === 'show-pop-delete' ||
+    targetClass === 'cancel'
+  ) {
     if (e.shiftKey && e.keyCode === 9) {
       e.preventDefault();
       window.setTimeout(function () {
