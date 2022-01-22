@@ -54,7 +54,7 @@
 // }
 // }
 
-
+// 프로필 페이지로 이동
 function moveProfileModPage() {
     const PROFILE_MOD_PAGE = document.querySelector(".profile-edit");
     
@@ -65,7 +65,7 @@ function moveProfileModPage() {
     moveProfileModPage();
 
 
-
+//
     function moveProductPage() {
         const PRODUCT_PAGE = document.querySelector(".move-product");
         
@@ -132,8 +132,10 @@ function moveProfileModPage() {
         });
     }
     productHiddenMenu(); 
+
+
     // 상품 삭제 이벤트
-    deleteProductEvent(menuList, id) {
+    function deleteProductEvent(menuList, id) {
         const productSection = this.mainElement.querySelector(".product-section");
         const deleteBtn = menuList.querySelector(".delete-product");
 
@@ -160,20 +162,26 @@ function moveProfileModPage() {
     }
 
 
-
-    () => {
-        createHiddenMenu();
+    //모달창
+    function createHiddenMenu () {
         const hiddenMenu = document.querySelector(".hidden-menu");
         const menuList = document.querySelector(".hidden-menu-list");
-        setTimeout(() => {
-        hiddenMenu.classList.add("active");
-    menuList.innerHTML = `
-    <li><button type="button" class="delete-product">삭제</button></li>
-    <li><a href="/product/${productId}/edit" class="edit-product">수정</a></li>
-    <li><a href="${item["link"]}" class="product-link">웹사이트에서 상품 보기</a></li>`;
-    this.deleteProductEvent(menuList, productId)
-        }, 150);
-}
+    }
+
+
+//     () => {
+//         createHiddenMenu();
+//         const hiddenMenu = document.querySelector(".hidden-menu");
+//         const menuList = document.querySelector(".hidden-menu-list");
+//         setTimeout(() => {
+//         hiddenMenu.classList.add("active");
+//     menuList.innerHTML = `
+//     <li><button type="button" class="delete-product">삭제</button></li>
+//     <li><a href="/product/${productId}/edit" class="edit-product">수정</a></li>
+//     <li><a href="${item["link"]}" class="product-link">웹사이트에서 상품 보기</a></li>`;
+//     this.deleteProductEvent(menuList, productId)
+//         }, 150);
+// }
 
     // function Drawer(el, open = false) {
     //     this.el = el;

@@ -2,7 +2,7 @@ async function toggleFollow(accountname) {
   let urlVal = '';
   let methodVal = '';
   let textContentVal = '';
-  console.log(this);
+  // console.log(this);
   // isFollow 상태에따른 값 세팅
   if (this.textContent === '팔로우') {
     console.log('팔로우함');
@@ -28,7 +28,7 @@ async function toggleFollow(accountname) {
   const data = await res.json();
   this.textContent = textContentVal;
 
-  console.log('follow 토글');
+  // console.log('follow 토글');
 }
 
 // async function follow(accountname) {

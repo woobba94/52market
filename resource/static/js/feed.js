@@ -24,7 +24,7 @@ if (token) {
     getFeed();
   }
 } else {
-  location.href = './login';
+  location.href = './loading';
 }
 
 function changeList() {
@@ -115,17 +115,17 @@ function feedList(posts, state) {
       let imgArr = post.image.split(',');
       firstImg = `
       <a href="/post/${post.id}">
-        <img src="${imgArr[0]}" alt="${post.content}" class="post-img" />
+        <img src="${imgArr[0]}" alt="첨부파일" class="post-img" />
       </a>
       `;
       for (let i = 0; i < imgArr.length; i++) {
-        postImg += `<img src="${imgArr[i]}" alt="${post.content}" class="post-img" />`
+        postImg += `<img src="${imgArr[i]}" alt="첨부파일" class="post-img" />`
       }
       if (imgArr.length > 1) {
         postImg = `<span class="post-imgs">${postImg}</span>`
         firstImg = `
         <a href="/post/${post.id}" class="imgs">
-          <img src="${imgArr[0]}" alt="${post.content}" class="post-img" />
+          <img src="${imgArr[0]}" alt="첨부파일" class="post-img" />
         </a>
         `;
       }
@@ -266,7 +266,7 @@ async function getPostDetail() {
   if (post.image) {
     let imgArr = post.image.split(',');
     for (let i = 0; i < imgArr.length; i++) {
-      postImg += `<img src="${imgArr[i]}" alt="${post.content}" class="post-img" />`
+      postImg += `<img src="${imgArr[i]}" alt="첨부파일" class="post-img" />`
     }
     if (imgArr.length > 1) {
       postImg = `<span class="post-imgs">${postImg}</span>`

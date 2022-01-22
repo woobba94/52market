@@ -13,7 +13,7 @@ const profileImg = document.querySelector('.profile'); //프로필 이미지
 let state = 'upload'; // 수정, 새게시물 구분
 
 if (!token) {
-  location.href = './login';
+  location.href = './loading';
 }
 
 //게시글 수정/업로드 여부 체크
@@ -29,13 +29,14 @@ if (nowUrl.indexOf('/edit') !== -1) {
 
 //저장버튼 활성화
 function changeBtn() {
-  if (textarea.value !== '' || inputFile.value !== '') {
+  if (textarea.value !== '') {
     if (state === 'upload') {
       saveBtn.disabled = false;
     } else if (state === 'edit') {
       editBtn.disabled = false;
     }
   } else {
+
     if (state === 'upload') {
       saveBtn.disabled = true;
     } else if (state === 'edit') {
@@ -43,6 +44,10 @@ function changeBtn() {
     }
   }
 }
+
+
+
+
 
 //이미지 미리보기
 function preview() {
@@ -56,13 +61,16 @@ function preview() {
       reader.onload = function (e) {
         let imgList = `
         <li id='${index}id${file.lastModified}'>
-            <img src='${e.target.result}' alt='${file.name}' />
+            <img src='${e.target.result}' alt='첨부파일' />
             <button button type = "button" data-index='${index}id${file.lastModified}' class="delete-img" > <span class="a11y-hidden">이미지 삭제</span></button >
         </li >
       `;
         imgUl.insertAdjacentHTML('beforeend', imgList);
       }
       reader.readAsDataURL(file);
+
+      //이미지 삭제하기
+      imgUl.addEventListener('click', removeFile);
     });
   } else {
     alert('이미지는 최대 3개까지만 업로드 가능합니다.');
@@ -154,21 +162,26 @@ async function getEdit() {
   if (post.author.accountname !== userId) {
     location.href = '/404';
   }
-
   textarea.value = post.content;
   if (post.image) {
     const imgArr = post.image.split(',');
-    for (let i = 0; i < imgArr.length; i++) {
+    for (let index = 0; index < imgArr.length; index++) {
       const imgList = `
       <li>
-        <img src='${imgArr[i]}' alt='${imgArr[0].split(url + '/')[1].split('.')[0]}' />
-        <button button type = "button" class="delete-img">
+        <img src='${imgArr[index]}' alt='첨부파일' />
+        <button button type = "button" class="delete-img" id="idx${index}">
           <span class="a11y-hidden">이미지 삭제</span>
         </button>
       </li>
       `
       imgUl.insertAdjacentHTML('beforeend', imgList);
-
+      imgUl.addEventListener('click', function (e) {
+        if (e.target.className === 'delete-img') {
+          e.target.closest('li').remove();
+          const index = e.target.id.split('idx')[1];
+          imgArr.splice(index, 1);
+        }
+      })
     }
   }
 }
@@ -177,12 +190,20 @@ async function getEdit() {
 async function putEdit() {
   const postId = location.href.split('/post/')[1].split('/')[0];
   const inputText = textarea.value;
-  const imgArr = [];
-  // (imgUl.querySelectorAll('img')).forEach((item) => {
-  //   imgArr.push(item.src);
-  // });
+  let imgArr = []; //이미 있는 이미지
+  const files = inputFile.files; //새로 업로드 이미지
 
-  const files = inputFile.files;
+  // 새로 업로드한 이미지가 없다면, 기존 이미지 푸시
+  if (files.length === 0) {
+    // 기존 이미지 푸시.
+    (document.querySelectorAll('.upload-cont .img-wrap img')).forEach((item) => {
+      imgArr.push(item.src);
+    });
+  }
+  //이미지 미리보기
+  inputFile.addEventListener('click', preview);
+
+  //새로 업로드 이미지
   for (let index = 0; index < files.length; index++) {
     const imgurl = await imgUpload(files, index);
     imgArr.push(`${url}/${imgurl}`);
@@ -214,7 +235,5 @@ inputFile.addEventListener('change', changeBtn);
 textarea.addEventListener('input', changeHeight);
 //이미지 파일 체크
 inputFile.addEventListener('change', preview);
-//이미지 삭제하기
-imgUl.addEventListener('click', removeFile);
 //이전버튼
 btnBack.addEventListener('click', clickBack);

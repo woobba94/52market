@@ -3,7 +3,7 @@
 <header>
   <!-- top-upload-nav -->
   <button class="btn-back"></button>
-  <button class="button-ms" disabled>저장</button>
+  <button class="button-ms button-save" disabled>저장</button>
 </header>
 <section class="wrap-product">
   <h2 class="title">product</h2>
@@ -11,25 +11,27 @@
   <div class="image-input-wrap">
     <p class="image-input-label">이미지 등록</p>
     <div class="image-input-field">
-      <button></button>
+      <label for="product-file-upload" class="button-add-img"></label>
+      <input type="file" id="product-file-upload" accept="image/*" multiple />
     </div>
   </div>
 
   <div class="label-input">
-    <label for="text-id">상품명</label>
-    <input type="text" placeholder="2~15자 이내여야 합니다." id="text-id" />
+    <label for="product-name">상품명</label>
+    <input type="text" placeholder="2~15자 이내여야 합니다." id="product-name" />
   </div>
 
   <div class="label-input">
-    <label for="price-id">가격(원)</label>
-    <input type="Number" placeholder="숫자만 입력 가능합니다" id="price-id" />
+    <label for="product-price">가격(원)</label>
+    <input type="Number" placeholder="숫자만 입력 가능합니다" id="product-price" />
   </div>
 
   <div class="label-input">
-    <label for="url-id">판매 링크</label>
-    <input type="url" placeholder="URL을 입력해 주세요" id="url-id" />
+    <label for="product-url">판매 링크</label>
+    <input type="url" placeholder="URL을 입력해 주세요" id="product-url" />
   </div>
 
 
 </section>
+<script src="/js/product.js"></script>
 {% endblock %}
