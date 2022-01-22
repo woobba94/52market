@@ -1,4 +1,4 @@
-let accountName = location.href.split('/profile/')[1];
+let accountName = nowUrl.split('/profile/')[1];
 const hrefLink = location.href;
 const followersNum = document.querySelector('.followers-num');
 const followingsNum = document.querySelector('.followings-num');
@@ -142,12 +142,12 @@ function 내프로필버튼() {
 
 //공통
 //이미지 클릭 시 모달창 함수
-function openModal(e) {
-  const modal = document.querySelector('hidden-menu');
+// function openModal(e) {
+//   const modal = document.querySelector('hidden-menu');
 
-  const clickImgBtn = document.querySelector('.product-img');
-  clickImgBtn.addEventListener('click', () => { });
-}
+//   const clickImgBtn = document.querySelector('.product-img');
+//   clickImgBtn.addEventListener('click', () => { });
+// }
 
 // 팔로워 페이지로 이동
 function movefollowersPage() {
