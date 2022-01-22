@@ -47,5 +47,6 @@
 //     });
 //   });
 // }
-
-setFollowList(localStorage.getItem('accountname'), true);
+// 내 팔로워 리스트라면
+console.log(location.href.split('/profile/')[1]);
+setFollowList(location.href.split('/profile/')[1], true);

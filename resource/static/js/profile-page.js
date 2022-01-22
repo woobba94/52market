@@ -2,13 +2,20 @@ let accountName = nowUrl.split('/profile/')[1];
 const hrefLink = location.href;
 const followersNum = document.querySelector('.followers-num');
 const followingsNum = document.querySelector('.followings-num');
+const followerLink = document.querySelector('.follower-num');
+const followingLink = document.querySelector('.following-num');
 
 //user 정보 가져와서 뿌려주기
 async function getUserData() {
   // '/profile'`로 접속시 - 내 아이디로
-  if (nowUrl.split('/profile')[1] === '') {
-    accountName = userId;
-  }
+  // if (nowUrl.split('/profile')[1] === '') {
+  //   accountName = userId;
+  //   followerLink.href = `/follower`;
+  //   followingLink.href = `/following`;
+  // } else {
+  //   followerLink.href = `/follower/${accountName}`;
+  //   followingLink.href = `/following/${accountName}`;
+  // }
   const res = await fetch(`${url}/profile/${accountName}`, {
     method: 'GET',
     headers: {
@@ -34,7 +41,8 @@ async function getUserData() {
 
   followersNum.innerText = result.profile.followerCount;
   followingsNum.innerText = result.profile.followingCount;
-
+  followerLink.href = `/follower/${accountName}`;
+  followingLink.href = `/following/${accountName}`;
 }
 
 getUserData();
@@ -97,8 +105,8 @@ async function setFollowBtn() {
 
     // isfollow 체크 -> 버튼 텍스트 최초 세팅 (팔로우/언팔로우)
     const isfollow = await getIsFollow(accountName);
-    if (isfollow) tempBtn.innerHTML = '언팔로우';
-    else tempBtn.innerHTML = '팔로우';
+    if (isfollow) followBtn.innerHTML = '언팔로우';
+    else followBtn.innerHTML = '팔로우';
 
     // 리스너 연결
     followBtn.func = toggleFollow;
@@ -132,6 +140,7 @@ function 내프로필버튼() {
   moveProductPage();
 }
 
+<<<<<<< HEAD
 // 팔로워 페이지로 이동
 function movefollowersPage() {
   followersNum.addEventListener('click', function () {
@@ -139,14 +148,35 @@ function movefollowersPage() {
   });
 }
 movefollowersPage();
+=======
+// else
+// 팔로우, 언팔로우 버튼
 
-// 팔로잉 페이지로 이동
-function movefollowingPage() {
-  followingsNum.addEventListener('click', function () {
-    location.href = '/following';
-  });
-}
-movefollowingPage();
+//공통
+//이미지 클릭 시 모달창 함수
+// function openModal(e) {
+//   const modal = document.querySelector('hidden-menu');
+
+//   const clickImgBtn = document.querySelector('.product-img');
+//   clickImgBtn.addEventListener('click', () => { });
+// }
+
+// // 팔로워 페이지로 이동
+// function movefollowersPage() {
+//   followersNum.addEventListener('click', function () {
+//     location.href = '/follower';
+//   });
+// }
+// movefollowersPage();
+>>>>>>> a41dfe2f40662f64f3a9841acef0e290527bd62f
+
+// // 팔로잉 페이지로 이동
+// function movefollowingPage() {
+//   followingsNum.addEventListener('click', function () {
+//     location.href = '/following';
+//   });
+// }
+// movefollowingPage();
 
 async function getIsFollow(accountname) {
   const url = `http://146.56.183.55:5050/profile/${accountname}`;
