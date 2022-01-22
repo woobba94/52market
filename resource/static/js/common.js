@@ -9,9 +9,10 @@ const url = 'http://146.56.183.55:5050'; // API url
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('accountname');
 const userProfile = localStorage.getItem('profileImg');
-// 우진추가
+
+
 const link = document.querySelector('.btn-user');
-link.href = `/profile/${userId}`;
+
 //flagment
 const frag = document.createDocumentFragment();
 //현재 주소
@@ -32,11 +33,15 @@ if (headerMoreBtn) {
 }
 
 //메인메뉴
+if (link) {
+  link.href = `/profile/${userId}`;
+}
+//메인메뉴
 if (mainMenu) {
   if (nowUrl.indexOf('/chat') !== -1) {
     // '/chat' 페이지
     mainMenu.querySelector('.btn-chat').closest('li').classList.add('active');
-  } else if (nowUrl.indexOf('/profile/') === -1 && nowUrl.indexOf('/profile') !== -1) {
+  } else if (nowUrl.indexOf('/profile/') !== -1 && nowUrl.split('/profile/')[1] === userId) {
     // '/profile' 페이지
     mainMenu.querySelector('.btn-user').closest('li').classList.add('active');
   } else {
