@@ -205,7 +205,7 @@ async function join() {
         const message = json.message
         // 서버에 image, accountname 올리기
         if (res.status == 200) {
-            localStorage.setItem("accountname", json.user.username);
+            localStorage.setItem("accountname", json.user.accountname);
             localStorage.setItem("profileImg", json.user.image);
             login();
 
