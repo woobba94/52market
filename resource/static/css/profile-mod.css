@@ -54,7 +54,7 @@
 .input-wrap {
     margin-top: calc(48px + 2.6rem);
 }
-.label-input .input-warning-msg {
+.label-input .error-message1, .label-input .error-message2 {
     display: block;
     margin-top: 6px;
     font-weight: 500;
@@ -62,3 +62,4 @@
     line-height: 14px;
     color: #eb5757;
 }
+
