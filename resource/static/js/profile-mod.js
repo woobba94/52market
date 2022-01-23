@@ -6,9 +6,13 @@ const $imagePre = document.querySelector('.imgPre');
 const hrefLink = location.href;
 const $saveBtn = document.querySelector('.submit-btn');
 
+// const newUserNames = document.querySelector('#user-id');
+// console.log(newUserNames);
+
+const warningMsg1 = document.querySelector('.error-message1');
+const warningMsg2 = document.querySelector('.error-message2'); //사용중인 아이디
 // user 정보 받아서 뿌려주기
 async function getUserData() {
-    // const accountName = localStorage.getItem('accountname');
     const res = await fetch(`${url}/profile/${myAccountName}`, {
         method: "GET",
         headers: {
@@ -22,6 +26,8 @@ async function getUserData() {
     const myName = document.querySelector("#user-name");
     myName.value = result.profile.username;
     const myId = document.querySelector("#user-id");
+    // console.log(result.profile, "프로필");
+    // console.log(result.prorile.accountname, "어카운");
     myId.value = result.profile.accountname;
     const myIntro = document.querySelector("#intro-input");
     myIntro.value = result.profile.intro;
@@ -52,55 +58,59 @@ async function profileImage(e) {
 
 document.querySelector('#chooseImg').addEventListener("change", profileImage);
 
-//프로필 이미지 //userID 변수로 지정!!
-// const uploadProfile = document.querySelector('.profile-image-insert-wrap .imgPre');
-// uploadProfile.src = userProfile;
-// uploadProfile.setAttribute('alt', `${userId}님의 프로필`);
 
-// Id 중복 검사
-// async function checkIdValid(id) {
-//     const res = await fetch(`${url}/user/accountnamevalid, {
-//         method:"POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body:JSON.stringify({
-//             "user":{
-//                 "accountname": String
-//             }
-//         })
-//     })
-//     const json = await res.json();
-//     return json.message == "사용 가능한 아이디 입니다." ? true : false
-// }
+// 아이디 중복 검사 
+async function checkIdValid(id) {
+    const res = await fetch(`${url}/user/accountnamevalid`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            "user": {
+                "accountname": username
+            }
+        })
+    })
+    const checkId = await res.json();
+    return checkId.message == "사용 가능한 계정ID 입니다." ? true : false
+}
 
+// id 유효성 정규식 구문 (영문 숫자 밑줄 하이픈)
+function id_check(idVal) {
+    const userIdReg = /^[a-zA-Z0-9_.]/;
+    return userIdReg.test(idVal) === true ? true : false;
+}
 
+function idError() {
+    const newUserNames = document.querySelector('#user-id');
+    const test = newUserNames.value;
+    if (id_check(test)) {
+        return true;
+    }
+    return false;
+}
 
-// document.querySelector(".submit-btn").addEventListener('click', async () => {
-//     const id = document.querySelector("#user-id").value
-//     const idValid = await checkIdValid(id)
-//     const failMsg = document.querySelector('.input-warning-msg');
+// warning message remove
+const focusName = document.querySelector('#user-name');
+console.log(focusName);
+focusName.addEventListener("click", function () {
+    warningMsg1.style.display = "none";
+});
 
-//     if (idValid) {
-//         alert ("사용 가능한 ID 입니다.")
-//     } else {
-//         failMsg.style.display = "block";
-//     }
-// })
+const focusId = document.querySelector('#user-id');
+focusId.addEventListener("click", function () {
+    warningMsg2.style.display = "none";
+});
 
-//  {
-//   method: 'PUT',
-//   headers: {
-//     'Content-Type': 'application/json',
-//     Authorization: 'Bearer ' + localStorage.getItem('access-token'),
-//   },
-//프로필 수정 input + id 중복 검사 해야함
+//프로필 수정 값 체크 후 서버 전송
 async function editProfile() {
     const userName = document.querySelector('#user-name').value;
     const userId = document.querySelector('#user-id').value;
     const intro = document.querySelector('#intro-input').value;
     const imageUrl = document.querySelector('.imgPre').src
     console.log(imageUrl);
+
     const res = await fetch(`${url}/user`, {
         method: "PUT",
         headers: {
@@ -116,30 +126,22 @@ async function editProfile() {
             }
         })
     })
-
-
     console.log(res);
     const json = await res.json();
-    console.log(json, "수정된 값 찍어줘");
-    // const failMsg = "이미 쓰고있음"
-    // const message = json.message;
-    // if (json.message !== failMsg)
 
-    if (res.status == 200) {
+    if (json.status === 422) {
+        warningMsg2.style.display = "block";
+    } else if (idError(false)) {
+        warningMsg1.style.display = "block";
+    }
+    // else if (json.status === 422 && idError(false)){
+    //     warningMsg2.style.display="block";
+    //     warningMsg1.style.display = "block";
+    // }
+    else {
         location.href = `/profile/${myAccountName}`
-    } else {
-        console.log(json);
     }
 }
 
-//저장버튼 활성화
-function profileChangeBtn() {
-    if (document.querySelector(".email-inp").value !== '' &&
-        document.querySelector(".pw-inp").value !== '') {
-        $SaveBtn.disabled = false;
-    } else {
-        $SaveBtn.disabled = true;
-    }
-}
-//버튼 활성화 
+// 저장 버튼 
 $saveBtn.addEventListener('click', editProfile);
