@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 // 1.홈
 router.get('/', (req, res, next) => {
   res.render('index.html');
@@ -36,11 +35,10 @@ router.get('/upload', (req, res, next) => {
   res.render('upload.html');
 });
 
-
-// 프로필
-router.get('/profile', (req, res, next) => {
-  res.render('profile.html');
-});
+// // 프로필
+// router.get('/profile', (req, res, next) => {
+//   res.render('profile.html');
+// });
 
 //개별프로필
 router.get('/profile/:accountname', (req, res, next) => {
@@ -50,7 +48,6 @@ router.get('/profile/:accountname', (req, res, next) => {
 router.get('/profile-mod', (req, res, next) => {
   res.render('profile-mod.html');
 });
-
 
 // splash
 router.get('/loading', (req, res, next) => {
@@ -72,20 +69,33 @@ router.get('/join-profile', (req, res, next) => {
   res.render('join-profile.html');
 });
 
-
 // 상품 등록/수정 페이지
 router.get('/product', (req, res, next) => {
   res.render('product.html');
 });
+// // 내팔로잉 리스트
+// router.get('/following', (req, res, next) => {
+//   res.render('following.html');
+// });
+
+// // 내팔로워 리스트
+// router.get('/follower', (req, res, next) => {
+//   res.render('follower.html');
+// });
 
 // 팔로잉 리스트
-router.get('/following', (req, res, next) => {
+router.get('/following/:accountname', (req, res, next) => {
   res.render('following.html');
 });
 
 // 팔로워 리스트
-router.get('/follower', (req, res, next) => {
+router.get('/follower/:accountname', (req, res, next) => {
+  console.log('넘어가나?');
   res.render('follower.html');
 });
 
+//게시글 수정
+router.get('/module', (req, res, next) => {
+  res.render('module.html');
+});
 module.exports = router;

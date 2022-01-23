@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% include './template/menu.html' %}
 
 <header class="follow-list-header">
   <button class="btn-back"></button>
@@ -8,8 +9,7 @@
 <section class="mg-header mg-bottom follower-list">
   
 </section>
-
-{% include './template/menu-bottom.html' %}
+<script src="/js/common.js"></script>
 <script src="/js/follow-set.js"></script>
 <script src="/js/followerList.js"></script>
 <script src="/js/follow-toggle.js"></script>

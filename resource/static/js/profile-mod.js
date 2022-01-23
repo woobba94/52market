@@ -1,6 +1,5 @@
 //localStorage
 const myAccountName = localStorage.getItem('accountname');
-const url = "http://146.56.183.55:5050";
 const myToken = localStorage.getItem('token');
 const $imageUpload = document.querySelector('chooseImg');
 const $imagePre = document.querySelector('.imgPre');

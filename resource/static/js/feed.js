@@ -74,7 +74,7 @@ async function getFeed() {
 }
 
 //나의 피드 - /profile
-async function myFeed() {
+async function myFeed(state) {
   const res = await fetch(`${url}/post/${userId}/userpost`, {
     method: "GET",
     headers: {
@@ -84,7 +84,10 @@ async function myFeed() {
   });
   const json = await res.json();
   const posts = json.post;
+
   feedList(posts, state);
+
+
 }
 
 async function getProfile(state) {
@@ -102,6 +105,7 @@ async function getProfile(state) {
 }
 
 function feedList(posts, state) {
+
   const h2Title = document.createElement('h2');
   h2Title.textContent = '피드 리스트';
   h2Title.classList.add('a11y-hidden');
