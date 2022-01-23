@@ -208,21 +208,11 @@ async function join() {
             localStorage.setItem("accountname", json.user.accountname);
             localStorage.setItem("profileImg", json.user.image);
             login();
-
-
-            // localStorage.setItem("token", json2.user.token);
-            // console.log(token);
-            // console.log(localStorage.getItem(`${token}`));
-            // localStorage.getItem(`${token}`);
-            // localStorage.setItem(`${token}`, token);
-            // // console.log(localStorage.getItem("token"));
-            // console.log(json.user.token);
             console.log(json);
 
         }
         else {
             console.log(json)
-            // alert(email, password, userName, userId, intro, imageUrl);
         }
     } catch (err) {
         alert(err)

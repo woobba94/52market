@@ -18,11 +18,6 @@ function loginchangeBtn() {
     }
 }
 
-// 아이디 비밀번호 검증
-// function changeInp(){
-//     // 
-// }
-
 // 로그인 
 function getInput() {
     console.log(document.querySelector("#email-id").value);
@@ -30,12 +25,9 @@ function getInput() {
 }
 
 // 로그인
-// 비동기로 쓸것이기 때문에 async
 async function login() {
-    // getInput();
     const email = document.querySelector("#email-id").value
     const pw = document.querySelector("#password-id").value
-    // const url = 'http://146.56.183.55:5050'
     const loginData = {
         "user": {
             "email": email,
@@ -52,10 +44,14 @@ async function login() {
     const json = await res.json()
     console.log(url);
     localStorage.setItem("token", json.user.token)
-    console.log(json.user.token);
-    console.log(json.user.imagePre);
+    localStorage.setItem("accountname", json.user.accountname);
+    localStorage.setItem("profileImg", json.user.image);
+    // console.log(localStorage.setItem("profileImg"));
+    // console.log(json.user);
     location.href = "./";
 }
+
+// 아이디 토큰 값을 가져와야하는데
 
 // 에러메시지
 const loginerroremail = document.querySelector("#login-id-error-message");
