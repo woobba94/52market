@@ -66,15 +66,15 @@ signUpidInput.addEventListener('input', changeBtn);
 // pw 입력시 버튼 활성화 (changeBtn 내에서 교차검증)
 signUppwInput.addEventListener('input', changeBtn);
 //로그인버튼 활성화
+
 function changeBtn() {
     if (signUpidInput.value !== '' && signUppwInput.value !== '') {
         $signUpBtn.disabled = false;
+        
         signUpErrorOff(1);
         signUpErrorOff(2);
-
     } else {
         $signUpBtn.disabled = true;
-
     }
 }
 
@@ -90,6 +90,8 @@ function pw_check(pw) {
 
     return checkpw.test(pw) === true ? true : false;
 }
+
+
 
 // 에러 걸어줘야할때
 function signUpErrorOn(val) {
@@ -129,17 +131,47 @@ const profileidInput = document.querySelector("#profile-id");
 const profilenameInput = document.querySelector("#signup-nickname");
 const $signUpimagePre = document.querySelector("#signUpimagePre");
 
+const profilenameInputSet = document.querySelector("#signup-nickname");
+const profileidInputSet = document.querySelector("#profile-id");
+
+
 profileidInput.addEventListener('input', profilechangeBtn);
 profilenameInput.addEventListener('input', profilechangeBtn);
 //프로필 버튼 활성화
+
+function profileerrorName(){
+    const profilenameInputSetVal = profilenameInputSet.value;
+    if(profilenameInputSetVal.length >= 2 &&
+         profilenameInputSetVal.length <= 10){
+        return true;
+    }
+    return false;
+}
+
+function accoutname_check(name){
+    const checkname = /^[a-zA-Z0-9_.]/;
+
+    return checkname.test(name) === true ? true : false;
+}
+
+function profileerrorid(){
+    const profileidInputSetVal = profileidInputSet.value;
+    if(accoutname_check(profileidInputSetVal)){
+        return true;
+    }
+    return false;
+}
+
+
 async function profilechangeBtn() {
     if (profileidInput.value !== '' && profilenameInput.value !== '') {
         $profilenextBtn.disabled = false;
+        
     } else {
         $profilenextBtn.disabled = true;
+        
     }
     await profileBtnText();
-
 }
 
 // 비동기 프로필 버튼 텍스트 변경
@@ -154,7 +186,6 @@ async function profileBtnText() {
 async function imageUpload(files) {
     // 서버로 날아가긴위한 임의의 폼 형식
     const formData = new FormData();
-    // console.log(url);
     formData.append("image", files[0]);//formData.append("키이름","값")
     const res = await fetch(url + '/image/uploadfile', {
         method: "POST",
@@ -173,7 +204,6 @@ async function profileImage(e) {
 
 }
 document.querySelector(".imgbtn-img").addEventListener("change", profileImage)
-// document.querySelector(".imgbtn-img").addEventListener("click", profileImage)
 
 async function join() {
     const email = document.querySelector("#email-id").value;
@@ -196,7 +226,6 @@ async function join() {
                     "accountname": userId,
                     "intro": intro,
                     "image": imageUrl,
-                    // "token":token,
                 }
             })
         })
@@ -211,6 +240,10 @@ async function join() {
             console.log(json);
 
         }
+        else if(message == '이미 사용중인 계정 ID입니다.'){
+            idlabeleerror.classList.add('error');
+            iderrorMsg2.style.display = "block";
+        }
         else {
             console.log(json)
         }
@@ -218,7 +251,50 @@ async function join() {
         alert(err)
     }
 }
-$profilenextBtn.addEventListener("click", join)
+
+const nicknameerrorMsg = document.querySelector("#nickname-error");
+const nicklabelerror = document.querySelector('#nicknamelabel');
+const iderrorMsg1 = document.querySelector("#id-error-1");
+const idlabeleerror = document.querySelector("#iderror-label");
+const iderrorMsg2 = document.querySelector("#id-error-2");
+
+
+
+nicklabelerror.addEventListener("click", function profileErrorMsgOff(){
+    nicklabelerror.classList.remove('error');
+    nicknameerrorMsg.style.display = "none";
+});
+
+idlabeleerror.addEventListener("click", function profileErroridOff(){
+    idlabeleerror.classList.remove('error');
+
+    if(iderrorMsg1.style.display == "block"){
+
+        iderrorMsg1.style.display = "none";
+    }
+    else if(iderrorMsg2.style.display == "block"){
+
+        iderrorMsg2.style.display = "none"
+    }
+});
+
+$profilenextBtn.addEventListener("click", function(){
+    const check1 = profileerrorName();
+    const check2 = profileerrorid();
+    if(check1 && check2){
+        join();
+    }
+    else if(!check1){
+            nicknameerrorMsg.style.display = "block";
+            nicklabelerror.classList.add('error');
+    }
+    else if(!check2){
+        console.log(check2);
+            iderrorMsg1.style.display = "block";
+            idlabeleerror.classList.add('error');
+    }
+    
+})
 
 const testbtn2 = document.querySelector("#signup-check-btn");
 
@@ -241,7 +317,7 @@ async function login() {
         body: JSON.stringify(loginData)
     })
     const json = await res.json()
-    console.log(json);
+    // console.log(json);
     localStorage.setItem("token", json.user.token)
 
     location.href = "/"
