@@ -146,7 +146,9 @@
   transition: all 0.3s;
 }
 
-.like-comment .btn-like:not(span):hover, .like-comment .btn-like:not(span):focus, .like-comment .btn-like:not(span):active,
+.like-comment .btn-like:not(span):hover,
+.like-comment .btn-like:not(span):focus,
+.like-comment .btn-like:not(span):active,
 .like-comment .btn-comment:not(span):hover,
 .like-comment .btn-comment:not(span):focus,
 .like-comment .btn-comment:not(span):active {
@@ -261,6 +263,7 @@
   width: 3.6rem;
   height: 3.6rem;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .cont-comment .comment-wrap {
@@ -355,7 +358,8 @@
   color: #c4c4c4;
 }
 
-.cont-comment .comment-in button:not(:disabled):hover, .cont-comment .comment-in button:focus {
+.cont-comment .comment-in button:not(:disabled):hover,
+.cont-comment .comment-in button:focus {
   background: #f5f5f5;
 }
 
@@ -373,4 +377,10 @@
 
 .flex-reserve {
   flex-direction: row-reverse;
+}
+
+.nodata {
+  text-align: center;
+  padding: 8rem 0 4rem 0;
+  color: #767676;
 }
