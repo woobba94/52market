@@ -13,6 +13,7 @@
   font-weight: 400;
   color: #767676;
 }
+
 .wrap-chat-list .title {
   display: none;
 }
@@ -25,6 +26,7 @@
   width: calc(100% - (32px));
   margin: 10px 16px;
 }
+
 .list-child .badge {
   position: absolute;
   width: 12px;
@@ -34,12 +36,14 @@
   left: 0;
   border-radius: 100%;
 }
+
 .list-child .img-profile {
   width: 42px;
   height: 42px;
   background: url('../img/chat-list/default-profile-img.png') no-repeat;
   background-size: contain;
 }
+
 .list-child .content {
   width: 65%;
   height: 100%;
@@ -48,6 +52,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .list-child .content .user-name {
   margin-top: 2px;
   font-size: 14px;
@@ -57,6 +62,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .list-child .content .text {
   margin-bottom: 3px;
   font-size: 12px;
@@ -66,10 +72,23 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .list-child .date {
   position: absolute;
   font-size: 10px;
   color: #dbdbdb;
   right: 0;
   bottom: 3px;
+}
+
+
+.chat-list {
+  margin: 2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.chat-list .user-wrap {
+  width: 100%;
 }

@@ -73,6 +73,10 @@ router.get('/join-profile', (req, res, next) => {
 router.get('/product', (req, res, next) => {
   res.render('product.html');
 });
+
+router.get('/product/:product_id', (req, res, next) => {
+  res.render('product.html');
+});
 // // 내팔로잉 리스트
 // router.get('/following', (req, res, next) => {
 //   res.render('following.html');

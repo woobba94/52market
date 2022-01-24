@@ -6,9 +6,19 @@ const $imagePre = document.querySelector('.imgPre');
 const hrefLink = location.href;
 const $saveBtn = document.querySelector('.submit-btn');
 
+// const newUserNames = document.querySelector('#user-id');
+// console.log(newUserNames);
+
+const warningMsg1 = document.querySelector('.error-message1');
+const warningMsg2 = document.querySelector('.error-message2');
+const warningMsg3 = document.querySelector('.error-message3');
+//사용중인 아이디
+
 // user 정보 받아서 뿌려주기
+const myName = document.querySelector("#user-name");
+const myId = document.querySelector("#now-user-id");
+
 async function getUserData() {
-    // const accountName = localStorage.getItem('accountname');
     const res = await fetch(`${url}/profile/${myAccountName}`, {
         method: "GET",
         headers: {
@@ -19,10 +29,10 @@ async function getUserData() {
     const result = await res.json();
     console.log(result);
 
-    const myName = document.querySelector("#user-name");
     myName.value = result.profile.username;
-    const myId = document.querySelector("#user-id");
+
     myId.value = result.profile.accountname;
+
     const myIntro = document.querySelector("#intro-input");
     myIntro.value = result.profile.intro;
     const myImage = document.querySelector(".imgPre");
@@ -52,55 +62,81 @@ async function profileImage(e) {
 
 document.querySelector('#chooseImg').addEventListener("change", profileImage);
 
-//프로필 이미지 //userID 변수로 지정!!
-// const uploadProfile = document.querySelector('.profile-image-insert-wrap .imgPre');
-// uploadProfile.src = userProfile;
-// uploadProfile.setAttribute('alt', `${userId}님의 프로필`);
 
-// Id 중복 검사
-// async function checkIdValid(id) {
-//     const res = await fetch(`${url}/user/accountnamevalid, {
-//         method:"POST",
+// let userIds = myId.value;
+// console.log(userIds);
+// 아이디 중복 검사 
+// async function checkIdValid(newMyId) {
+
+//     const res = await fetch(`${url}/user/accountnamevalid`, {
+//         method: "POST",
 //         headers: {
 //             "Content-Type": "application/json",
 //         },
-//         body:JSON.stringify({
-//             "user":{
-//                 "accountname": String
+//         body: JSON.stringify({
+//             "user": {
+//                 "accountname": newMyId,
 //             }
 //         })
 //     })
-//     const json = await res.json();
-//     return json.message == "사용 가능한 아이디 입니다." ? true : false
+//     const checkId = await res.json();
+
+//     return checkId.message == "사용 가능한 계정ID 입니다." ? true : false
 // }
 
 
+// user-name 글자 수 검사
+function userNameVal(userName) {
+    if (userName.length < 2) {
+        warningMsg1.style.display = 'block';
+        return true;
+    }
+    return false;
+}
 
-// document.querySelector(".submit-btn").addEventListener('click', async () => {
-//     const id = document.querySelector("#user-id").value
-//     const idValid = await checkIdValid(id)
-//     const failMsg = document.querySelector('.input-warning-msg');
+// id 유효성 정규식 구문 (영문 숫자 밑줄 하이픈)
+// function id_check(idVal) {
+//     const userIdReg = /^[a-zA-Z0-9_.]/;
+//     return userIdReg.test(idVal) === true ? true : false;
+// }
 
-//     if (idValid) {
-//         alert ("사용 가능한 ID 입니다.")
+// function idError() {
+//     const test = myId.value;
+//     const userIdReg = /^[a-zA-Z0-9_.]/;
+//     const ans = userIdReg.test(test);
+//     console.log(ans);
+//     return ans;
+// }
+// 버튼 활성화
+// function btnChange() {
+//     if(newUserNames.value !== '' && focusrId.value !== '') {
+//         $saveBtn.disabled = false; 
 //     } else {
-//         failMsg.style.display = "block";
+//         $saveBtn.disabled = true;
 //     }
-// })
+// }
 
-//  {
-//   method: 'PUT',
-//   headers: {
-//     'Content-Type': 'application/json',
-//     Authorization: 'Bearer ' + localStorage.getItem('access-token'),
-//   },
-//프로필 수정 input + id 중복 검사 해야함
+// warning message remove
+const focusName = document.querySelector('#user-name');
+
+focusName.addEventListener("click", function () {
+    warningMsg1.style.display = "none";
+});
+
+// const focusId = document.querySelector('#now-user-id');
+myId.addEventListener("click", function () {
+    warningMsg2.style.display = "none";
+});
+
+//프로필 수정 값 체크 후 서버 전송
 async function editProfile() {
-    const userName = document.querySelector('#user-name').value;
-    const userId = document.querySelector('#user-id').value;
+    const newUserName = document.querySelector('#user-name').value;
     const intro = document.querySelector('#intro-input').value;
     const imageUrl = document.querySelector('.imgPre').src
-    console.log(imageUrl);
+    // const newUserId = myId.value;
+    if (userNameVal(newUserName)) {
+        return ;
+    }
     const res = await fetch(`${url}/user`, {
         method: "PUT",
         headers: {
@@ -109,37 +145,99 @@ async function editProfile() {
         },
         body: JSON.stringify({
             "user": {
-                "username": userName,
-                "accountname": userId,
+                "username": newUserName,
+                "accountname": myAccountName,
                 "intro": intro,
                 "image": imageUrl,
             }
         })
     })
-
-
-    console.log(res);
     const json = await res.json();
-    console.log(json, "수정된 값 찍어줘");
-    // const failMsg = "이미 쓰고있음"
-    // const message = json.message;
-    // if (json.message !== failMsg)
-
-    if (res.status == 200) {
+    if (json.status === 422) {
+        warningMsg2.style.display = "block";
+    // } else if (idError()) {
+    //     warningMsg3.style.display = "block";
+    } else {
         location.href = `/profile/${myAccountName}`
-    } else {
-        console.log(json);
     }
-}
+    // if (checkIdValid(newUserId)) {
+    // }
 
-//저장버튼 활성화
-function profileChangeBtn() {
-    if (document.querySelector(".email-inp").value !== '' &&
-        document.querySelector(".pw-inp").value !== '') {
-        $SaveBtn.disabled = false;
-    } else {
-        $SaveBtn.disabled = true;
-    }
 }
-//버튼 활성화 
+// // 저장 버튼 
 $saveBtn.addEventListener('click', editProfile);
+
+
+
+
+
+// else if (json.status === 422 && idError(false)){
+//     warningMsg2.style.display="block";
+//     warningMsg1.style.display = "block";
+// }
+// if (json.status === 422) {
+//     if(msg == '이미 사용중인 계정 ID입니다.') {
+//     warningMsg2.style.display = "block";
+//     } 
+// } else if (id_check(false)) {
+//     warningMsg1.style.display = "block";
+// } else (json.status === 200) {
+//     location.href = `/profile/${myAccountName}`;
+// }
+// }
+
+// if (id_check(true)) {
+//     if (json.status === 200) {
+//         location.href = `/profile/${myAccountName}`;
+//     } else {
+//         warningMsg2.style.display = "block";
+//     }
+// } else (id_check) {
+//     warningMsg1.style.display = "block";
+// }
+
+// if (json.status === 422) {
+
+// if (id_check(false)) {
+//     warningMsg1.style.display = "block";
+// } else ()
+// $saveBtn.classList.remove('disabled');
+//     location.href = `/profile/${myAccountName}`;
+// } else if(id_check(false)) {
+//     warningMsg1.style.display = "block";
+// } else if (json.status === 422) {
+//     warningMsg2.style.display = "block";
+// }
+
+// if (json.status === 422) {
+//     warningMsg2.style.display = "block";
+// } else if (id_check(false)) {
+//     warningMsg1.style.display = "block";
+// }
+// else if (json.status === 422 && idError(false)){
+//     warningMsg2.style.display="block";
+//     warningMsg1.style.display = "block";
+// }
+//     else (id_check(true) && json.status === 200) {
+//         location.href = `/profile/${myAccountName}`;
+//     }
+// }
+
+
+//         if (json.status === 422) {
+//             warningMsg2.style.display = "block";
+//         } else if (idError(false)) {
+//             warningMsg3.style.display = "block";
+//         }
+//         else {
+//             location.href = `/profile/${myAccountName}`
+// }
+
+// if (json.status === 200) {
+//     location.href = `/profile/${myAccountName}`
+// } else if (idError(false)) {
+//     warningMsg3.style.display = "block";
+// }
+// else {
+//     location.href = `/profile/${myAccountName}`
+// }

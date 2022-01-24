@@ -44,6 +44,7 @@
 .btns-wrap {
     display: flex;
     margin-top: 24px;
+    gap: 0.8rem;
 }
 
 .product-wrap {

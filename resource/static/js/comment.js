@@ -44,6 +44,7 @@ async function getPostComments() {
   })
   const json = await res.json();
   const comments = json.comments;
+
   comments.forEach((comment) => {
     const date = new Date(comment.createdAt);
     const now = new Date();
@@ -75,13 +76,15 @@ async function getPostComments() {
   commentUl.append(frag);
 
   const btnMore = commentUl.querySelectorAll('.imgbtn-more');
-  btnMore.forEach((item) => {
-    item.addEventListener('click', showMenu);
+  const commentLen = btnMore.length - 1;
+  btnMore.forEach((item, index) => {
+    item.addEventListener('click', function (e) {
+      showMenu(e, 'comment', comments[commentLen - index]);
+    });
   })
 }
 //3. 댓글 삭제
-async function deleteComment(e) {
-  const commentId = e.currentTarget.closest('.user-wrap').id;
+async function deleteComment(commentId) {
   const popModal = document.querySelector('.pop-modal');
   popModal.innerHTML = `
       <p>삭제되었습니다.</p>
@@ -98,13 +101,11 @@ async function deleteComment(e) {
   }, 800);
 }
 //4. 댓글 신고
-async function reportComment(e) {
-  const commentId = e.currentTarget.closest('.user-wrap').id;
+async function reportComment(commentId) {
   const popModal = document.querySelector('.pop-modal');
   popModal.innerHTML = `
       <p>처리되었습니다.</p>
   `;
-
   const res = await fetch(`${url}/post/${postId}/comments/${commentId}/report`, {
     method: "POST",
     headers: {

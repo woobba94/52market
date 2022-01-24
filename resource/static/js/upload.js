@@ -224,7 +224,7 @@ async function putEdit() {
   })
   const data = await res.json();
   const post = data.post;
-  location.href = `/profile`;
+  location.href = `/profile/${post.author.accountname}`;
 }
 
 //버튼 활성화

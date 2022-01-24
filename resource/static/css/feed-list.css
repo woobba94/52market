@@ -374,3 +374,9 @@
 .flex-reserve {
   flex-direction: row-reverse;
 }
+
+.nodata {
+  text-align: center;
+  padding: 8rem 0 4rem 0;
+  color: #767676;
+}
