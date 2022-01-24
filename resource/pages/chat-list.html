@@ -7,27 +7,25 @@
   <button class="btn-more"><span class="a11y-hidden">채팅 메뉴</span></button>
 </header>
 
-<section class="wrap-chat-list">
-  <h2 class="title">chat-list</h2>
-  <div class="list-child">
+<section class="mg-header mg-bottom">
+  <h2 class="a11y-hidden">chat-list</h2>
+  <ul class="chat-list">
     <!-- 읽지않은 메시지가 있으면 배지 .badge 추가 -->
-    <div class="badge"></div>
-    <div class="img-profile"></div>
-    <div class="content">
-      <p class="user-name">애월읍 위니브 감귤농장</p>
-      <p class="text">이번에 정정 언제하맨마씸?</p>
-    </div>
-    <p class="date">2020.10.25</p>
-  </div>
-  <div class="list-child">
-    <div class="img-profile"></div>
-    <div class="content">
-      <p class="user-name">제주감귤마을</p>
-      <p class="text">깊은 어둠의 존재감, 롤스로이스 뉴 블랙 배지...</p>
-    </div>
-    <p class="date">2020.10.25</p>
-  </div>
+    <li>
+      <a href="/chat-room" class="user-wrap new">
+        <img src="/img/52_icon.png" alt="프로필" class="profile">
+        <span class="user-txt">
+          <span class="user-title">오이마켓</span>
+          <span class="user-description">오늘부터 이웃, 오이마켓에 오신걸 환영합니다!</span>
+        </span>
+        <span class="date-time">2020.10.25</span>
+      </a>
+    </li>
+  </ul>
+
 </section>
 
 <script src="/js/common.js"></script>
+<script src="/js/chat.js"></script>
+
 {% endblock %}

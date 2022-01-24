@@ -433,7 +433,7 @@ a[class^="imgbtn"] {
 
 .chat-wrap .chat-content {
   background: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   padding: 1.4rem 1.2rem 1.2rem;
   line-height: 1.4;
   border-radius: 0 1rem 1rem 1rem;
@@ -449,6 +449,7 @@ a[class^="imgbtn"] {
 .chat-wrap .chat-img img {
   max-width: 100%;
   max-height: 100%;
+  border-radius: var(--border-img);
 }
 
 .chat-wrap.my-chat {
