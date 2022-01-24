@@ -325,6 +325,20 @@ a[class^="imgbtn"] {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.label-input input:disabled {
+  margin-top: 0.8rem;
+  background: #f9f9f9;
+  text-indent: 0.8rem;
+  color: #aaa;
+  border-bottom: 1px solid #eee;
+  cursor: not-allowed;
+}
+
+.label-input input:disabled:active, .label-input input:disabled:hover {
+  color: #aaa;
+  border-bottom: 1px solid #eee;
+}
+
 .label-input input::placeholder {
   color: #aaa;
   font-size: 1.4rem;

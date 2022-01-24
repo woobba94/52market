@@ -353,10 +353,6 @@ a[class^="imgbtn"] {
     }
   }
 
-
-
-
-
   label {
     display: block;
     font-size: 1.4rem;
@@ -372,6 +368,22 @@ a[class^="imgbtn"] {
     outline: none;
     box-sizing: border-box;
     transition: border-color 0.3s, box-shadow 0.3s;
+
+
+    &:disabled {
+      margin-top: 0.8rem;
+      background: #f9f9f9;
+      text-indent: 0.8rem;
+      color: #aaa;
+      border-bottom: 1px solid #eee;
+      cursor: not-allowed;
+
+      &:active,
+      &:hover {
+        color: #aaa;
+        border-bottom: 1px solid #eee;
+      }
+    }
 
     &::placeholder {
       color: #aaa;
