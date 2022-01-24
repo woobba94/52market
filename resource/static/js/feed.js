@@ -10,7 +10,7 @@ const detailSection = document.querySelector('.detail');
 let state = 'list'; // 목록/앨범 상태 구분
 
 if (token) {
-  if (nowUrl.split('/profile')[1] === '') {
+  if (nowUrl.split('/profile/')[1] === userId) {
     myFeed(state);
     listBtn.addEventListener('click', changeList);
     albumBtn.addEventListener('click', changeAlbum);
@@ -84,10 +84,7 @@ async function myFeed(state) {
   });
   const json = await res.json();
   const posts = json.post;
-
   feedList(posts, state);
-
-
 }
 
 async function getProfile(state) {
@@ -105,7 +102,6 @@ async function getProfile(state) {
 }
 
 function feedList(posts, state) {
-
   const h2Title = document.createElement('h2');
   h2Title.textContent = '피드 리스트';
   h2Title.classList.add('a11y-hidden');
@@ -169,11 +165,6 @@ function feedList(posts, state) {
       frag.appendChild(postLi);
       document.querySelector('section').appendChild(postUl).appendChild(frag);
 
-      const detailMore = postUl.querySelectorAll('.imgbtn-more');
-      detailMore.forEach((item) => {
-        item.addEventListener('click', showMenu);
-      });
-
       const likeBtn = document.querySelectorAll('.btn-like');
       likeBtn.forEach((item) => {
         item.addEventListener('click', likeEvent);
@@ -190,6 +181,18 @@ function feedList(posts, state) {
       }
       document.querySelector('section').appendChild(postUl).appendChild(frag);
     }
+  });
+  const detailMore = postUl.querySelectorAll('.imgbtn-more');
+  detailMore.forEach((item) => {
+    item.addEventListener('click', function (e) {
+      const postData = {
+        id: item.closest('article').id,
+        author: {
+          accountname: item.closest('article').querySelector('.user-description').textContent.slice(1),
+        }
+      }
+      showMenu(e, 'post', postData)
+    });
   });
 }
 
@@ -210,8 +213,7 @@ function noFeed() {
 
 
 //게시글 삭제
-async function deleteEvent(e) {
-  const postId = e.currentTarget.closest('article').id;
+async function deleteEvent(postId) {
   const popModal = document.querySelector('.pop-modal');
   popModal.innerHTML = `
       <p>삭제되었습니다.</p>
@@ -230,8 +232,7 @@ async function deleteEvent(e) {
 }
 
 //게시글 신고
-async function reportEvent(e) {
-  const postId = e.currentTarget.closest('article').id;
+async function reportEvent(postId) {
   const popModal = document.querySelector('.pop-modal');
   popModal.innerHTML = `
       <p>처리되었습니다.</p>
@@ -263,7 +264,6 @@ async function getPostDetail() {
   })
   const json = await res.json();
   const post = json.post;
-  console.log(post);
   const date = `${post.updatedAt.split('-')[0]}년 ${post.updatedAt.split('-')[1]}월 ${post.updatedAt.split('-')[2].split('T')[0]}일`;
 
   let postImg = '';
@@ -308,7 +308,9 @@ async function getPostDetail() {
   detailSection.appendChild(postArticle);
 
   const detailMore = postArticle.querySelector('.imgbtn-more');
-  detailMore.addEventListener('click', showMenu);
+  detailMore.addEventListener('click', function (e) {
+    showMenu(e, 'post', post)
+  });
 
   const likeBtn = postArticle.querySelector('.btn-like');
   likeBtn.addEventListener('click', likeEvent);
