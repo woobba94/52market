@@ -105,7 +105,15 @@ function feedList(posts, state) {
   const h2Title = document.createElement('h2');
   h2Title.textContent = '피드 리스트';
   h2Title.classList.add('a11y-hidden');
+
   document.querySelector('section').appendChild(h2Title);
+  if (posts.length === 0) {
+    const nodata = document.createElement('p');
+    nodata.classList.add('nodata');
+    nodata.textContent = '등록된 피드가 없습니다';
+    h2Title.after(nodata);
+  };
+
 
   const postUl = document.createElement('ul');
   posts.forEach(post => {
