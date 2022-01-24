@@ -17,7 +17,6 @@ const errorpwInp = document.querySelector(".label-input-pw");
 
 // 이메일 중복체크
 async function checkEmailValid(email) {
-    // const url = 'http://146.56.183.55:5050'
     const res = await fetch(url + '/user/emailvalid', {
         method: "POST",
         headers: {
