@@ -14,7 +14,7 @@ header {
   z-index: 2;
 }
 
-header>div {
+header .chat-inner {
   display: flex;
   align-items: center;
   gap: 0.8rem;
