@@ -332,11 +332,10 @@ function addPop(typeText, buttonText, thisParent, inButton, thisId) {
   } else if (typeText === '더보기') {
     //로그아웃
     popModal.querySelector('.logout').addEventListener('click', function () {
-      console.log('로그아웃되었습니다!')
-      // localStorage.removeItem('profileImg');
-      // localStorage.removeItem('accountname');
-      // localStorage.removeItem('token');
-      // location.href = `/loading`;
+      localStorage.removeItem('profileImg');
+      localStorage.removeItem('accountname');
+      localStorage.removeItem('token');
+      location.href = `/loading`;
     });
   }
 }
