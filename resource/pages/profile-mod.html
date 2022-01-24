@@ -16,14 +16,15 @@
   </div>
   <div class="input-wrap">
     <div class="label-input">
-      <label for="user-name-now">사용자 이름</label>
+      <label for="user-name">사용자 이름</label>
       <input type="text" minlength="2" maxlength="10" placeholder="2~10자 이내여야 합니다." id="user-name" />
-      <p class="error-message1" style="display:none;">*영문, 숫자만 사용할 수 있습니다.</p>
+      <p class="error-message1" style="display:none;">*2~10자 이내만 사용가능합니다.</p>
     </div>
     <div class="label-input">
-      <label for="user-id-now">계정 ID</label>
-      <input type="text" placeholder="영문,숫자만 사용가능합니다." id="user-id" />
+      <label for="now-user-id">계정 ID</label>
+      <input type="text" placeholder="영문,숫자,마침표와 밑줄만 사용가능합니다." id="now-user-id" disabled />
                 <p class="error-message2" style="display:none;">*이미 사용 중인 ID입니다.</p>
+                <p class="error-message3" style="display:none;">*영문,숫자,마침표와 밑줄만 사용가능합니다.</p>
     </div>
     <div class="label-input">
       <label for="intro-input">소개</label>
