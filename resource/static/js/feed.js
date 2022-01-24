@@ -24,7 +24,7 @@ if (token) {
     getFeed();
   }
 } else {
-  location.href = './loading';
+  location.href = '/loading';
 }
 
 function changeList() {
