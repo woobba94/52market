@@ -7,15 +7,6 @@ const followingLink = document.querySelector('.following-num');
 
 //user 정보 가져와서 뿌려주기
 async function getUserData() {
-  // '/profile'`로 접속시 - 내 아이디로
-  // if (nowUrl.split('/profile')[1] === '') {
-  //   accountName = userId;
-  //   followerLink.href = `/follower`;
-  //   followingLink.href = `/following`;
-  // } else {
-  //   followerLink.href = `/follower/${accountName}`;
-  //   followingLink.href = `/following/${accountName}`;
-  // }
   const res = await fetch(`${url}/profile/${accountName}`, {
     method: 'GET',
     headers: {
@@ -74,10 +65,10 @@ async function setCurrentProduct() {
 
   if (datas.length === 0) {
     const productWrap = document.querySelector('.product-list');
-      const notice = document.createElement('p');
-      notice.classList.add('empty-notice');
-      notice.textContent = '등록된 상품이 없습니다';
-      productWrap.appendChild(notice);
+    const notice = document.createElement('p');
+    notice.classList.add('empty-notice');
+    notice.textContent = '등록된 상품이 없습니다';
+    productWrap.appendChild(notice);
   }
 
   datas.map((data) => {
@@ -85,13 +76,30 @@ async function setCurrentProduct() {
     let productBox = document.createElement('li');
 
     productBox.innerHTML = `
-        <a href="${data.link}">
+      <button type="button" class="product-item" id="${data.author.accountname}_${data.id}">
         <img src="${data.itemImage}" class="product-img" alt="상품사진"></a>
-        <p class="product-name">${data.itemName}</p>
+        <span class="product-name">${data.itemName}</span>
         <em class="product-price">${data.price}원</em>
-        `;
+        <span style="display:none" class="product-link">${data.link}</span>
+      </button>
+    `;
     productList.appendChild(productBox);
   });
+  const productItem = document.querySelectorAll('.product-item');
+  if (productItem) {
+    productItem.forEach((item) => {
+      item.addEventListener('click', function (e) {
+        const productData = {
+          author: {
+            accountname: e.currentTarget.id.split('_')[0]
+          },
+          id: e.currentTarget.id.split('_')[1],
+          link: e.currentTarget.querySelector('.product-link').textContent,
+        }
+        showMenu(e, 'product', productData);
+      });
+    })
+  }
 }
 
 setCurrentProduct();
