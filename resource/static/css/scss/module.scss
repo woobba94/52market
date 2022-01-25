@@ -710,3 +710,20 @@ mark {
 
   }
 }
+
+.btn-follow:focus {
+  background: var(--main-color);
+}
+
+
+.btn-unfollow {
+
+  &:hover,
+  &:active {
+    background: #e5e5e5;
+  }
+
+  &:focus {
+    background: #eee;
+  }
+}
