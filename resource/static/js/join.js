@@ -185,7 +185,7 @@ async function profileBtnText() {
 async function imageUpload(files) {
     // 서버로 날아가긴위한 임의의 폼 형식
     const formData = new FormData();
-    formData.append("image", files[0]);//formData.append("키이름","값")
+    formData.append("image", files[0]);
     const res = await fetch(url + '/image/uploadfile', {
         method: "POST",
         body: formData
