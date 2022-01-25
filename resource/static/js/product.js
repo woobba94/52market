@@ -186,11 +186,11 @@ async function deleteProduct(tagetId) {
 function isValidUrl() {
   const urlRegexData = new RegExp(
     '^(https?:\\/\\/)?' + // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-      '(\\#[-a-z\\d_]*)?$', // fragment locator
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+    '(\\#[-a-z\\d_]*)?$', // fragment locator
     'i'
   );
 
@@ -224,3 +224,23 @@ window.addEventListener('DOMContentLoaded', () => {
   if (location.href.split('product')[1] != '') setCurrentData();
   postProductImg();
 });
+
+
+
+//판매 상품 삭제하기(강혜진 작성)
+async function deleteProduct(productId) {
+  const popModal = document.querySelector('.pop-modal');
+  popModal.innerHTML = `
+      <p>삭제되었습니다.</p>
+  `;
+  await fetch(`${url}/product/${productId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  });
+  setTimeout(function () {
+    location.href = `/profile/${nowUrl.split('/profile/')[1]}`;
+  }, 800);
+}

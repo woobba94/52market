@@ -8,14 +8,11 @@ const url = 'http://146.56.183.55:5050'; // API url
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('accountname');
 const userProfile = localStorage.getItem('profileImg');
-
-
-const link = document.querySelector('.btn-user');
-
-//flagment
-const frag = document.createDocumentFragment();
 //현재 주소
 const nowUrl = location.href;
+const link = document.querySelector('.btn-user');
+//flagment
+const frag = document.createDocumentFragment();
 
 //이전버튼
 const btnBack = document.querySelector('header .btn-back');
@@ -61,6 +58,8 @@ function clickBack() {
   history.back();
 };
 
+
+
 //하단 메뉴 등장
 function showMenu(e, type, data) {
   let typeText = '';
@@ -81,9 +80,12 @@ function showMenu(e, type, data) {
   }
   //판매상품
   else if (type === 'product') {
+    //내 게시글일 경우 메뉴 보이기
     if (data.author.accountname === userId) {
       menuProduct(e, data);
-    } else {
+    }
+    // 내 게시글이 아닐 땐 링크로 이동
+    else {
       location.href = data.link;
     }
   }
@@ -107,17 +109,20 @@ function menuPost(e, post) {
   const menuDelete = thisParent.querySelector('.show-pop-delete');
   const menuReport = thisParent.querySelector('.show-pop-report');
   const menuModify = thisParent.querySelector('.modify');
+  //삭제
   if (menuDelete) {
     menuDelete.addEventListener('click', function (e) {
       openPop(typeText, '삭제', thisParent, post.id);
     });
   }
+  //수정
   if (menuModify) {
     menuModify.addEventListener('click', function (e) {
       location.href = `/post/${post.id}/edit`;
 
     });
   }
+  //신고
   if (menuReport) {
     menuReport.addEventListener('click', function (e) {
       openPop(typeText, '신고', thisParent, post.id);
@@ -142,11 +147,13 @@ function menuComment(e, comment) {
 
   const menuDelete = thisParent.querySelector('.show-pop-delete');
   const menuReport = thisParent.querySelector('.show-pop-report');
+  //삭제
   if (menuDelete) {
     menuDelete.addEventListener('click', function (e) {
       openPop(typeText, '삭제', thisParent, comment.id);
     });
   }
+  신고
   if (menuReport) {
     menuReport.addEventListener('click', function (e) {
       openPop(typeText, '신고', thisParent, comment.id);
@@ -154,7 +161,7 @@ function menuComment(e, comment) {
   }
 }
 
-//더보기 메뉴
+//상단메뉴 
 function menuMore(e) {
   typeText = '더보기';
   thisParent = e.currentTarget.closest('header');
@@ -166,12 +173,14 @@ function menuMore(e) {
 
   const menuProfile = thisParent.querySelector('.setting-profile');
   const menuLogout = thisParent.querySelector('.show-pop-logout');
+
+  //설정 및 개인정보
   if (menuProfile) {
     menuProfile.addEventListener('click', function (e) {
-      //설정 및 개인정보
       location.href = '/profile-mod';
     });
   }
+  //로그아웃
   if (menuLogout) {
     menuLogout.addEventListener('click', function (e) {
       openPop(typeText, '로그아웃', thisParent);
@@ -190,21 +199,23 @@ function menuProduct(e, product) {
   `;
 
   addMenu();
-  console.log('왜??????')
 
   const menuDelete = thisParent.querySelector('.show-pop-delete');
   const menuModify = thisParent.querySelector('.modify');
   const menuView = thisParent.querySelector('.view-product');
+  //삭제
   if (menuDelete) {
     menuDelete.addEventListener('click', function (e) {
       openPop(typeText, '삭제', thisParent, product.id);
     });
   }
+  //수정
   if (menuModify) {
     menuModify.addEventListener('click', function (e) {
       location.href = `/product/${product.id}`;
     });
   }
+  //웹사이트로 이동
   if (menuView) {
     menuView.addEventListener('click', function (e) {
       location.href = product.link;
@@ -212,36 +223,6 @@ function menuProduct(e, product) {
   }
 }
 
-
-//키보드 Tab 포커스이동
-function keyTabEvent(e) {
-  const targetClass = e.currentTarget.className;
-  const firstButton = e.currentTarget.closest('div').querySelector('button');
-
-  if (targetClass === 'close-modal' || targetClass === 'report' || targetClass === 'delete' || targetClass === 'logout') {
-    //tab
-    if (!e.shiftKey && e.keyCode === 9) {
-      e.preventDefault();
-      window.setTimeout(function () {
-        firstButton.focus();
-      }, 100);
-    }
-  }
-}
-
-//키보드 Shift+Tab 포커스이동
-function keyShiftTabEvent(e) {
-  const targetClass = e.currentTarget.className;
-  const lastButton = e.currentTarget.closest('div').querySelector('button:last-child');
-  if (targetClass === 'show-pop-report' || targetClass === 'show-pop-delete' || targetClass === 'cancel' || targetClass === 'setting-profile') {
-    if (e.shiftKey && e.keyCode === 9) {
-      e.preventDefault();
-      window.setTimeout(function () {
-        lastButton.focus();
-      }, 100);
-    }
-  }
-}
 //하단 메뉴
 function addMenu() {
   const menuModal = document.createElement('section');
@@ -340,11 +321,6 @@ function addPop(typeText, buttonText, thisParent, inButton, thisId) {
   }
 }
 
-
-
-
-
-
 //모달창 닫기
 function clearModal() {
   const menuModal = document.querySelector('.menu-modal');
@@ -359,21 +335,32 @@ function clearModal() {
   }
 }
 
+//키보드 Tab 포커스이동
+function keyTabEvent(e) {
+  const targetClass = e.currentTarget.className;
+  const firstButton = e.currentTarget.closest('div').querySelector('button');
 
-//판매 상품 삭제하기
-async function deleteProduct(productId) {
-  const popModal = document.querySelector('.pop-modal');
-  popModal.innerHTML = `
-      <p>삭제되었습니다.</p>
-  `;
-  await fetch(`${url}/product/${productId}`, {
-    method: "DELETE",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-type": "application/json"
+  if (targetClass === 'close-modal' || targetClass === 'report' || targetClass === 'delete' || targetClass === 'logout') {
+    //tab
+    if (!e.shiftKey && e.keyCode === 9) {
+      e.preventDefault();
+      window.setTimeout(function () {
+        firstButton.focus();
+      }, 100);
     }
-  });
-  setTimeout(function () {
-    location.href = `/profile/${nowUrl.split('/profile/')[1]}`;
-  }, 800);
+  }
+}
+
+//키보드 Shift+Tab 포커스이동
+function keyShiftTabEvent(e) {
+  const targetClass = e.currentTarget.className;
+  const lastButton = e.currentTarget.closest('div').querySelector('button:last-child');
+  if (targetClass === 'show-pop-report' || targetClass === 'show-pop-delete' || targetClass === 'cancel' || targetClass === 'setting-profile') {
+    if (e.shiftKey && e.keyCode === 9) {
+      e.preventDefault();
+      window.setTimeout(function () {
+        lastButton.focus();
+      }, 100);
+    }
+  }
 }
