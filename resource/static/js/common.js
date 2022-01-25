@@ -26,7 +26,7 @@ const headerMoreBtn = document.querySelector('header .btn-more');
 
 if (headerMoreBtn) {
   headerMoreBtn.addEventListener('click', function (e) {
-    showMenu(e, 'more')
+    showMenu(e, 'more');
   });
 }
 
@@ -55,10 +55,12 @@ if (btnBack) {
   prevBtn.addEventListener('click', clickBack);
 }
 function clickBack() {
-  history.back().reload();
-};
-
-
+  if (location.href.includes('/profile/')) location.href = 'http://localhost:8080/';
+  else if (document.referrer.includes('/post/')) {
+    let thisUser = document.querySelector('.user-description').textContent.substr(1);
+    location.href = `http://localhost:8080/profile/${thisUser}`;
+  } else history.back().reload();
+}
 
 //하단 메뉴 등장
 function showMenu(e, type, data) {
@@ -68,15 +70,15 @@ function showMenu(e, type, data) {
 
   // 상단 더보기
   if (type === 'more') {
-    menuMore(e)
+    menuMore(e);
   }
-  //게시글 더보기 
+  //게시글 더보기
   else if (type === 'post') {
     menuPost(e, data);
   }
   // 댓글
   else if (type === 'comment') {
-    menuComment(e, data)
+    menuComment(e, data);
   }
   //판매상품
   else if (type === 'product') {
@@ -89,7 +91,7 @@ function showMenu(e, type, data) {
       location.href = data.link;
     }
   }
-};
+}
 
 //게시글 메뉴
 function menuPost(e, post) {
@@ -100,7 +102,7 @@ function menuPost(e, post) {
     inButton = `<button class='show-pop-delete'>삭제</button>
     <button type='button' class='modify'>수정</button>`;
   } else {
-    //다른사람 게시글 일때 
+    //다른사람 게시글 일때
     inButton = `<button class='show-pop-report'>신고</button>`;
   }
 
@@ -119,7 +121,6 @@ function menuPost(e, post) {
   if (menuModify) {
     menuModify.addEventListener('click', function (e) {
       location.href = `/post/${post.id}/edit`;
-
     });
   }
   //신고
@@ -128,7 +129,6 @@ function menuPost(e, post) {
       openPop(typeText, '신고', thisParent, post.id);
     });
   }
-
 }
 
 //댓글 메뉴
@@ -139,7 +139,7 @@ function menuComment(e, comment) {
     //나의 댓글일때
     inButton = `<button class='show-pop-delete'>삭제</button>`;
   } else {
-    //다른사람 댓글일때 
+    //다른사람 댓글일때
     inButton = `<button class='show-pop-report'>신고</button>`;
   }
 
@@ -153,7 +153,7 @@ function menuComment(e, comment) {
       openPop(typeText, '삭제', thisParent, comment.id);
     });
   }
-  신고
+  신고;
   if (menuReport) {
     menuReport.addEventListener('click', function (e) {
       openPop(typeText, '신고', thisParent, comment.id);
@@ -161,7 +161,7 @@ function menuComment(e, comment) {
   }
 }
 
-//상단메뉴 
+//상단메뉴
 function menuMore(e) {
   typeText = '더보기';
   thisParent = e.currentTarget.closest('header');
@@ -254,8 +254,7 @@ function openPop(typeText, buttonText, thisParent, thisId) {
   } else if (buttonText === '신고') {
     inButton = `<button class='report'>신고</button>`;
     addPop(typeText, '신고', thisParent, inButton, thisId);
-  }
-  else if (buttonText === '로그아웃') {
+  } else if (buttonText === '로그아웃') {
     inButton = `<button class='logout'>로그아웃</button>`;
     addPop(typeText, '로그아웃', thisParent, inButton);
   }
@@ -308,7 +307,7 @@ function addPop(typeText, buttonText, thisParent, inButton, thisId) {
     }
   } else if (typeText === '판매 상품') {
     popModal.querySelector('.delete').addEventListener('click', function () {
-      deleteProduct(thisId)
+      deleteProduct(thisId);
     });
   } else if (typeText === '더보기') {
     //로그아웃
@@ -340,7 +339,12 @@ function keyTabEvent(e) {
   const targetClass = e.currentTarget.className;
   const firstButton = e.currentTarget.closest('div').querySelector('button');
 
-  if (targetClass === 'close-modal' || targetClass === 'report' || targetClass === 'delete' || targetClass === 'logout') {
+  if (
+    targetClass === 'close-modal' ||
+    targetClass === 'report' ||
+    targetClass === 'delete' ||
+    targetClass === 'logout'
+  ) {
     //tab
     if (!e.shiftKey && e.keyCode === 9) {
       e.preventDefault();
@@ -355,7 +359,12 @@ function keyTabEvent(e) {
 function keyShiftTabEvent(e) {
   const targetClass = e.currentTarget.className;
   const lastButton = e.currentTarget.closest('div').querySelector('button:last-child');
-  if (targetClass === 'show-pop-report' || targetClass === 'show-pop-delete' || targetClass === 'cancel' || targetClass === 'setting-profile') {
+  if (
+    targetClass === 'show-pop-report' ||
+    targetClass === 'show-pop-delete' ||
+    targetClass === 'cancel' ||
+    targetClass === 'setting-profile'
+  ) {
     if (e.shiftKey && e.keyCode === 9) {
       e.preventDefault();
       window.setTimeout(function () {
@@ -365,10 +374,6 @@ function keyShiftTabEvent(e) {
   }
 }
 
-
-
-
-
 //판매 상품 삭제하기(강혜진 작성)
 async function deleteProduct(productId) {
   const popModal = document.querySelector('.pop-modal');
@@ -376,11 +381,11 @@ async function deleteProduct(productId) {
       <p>삭제되었습니다.</p>
   `;
   await fetch(`${url}/product/${productId}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-type": "application/json"
-    }
+      Authorization: `Bearer ${token}`,
+      'Content-type': 'application/json',
+    },
   });
   setTimeout(function () {
     location.href = `/profile/${nowUrl.split('/profile/')[1]}`;
