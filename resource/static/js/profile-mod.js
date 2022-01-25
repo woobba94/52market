@@ -135,7 +135,7 @@ async function editProfile() {
     const imageUrl = document.querySelector('.imgPre').src
     // const newUserId = myId.value;
     if (userNameVal(newUserName)) {
-        return ;
+        return;
     }
     const res = await fetch(`${url}/user`, {
         method: "PUT",
@@ -155,9 +155,10 @@ async function editProfile() {
     const json = await res.json();
     if (json.status === 422) {
         warningMsg2.style.display = "block";
-    // } else if (idError()) {
-    //     warningMsg3.style.display = "block";
+        // } else if (idError()) {
+        //     warningMsg3.style.display = "block";
     } else {
+        localStorage.profileImg = json.user.image;
         location.href = `/profile/${myAccountName}`
     }
     // if (checkIdValid(newUserId)) {
