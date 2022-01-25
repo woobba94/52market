@@ -55,7 +55,7 @@ if (btnBack) {
   prevBtn.addEventListener('click', clickBack);
 }
 function clickBack() {
-  history.back();
+  history.back().reload();
 };
 
 
