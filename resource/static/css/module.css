@@ -644,3 +644,15 @@ mark {
   background-color: transparent;
   border-radius: 4px;
 }
+
+.btn-follow:focus {
+  background: var(--main-color);
+}
+
+.btn-unfollow:hover, .btn-unfollow:active {
+  background: #e5e5e5;
+}
+
+.btn-unfollow:focus {
+  background: #eee;
+}
