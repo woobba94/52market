@@ -49,7 +49,6 @@ async function getProductList() {
     },
   });
   this.productList = await response.json();
-
 }
 
 // user가 등록한 상품 정보 세팅
@@ -91,21 +90,19 @@ async function setCurrentProduct() {
       item.addEventListener('click', function (e) {
         const productData = {
           author: {
-            accountname: e.currentTarget.id.split('_')[0]
+            accountname: e.currentTarget.id.split('_')[0],
           },
           id: e.currentTarget.id.split('_')[1],
           link: e.currentTarget.querySelector('.product-link').textContent,
-        }
+        };
         showMenu(e, 'product', productData);
       });
-    })
+    });
   }
 }
 
 setCurrentProduct();
 getProductList();
-
-
 
 async function setFollowBtn() {
   const addFollowBtn = document.querySelector('.btns-wrap');
@@ -124,8 +121,13 @@ async function setFollowBtn() {
 
     // isfollow 체크 -> 버튼 텍스트 최초 세팅 (팔로우/언팔로우)
     const isfollow = await getIsFollow(accountName);
-    if (isfollow) followBtn.innerHTML = '언팔로우';
-    else followBtn.innerHTML = '팔로우';
+    if (isfollow) {
+      followBtn.innerHTML = '언팔로우';
+      followBtn.classList.add('btn-unfollow');
+    } else {
+      followBtn.innerHTML = '팔로우';
+      followBtn.classList.add('btn-follow');
+    }
 
     // 리스너 연결
     followBtn.func = toggleFollow;

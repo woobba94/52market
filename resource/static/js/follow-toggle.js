@@ -2,6 +2,7 @@ async function toggleFollow(accountname) {
   let urlVal = '';
   let methodVal = '';
   let textContentVal = '';
+  let addClassName = '';
   // console.log(this);
   // isFollow 상태에따른 값 세팅
   if (this.textContent === '팔로우') {
@@ -9,11 +10,15 @@ async function toggleFollow(accountname) {
     urlVal = 'follow';
     methodVal = 'POST';
     textContentVal = '언팔로우';
+    this.classList.remove('btn-follow');
+    this.classList.add('btn-unfollow');
   } else {
     console.log('언팔로우함');
     urlVal = 'unfollow';
     methodVal = 'DELETE';
     textContentVal = '팔로우';
+    this.classList.add('btn-follow');
+    this.classList.remove('btn-unfollow');
   }
 
   const url = `http://146.56.183.55:5050/profile/${accountname}/${urlVal}`;
@@ -25,7 +30,6 @@ async function toggleFollow(accountname) {
       'Content-type': 'application/json',
     },
   });
-  const data = await res.json();
   this.textContent = textContentVal;
 
   // console.log('follow 토글');

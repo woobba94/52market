@@ -20,3 +20,8 @@
 .follow-list-child .button-small {
   margin-right: 16px;
 }
+
+.btn-unfollow {
+  background-color: #eeeeee;
+  color: #666666;
+}

@@ -29,10 +29,10 @@ async function setFollowList(accountname, isFollowerPage) {
     let btn = document.querySelector(`.toggle-btn-follow[name=${element.accountname}]`);
     if (element.isfollow) {
       btn.textContent = '언팔로우';
-      btn.classList += ' btn-unfollow';
+      btn.classList.add('btn-unfollow');
     } else {
       btn.textContent = '팔로우';
-      btn.classList += ' btn-follow';
+      btn.classList.add('btn-follow');
     }
   });
   btnList = document.querySelectorAll('.toggle-btn-follow');
