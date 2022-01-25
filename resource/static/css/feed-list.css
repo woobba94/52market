@@ -273,13 +273,17 @@
   align-items: flex-start;
 }
 
+.cont-comment .comment-wrap .user-wrap .user-txt {
+  margin-top: 0.8rem;
+}
+
 .cont-comment .comment-wrap .user-wrap .user-txt .user-title {
   display: inline-block;
-  margin-top: 0.8rem;
   vertical-align: middle;
 }
 
 .cont-comment .comment-wrap .user-wrap .user-txt .time {
+  display: inline-block;
   font-size: 1.2rem;
   color: #767676;
 }
