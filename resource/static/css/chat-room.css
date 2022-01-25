@@ -1,8 +1,5 @@
 .wrap-chat-room {
-  height: calc(100vh - (108px));
-  width: calc(100% - 6.4rem);
-  background-color: #ffffff;
-  height: 100%;
+  width: calc(100% - 3.2rem);
   margin: 0 auto;
   margin-top: 48px;
   margin-bottom: 60px;
