@@ -283,13 +283,15 @@
       align-items: flex-start;
 
       .user-txt {
+        margin-top: 0.8rem;
+
         .user-title {
           display: inline-block;
-          margin-top: 0.8rem;
           vertical-align: middle;
         }
 
         .time {
+          display: inline-block;
           font-size: 1.2rem;
           color: #767676;
 

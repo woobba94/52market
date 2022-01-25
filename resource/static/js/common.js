@@ -55,7 +55,7 @@ if (btnBack) {
   prevBtn.addEventListener('click', clickBack);
 }
 function clickBack() {
-  history.back();
+  history.back().reload();
 };
 
 
@@ -363,4 +363,26 @@ function keyShiftTabEvent(e) {
       }, 100);
     }
   }
+}
+
+
+
+
+
+//판매 상품 삭제하기(강혜진 작성)
+async function deleteProduct(productId) {
+  const popModal = document.querySelector('.pop-modal');
+  popModal.innerHTML = `
+      <p>삭제되었습니다.</p>
+  `;
+  await fetch(`${url}/product/${productId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-type": "application/json"
+    }
+  });
+  setTimeout(function () {
+    location.href = `/profile/${nowUrl.split('/profile/')[1]}`;
+  }, 800);
 }

@@ -15,7 +15,7 @@ async function getUserData() {
     },
   });
   const result = await res.json();
-  // console.log(result);
+  console.log(result);
 
   const userName = document.querySelector('.user-name');
   userName.innerText = '@' + result.profile.accountname;
@@ -39,6 +39,7 @@ async function getUserData() {
 getUserData();
 
 const mainElement = document.querySelector('.container');
+
 //user가 등록한 상품 정보 가져오기
 async function getProductList() {
   const response = await fetch(`http://146.56.183.55:5050/product/${accountName}`, {
@@ -48,7 +49,6 @@ async function getProductList() {
     },
   });
   this.productList = await response.json();
-  // console.log(productList);
 }
 
 // user가 등록한 상품 정보 세팅
@@ -60,38 +60,44 @@ async function setCurrentProduct() {
   await this.getProductList();
 
   const datas = await this.productList['product'];
-  // console.log(datas);
+  console.log(datas);
+
+  if (datas.length === 0) {
+    const productWrap = document.querySelector('.product-list');
+    const notice = document.createElement('p');
+    notice.classList.add('empty-notice');
+    notice.textContent = '등록된 상품이 없습니다';
+    productWrap.appendChild(notice);
+  }
 
   datas.map((data) => {
     const productList = document.querySelector('.product-list');
     let productBox = document.createElement('li');
-    console.log(data)
+
     productBox.innerHTML = `
-        <button type="button" class="product-item" id="${data.author.accountname}_${data.id}">
-          <img src="${data.itemImage}" class="product-img" alt="상품사진"></a>
-          <span class="product-name">${data.itemName}</span>
-          <em class="product-price">${data.price}원</em>
-          <span style="display:none" class="product-link">${data.link}</span>
-        </button>
-        
-        `;
+      <button type="button" class="product-item" id="${data.author.accountname}_${data.id}">
+        <img src="${data.itemImage}" class="product-img" alt="상품사진"></a>
+        <span class="product-name">${data.itemName}</span>
+        <em class="product-price">${data.price}원</em>
+        <span style="display:none" class="product-link">${data.link}</span>
+      </button>
+    `;
     productList.appendChild(productBox);
   });
-  //판매상품 클릭
   const productItem = document.querySelectorAll('.product-item');
   if (productItem) {
     productItem.forEach((item) => {
       item.addEventListener('click', function (e) {
         const productData = {
           author: {
-            accountname: e.currentTarget.id.split('_')[0]
+            accountname: e.currentTarget.id.split('_')[0],
           },
           id: e.currentTarget.id.split('_')[1],
           link: e.currentTarget.querySelector('.product-link').textContent,
-        }
+        };
         showMenu(e, 'product', productData);
       });
-    })
+    });
   }
 }
 
@@ -115,8 +121,13 @@ async function setFollowBtn() {
 
     // isfollow 체크 -> 버튼 텍스트 최초 세팅 (팔로우/언팔로우)
     const isfollow = await getIsFollow(accountName);
-    if (isfollow) followBtn.innerHTML = '언팔로우';
-    else followBtn.innerHTML = '팔로우';
+    if (isfollow) {
+      followBtn.innerHTML = '언팔로우';
+      followBtn.classList.add('btn-unfollow');
+    } else {
+      followBtn.innerHTML = '팔로우';
+      followBtn.classList.add('btn-follow');
+    }
 
     // 리스너 연결
     followBtn.func = toggleFollow;
