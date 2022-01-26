@@ -109,35 +109,35 @@ SNS를 통한 온라인 이웃 되기! 오늘부터 이웃, 오이마켓입니�
 
 |                                                            0.splash                                                            |                                                           1.회원가입                                                           |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148051-fa812113-e639-4f30-a751-350af86bc9c4.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151148053-5c80389a-ee9b-4f74-b0d8-d84cb1ee803d.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148051-fa812113-e639-4f30-a751-350af86bc9c4.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151148053-5c80389a-ee9b-4f74-b0d8-d84cb1ee803d.gif" width="300"/> |
 
 |                                                            2.로그인                                                            |                                                         3.피드(홈화면)                                                         |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148058-1052ae14-ad3e-4bf9-96b7-5ad126808c33.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151148060-fe7faa11-9eb3-4830-989c-563533010ee8.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148058-1052ae14-ad3e-4bf9-96b7-5ad126808c33.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151148060-fe7faa11-9eb3-4830-989c-563533010ee8.gif" width="300"/> |
 
 |                                                         4.프로필 수정                                                          |                                                          5.상품 등록                                                           |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148065-0f238413-8569-4fcc-8f8d-44df93ba22c5.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151148069-d3f1ecae-4e97-4504-bbd4-d4968d9959ac.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148065-0f238413-8569-4fcc-8f8d-44df93ba22c5.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151148069-d3f1ecae-4e97-4504-bbd4-d4968d9959ac.gif" width="300"/> |
 
 |                                                       6.상품등록 여러개                                                        |                                                          7.상품 수정                                                           |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148074-caa4248f-f92d-4c34-bd53-7d7643e0de84.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151148001-46dad002-dbce-4d79-8c3a-76e49df6995b.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148074-caa4248f-f92d-4c34-bd53-7d7643e0de84.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151148001-46dad002-dbce-4d79-8c3a-76e49df6995b.gif" width="300"/> |
 
 |                                                          8.상품 삭제                                                           |                                                         9.게시글 등록                                                          |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148006-d8944ac2-6dcf-46c2-b1cd-5a8859348517.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151148008-955cf002-2f6e-4ce6-b1c6-421382e95f2d.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148006-d8944ac2-6dcf-46c2-b1cd-5a8859348517.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151148008-955cf002-2f6e-4ce6-b1c6-421382e95f2d.gif" width="300"/> |
 
 |                                                     10.게시글 등록 여러개                                                      |                                                      11.게시글 수정-삭제                                                       |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148014-0b63daa2-5885-406b-a644-7b033a3c25d7.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151148021-7d91067e-c913-4a7d-a854-607fcb123551.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148014-0b63daa2-5885-406b-a644-7b033a3c25d7.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151148021-7d91067e-c913-4a7d-a854-607fcb123551.gif" width="300"/> |
 
 |                                                        12.팔로우 동기화                                                        |                                                     13.팔로우 취소 동기화                                                      |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148030-7affc3a0-c84b-49e0-bab6-1be9348e4cfd.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151148044-d63eaa15-0d2b-4b3e-a4a9-22fdb7396696.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148030-7affc3a0-c84b-49e0-bab6-1be9348e4cfd.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151148044-d63eaa15-0d2b-4b3e-a4a9-22fdb7396696.gif" width="300"/> |
 
 |                                                    14.댓글과 좋아요 동기화                                                     |                                                          15.로그아웃                                                           |
 | :----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/66201264/151148037-e1e67607-2919-49fe-b0e0-65ce017ad0d0.gif" width="200"/> | <img src="https://user-images.githubusercontent.com/66201264/151152894-3fbd359e-9393-4a7f-b8ff-5451a57cad3d.gif" width="200"/> |
+| <img src="https://user-images.githubusercontent.com/66201264/151148037-e1e67607-2919-49fe-b0e0-65ce017ad0d0.gif" width="300"/> | <img src="https://user-images.githubusercontent.com/66201264/151152894-3fbd359e-9393-4a7f-b8ff-5451a57cad3d.gif" width="300"/> |
 
 16. 키보드 접근성
 
