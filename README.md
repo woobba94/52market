@@ -107,33 +107,33 @@ SNS를 통한 온라인 이웃 되기! 오늘부터 이웃, 오이마켓입니�
 
 ## 6. 기능
 
-1. splash
+1. splash<br>
    ![00 인트로](https://user-images.githubusercontent.com/66201264/151148051-fa812113-e639-4f30-a751-350af86bc9c4.gif)<br><br>
-2. 회원가입
+2. 회원가입<br>
    ![01 회원가입](https://user-images.githubusercontent.com/66201264/151148053-5c80389a-ee9b-4f74-b0d8-d84cb1ee803d.gif)<br><br>
-3. 로그인
+3. 로그인<br>
    ![02 로그인](https://user-images.githubusercontent.com/66201264/151148058-1052ae14-ad3e-4bf9-96b7-5ad126808c33.gif)<br><br>
-4. 오이마켓 피드(홈 화면)
+4. 오이마켓 피드(홈 화면)<br>
    ![03 팔로우-피드](https://user-images.githubusercontent.com/66201264/151148060-fe7faa11-9eb3-4830-989c-563533010ee8.gif)<br><br>
-5. 프로필 수정
+5. 프로필 수정<br>
    ![04 수정-프로필](https://user-images.githubusercontent.com/66201264/151148065-0f238413-8569-4fcc-8f8d-44df93ba22c5.gif)<br><br>
-6. 상품 등록
+6. 상품 등록<br>
    ![05 등록-상품](https://user-images.githubusercontent.com/66201264/151148069-d3f1ecae-4e97-4504-bbd4-d4968d9959ac.gif)<br><br>
    ![05 등록-상품여러개](https://user-images.githubusercontent.com/66201264/151148074-caa4248f-f92d-4c34-bd53-7d7643e0de84.gif)<br><br>
-7. 상품 수정
+7. 상품 수정<br>
    ![06 수정-상품](https://user-images.githubusercontent.com/66201264/151148001-46dad002-dbce-4d79-8c3a-76e49df6995b.gif)<br><br>
-8. 상품 삭제
+8. 상품 삭제<br>
    ![07 삭제-상품](https://user-images.githubusercontent.com/66201264/151148006-d8944ac2-6dcf-46c2-b1cd-5a8859348517.gif)<br><br>
-9. 게시글 등록
+9. 게시글 등록<br>
    ![08 등록-게시글](https://user-images.githubusercontent.com/66201264/151148008-955cf002-2f6e-4ce6-b1c6-421382e95f2d.gif)
    ![08 등록-게시글여러개](https://user-images.githubusercontent.com/66201264/151148014-0b63daa2-5885-406b-a644-7b033a3c25d7.gif)<br><br>
-10. 게시글 수정-삭제
+10. 게시글 수정-삭제<br>
     ![10 수정 삭제-게시글](https://user-images.githubusercontent.com/66201264/151148021-7d91067e-c913-4a7d-a854-607fcb123551.gif)<br><br>
-11. 팔로우 동기화
+11. 팔로우 동기화<br>
     ![11 팔로우 여러명과 상대리스트확인](https://user-images.githubusercontent.com/66201264/151148030-7affc3a0-c84b-49e0-bab6-1be9348e4cfd.gif)<br><br>
-12. 팔로우 취소 동기화
+12. 팔로우 취소 동기화<br>
     ![13 팔로우 취소 동기화](https://user-images.githubusercontent.com/66201264/151148044-d63eaa15-0d2b-4b3e-a4a9-22fdb7396696.gif)<br><br>
-13. 댓글과 좋아요 동기화
+13. 댓글과 좋아요 동기화<br>
     ![12 댓글 좋아요 동기화](https://user-images.githubusercontent.com/66201264/151148037-e1e67607-2919-49fe-b0e0-65ce017ad0d0.gif)<br><br>
 14. 키보드 접근성
 
