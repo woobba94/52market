@@ -1,7 +1,7 @@
 {
   "name": "52market",
   "version": "1.0.0",
-  "description": "",
+  "description": "오이마켓 서비스는 자신의 스토어에 판매하고 있는 상품을 등록하여 홍보할 수 있는 SNS입니다.<br />\r 상품을 등록하지 않아도 일상을 공유하며 즐거운 SNS 활동을 할 수 있습니다. <br />\r 사용자는 글과 사진을 올려 자신의 일상을 공유할 수 있고,<br />\r 다른 사용자를 팔로우하여 홈 화면에서 다른 사람들의 소식을 확인할 수도 있습니다.<br />\r 다양한 사람들을 팔로우하고, 마음에 드는 피드가 있다면 '좋아요'를 누르거나 댓글을 달 수도 있습니다.<br />\r 또한, 다른 사용자와 채팅창을 이용해 즐거운 대화도 나눌 수 있습니다.<br />\r SNS를 통한 온라인 이웃 되기! 오늘부터 이웃, 오이마켓입니다.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,5 +21,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreamfulbud/52market.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dreamfulbud/52market/issues"
+  },
+  "homepage": "https://github.com/dreamfulbud/52market#readme"
 }

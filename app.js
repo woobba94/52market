@@ -58,4 +58,8 @@ app.use((err, req, res, next) => {
   res.sendStatus(500);
 });
 
-app.listen(8000);
+let port = process.env.PORT;
+if (port == null || port == '') {
+  port = 8000;
+}
+app.listen(port);
