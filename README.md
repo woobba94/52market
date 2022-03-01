@@ -30,6 +30,8 @@ SNS를 통한 온라인 이웃 되기! 오늘부터 이웃, 오이마켓입니�
 
 ### 2.2 배포
 
+[URL]https://market-52.herokuapp.com/
+
 ```
     git clone https://github.com/dreamfulbud/52market.git
     cd 52market
