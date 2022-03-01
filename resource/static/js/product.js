@@ -5,10 +5,10 @@ const inputBox = document.querySelectorAll('.label-input input');
 const productUrlBox = document.querySelector('#product-url');
 
 productUrlBox.addEventListener('focus', (event) => {
-  if (event.target.value == '') event.target.value = 'http://';
+  if (event.target.value == '') event.target.value = 'https://';
 });
 productUrlBox.addEventListener('blur', (event) => {
-  if (event.target.value == 'http://') event.target.value = '';
+  if (event.target.value == 'https://') event.target.value = '';
 });
 
 // input 값 변경 리스너 -> 저장버튼 활성화 시도
@@ -56,7 +56,7 @@ function postProductImg() {
     const formData = new FormData();
     formData.append('image', imgInputBtn.files[0]);
 
-    fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    fetch(`https://api.mandarin.cf/image/uploadfile`, {
       method: 'POST',
       body: formData,
     })
@@ -75,7 +75,7 @@ async function postProductData() {
   // const productImgName = window.productImgName;
   console.log(productImgName);
   const price = parseInt(productPrice.value.replaceAll(',', ''), 10);
-  const url = `http://146.56.183.55:5050/product`;
+  const url = `https://api.mandarin.cf/product`;
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -87,7 +87,7 @@ async function postProductData() {
         itemName: productName.value,
         price: price,
         link: productUrlBox.value,
-        itemImage: `http://146.56.183.55:5050/${productImgName}`,
+        itemImage: `https://api.mandarin.cf/${productImgName}`,
       },
     }),
   });
@@ -104,11 +104,14 @@ async function postProductData() {
 // 상품 정보 가져오기
 async function getProductData() {
   const productId = location.href.split('/product/')[1];
-  const response = await fetch(`http://146.56.183.55:5050/product/detail/${productId}`, {
-    headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    },
-  });
+  const response = await fetch(
+    `https://api.mandarin.cf/product/detail/${productId}`,
+    {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+    }
+  );
   this.productData = await response.json();
 }
 
@@ -141,7 +144,7 @@ async function editProductData() {
   const productImgSrc = document.querySelector('.image-input-field img').src;
   const price = parseInt(productPrice.value.replaceAll(',', ''), 10);
   const response = await fetch(
-    `http://146.56.183.55:5050/product/${location.href.split('/product/')[1]}`,
+    `https://api.mandarin.cf/product/${location.href.split('/product/')[1]}`,
     {
       method: 'PUT',
       headers: {
@@ -169,7 +172,7 @@ async function editProductData() {
 
 // 상품 삭제
 async function deleteProduct(tagetId) {
-  const response = await fetch(`http://146.56.183.55:5050/product/${tagetId}`, {
+  const response = await fetch(`https://api.mandarin.cf/product/${tagetId}`, {
     method: 'DELETE',
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -186,11 +189,11 @@ async function deleteProduct(tagetId) {
 function isValidUrl() {
   const urlRegexData = new RegExp(
     '^(https?:\\/\\/)?' + // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-    '(\\#[-a-z\\d_]*)?$', // fragment locator
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$', // fragment locator
     'i'
   );
 
@@ -224,5 +227,3 @@ window.addEventListener('DOMContentLoaded', () => {
   if (location.href.split('product')[1] != '') setCurrentData();
   postProductImg();
 });
-
-

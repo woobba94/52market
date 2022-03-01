@@ -2,7 +2,7 @@ async function setFollowList(accountname, isFollowerPage) {
   let val = '';
   isFollowerPage ? (val = 'follower') : (val = 'following');
   const section = document.querySelector(`.${val}-list`);
-  const url = `http://146.56.183.55:5050/profile/${accountname}/${val}?limit=1000`;
+  const url = `https://api.mandarin.cf/profile/${accountname}/${val}?limit=1000`;
   const token = localStorage.getItem('token');
   const res = await fetch(url, {
     method: 'GET',
@@ -26,8 +26,11 @@ async function setFollowList(accountname, isFollowerPage) {
   </article>
   `;
     // 만들어진 각 버튼에 해당 유저의 id를 이용하여 팔로우 이벤트 최초연결
-    let btn = document.querySelector(`.toggle-btn-follow[name=${element.accountname}]`);
-    if (element.accountname === localStorage.getItem('accountname')) btn.remove();
+    let btn = document.querySelector(
+      `.toggle-btn-follow[name=${element.accountname}]`
+    );
+    if (element.accountname === localStorage.getItem('accountname'))
+      btn.remove();
     else {
       if (element.isfollow) {
         btn.textContent = '언팔로우';

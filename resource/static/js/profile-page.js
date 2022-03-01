@@ -42,12 +42,15 @@ const mainElement = document.querySelector('.container');
 
 //user가 등록한 상품 정보 가져오기
 async function getProductList() {
-  const response = await fetch(`http://146.56.183.55:5050/product/${accountName}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-type': 'application/json',
-    },
-  });
+  const response = await fetch(
+    `https://api.mandarin.cf/product/${accountName}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    }
+  );
   this.productList = await response.json();
 }
 
@@ -196,7 +199,7 @@ movefollowersPage();
 // movefollowingPage();
 
 async function getIsFollow(accountname) {
-  const url = `http://146.56.183.55:5050/profile/${accountname}`;
+  const url = `https://api.mandarin.cf/profile/${accountname}`;
   const token = localStorage.getItem('token');
   const res = await fetch(url, {
     method: 'GET',

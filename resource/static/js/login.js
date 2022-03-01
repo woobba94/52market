@@ -35,7 +35,7 @@ async function login() {
       password: pw,
     },
   };
-  const res = await fetch('https://api.mandarin.cf' + '/user/login', {
+  const res = await fetch(url + '/user/login', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',

@@ -2,7 +2,7 @@
   Kang Hyejin
   강혜진 작성파일
 */
-const url = 'http://146.56.183.55:5050'; // API url
+const url = 'https://api.mandarin.cf'; // API url
 
 //로그인시 저장된 localStorage
 const token = localStorage.getItem('token');

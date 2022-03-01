@@ -13,7 +13,7 @@ inputBox.addEventListener('input', (event) => {
 async function search(inputVal) {
   // listBox 초기화
   searchListBox.innerHTML = '';
-  const url = `http://146.56.183.55:5050/user/searchuser/?keyword=${inputVal}`;
+  const url = `https://api.mandarin.cf/user/searchuser/?keyword=${inputVal}`;
   const res = await fetch(url, {
     method: 'GET',
     headers: {

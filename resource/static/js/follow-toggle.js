@@ -21,7 +21,7 @@ async function toggleFollow(accountname) {
     this.classList.remove('btn-unfollow');
   }
 
-  const url = `http://146.56.183.55:5050/profile/${accountname}/${urlVal}`;
+  const url = `https://api.mandarin.cf/profile/${accountname}/${urlVal}`;
   const token = localStorage.getItem('token');
   const res = await fetch(url, {
     method: methodVal,
