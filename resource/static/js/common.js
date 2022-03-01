@@ -39,7 +39,10 @@ if (mainMenu) {
   if (nowUrl.indexOf('/chat') !== -1) {
     // '/chat' 페이지
     mainMenu.querySelector('.btn-chat').closest('li').classList.add('active');
-  } else if (nowUrl.indexOf('/profile/') !== -1 && nowUrl.split('/profile/')[1] === userId) {
+  } else if (
+    nowUrl.indexOf('/profile/') !== -1 &&
+    nowUrl.split('/profile/')[1] === userId
+  ) {
     // '/profile' 페이지
     mainMenu.querySelector('.btn-user').closest('li').classList.add('active');
   } else {
@@ -55,10 +58,12 @@ if (btnBack) {
   prevBtn.addEventListener('click', clickBack);
 }
 function clickBack() {
-  if (location.href.includes('/profile/')) location.href = 'http://localhost:8080/';
+  if (location.href.includes('/profile/')) location.href = '/';
   else if (document.referrer.includes('/post/')) {
-    let thisUser = document.querySelector('.user-description').textContent.substr(1);
-    location.href = `http://localhost:8080/profile/${thisUser}`;
+    let thisUser = document
+      .querySelector('.user-description')
+      .textContent.substr(1);
+    location.href = `/profile/${thisUser}`;
   } else history.back().reload();
 }
 
@@ -241,8 +246,12 @@ function addMenu() {
 
   firstFocus.focus();
   firstFocus.addEventListener('keydown', keyShiftTabEvent);
-  thisParent.querySelector('.close-modal').addEventListener('keydown', keyTabEvent);
-  thisParent.querySelector('.close-modal').addEventListener('click', clearModal);
+  thisParent
+    .querySelector('.close-modal')
+    .addEventListener('keydown', keyTabEvent);
+  thisParent
+    .querySelector('.close-modal')
+    .addEventListener('click', clearModal);
   thisParent.querySelector('.dim').addEventListener('click', clearModal);
 }
 
@@ -277,8 +286,12 @@ function addPop(typeText, buttonText, thisParent, inButton, thisId) {
 
   popModal.querySelector('.cancel').focus();
   popModal.querySelector('.cancel').addEventListener('click', clearModal);
-  popModal.querySelector('.cancel').addEventListener('keydown', keyShiftTabEvent);
-  popModal.querySelector('button:last-child').addEventListener('keydown', keyTabEvent);
+  popModal
+    .querySelector('.cancel')
+    .addEventListener('keydown', keyShiftTabEvent);
+  popModal
+    .querySelector('button:last-child')
+    .addEventListener('keydown', keyTabEvent);
   dim.addEventListener('click', clearModal);
 
   const deleteBtn = popModal.querySelector('.delete');
@@ -358,7 +371,9 @@ function keyTabEvent(e) {
 //키보드 Shift+Tab 포커스이동
 function keyShiftTabEvent(e) {
   const targetClass = e.currentTarget.className;
-  const lastButton = e.currentTarget.closest('div').querySelector('button:last-child');
+  const lastButton = e.currentTarget
+    .closest('div')
+    .querySelector('button:last-child');
   if (
     targetClass === 'show-pop-report' ||
     targetClass === 'show-pop-delete' ||
