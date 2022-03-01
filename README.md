@@ -32,13 +32,13 @@ SNS를 통한 온라인 이웃 되기! 오늘부터 이웃, 오이마켓입니�
 
 [URL]https://market-52.herokuapp.com/
 
-```
+<!-- ```
     git clone https://github.com/dreamfulbud/52market.git
     cd 52market
     nodemon app
 ```
 
-- http://localhost:8080/
+- http://localhost:5000/ -->
 
 ## 3. 프로젝트 구조와 개발 일정
 
