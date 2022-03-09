@@ -3,8 +3,6 @@ const inputBox = document.querySelector('.input-search');
 
 // input 값 변경 리스너
 inputBox.addEventListener('input', (event) => {
-  // console.log(event.target.value);
-
   // 변경된 값이 빈문자열 즉 다 지웠다면 list 비우기
   if (event.target.value === '') searchListBox.innerHTML = '';
   else search(event.target.value);
@@ -22,7 +20,6 @@ async function search(inputVal) {
     },
   });
   const data = await res.json();
-  // console.log(data);
 
   data.forEach((element) => {
     searchListBox.innerHTML += `

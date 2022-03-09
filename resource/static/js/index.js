@@ -5,7 +5,7 @@ if (localStorage.getItem('Token')) {
 } else {
   location.href = './login.html';
 }
-// console.log(localStorage.getItem("Token"))//요거는 로컬스토리지에 값잘 있나 확인.
+
 async function getFeed() {
   const url = 'https://api.mandarin.cf';
   const token = localStorage.getItem('Token');
@@ -18,7 +18,7 @@ async function getFeed() {
   });
   const json = await res.json();
   const posts = json.posts;
-  //forEach문으로 받아온 데이터 전부 살펴보면서 그려주는 부분
+  // 받아온 데이터 전부 그려주기
   posts.forEach((post) => {
     const authorImage = post.author.image;
     const authorAccount = post.author.accountname;

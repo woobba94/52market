@@ -298,10 +298,8 @@ $profilenextBtn.addEventListener("click", function(){
 const testbtn2 = document.querySelector("#signup-check-btn");
 
 async function login() {
-    // getInput();
     const email = document.querySelector("#email-id").value
     const pw = document.querySelector("#password-id").value
-    // const url = 'http://146.56.183.55:5050'
     const loginData = {
         "user": {
             "email": email,
@@ -316,7 +314,6 @@ async function login() {
         body: JSON.stringify(loginData)
     })
     const json = await res.json()
-    // console.log(json);
     localStorage.setItem("token", json.user.token)
 
     location.href = "/"

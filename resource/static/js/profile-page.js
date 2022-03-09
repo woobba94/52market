@@ -42,15 +42,12 @@ const mainElement = document.querySelector('.container');
 
 //user가 등록한 상품 정보 가져오기
 async function getProductList() {
-  const response = await fetch(
-    `https://api.mandarin.cf/product/${accountName}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-type': 'application/json',
-      },
-    }
-  );
+  const response = await fetch(`https://api.mandarin.cf/product/${accountName}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-type': 'application/json',
+    },
+  });
   this.productList = await response.json();
 }
 
@@ -109,12 +106,10 @@ getProductList();
 
 async function setFollowBtn() {
   const addFollowBtn = document.querySelector('.btns-wrap');
-  // if ( accountName == thisUserId)
   if (accountName == userId) {
     addFollowBtn.innerHTML = `<a class="button button-ms line btn-mod profile-edit" href="/profile-mod"> 프로필 수정</a>
     <a class="button button-ms line move-product" href="/product">상품 등록</a>`;
   } else {
-    // getIsFollow(accountName);
     addFollowBtn.innerHTML = `<a class="imgbtn imgbtn-message" href="/chat">메시지</a>
     <button class="button-ms active-button" name="${accountName}"></button>
     <a class="imgbtn imgbtn-share" href="#">공유버튼
