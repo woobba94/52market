@@ -1,4 +1,4 @@
-//localStorage
+// localStorage
 const myAccountName = localStorage.getItem('accountname');
 const myToken = localStorage.getItem('token');
 const $imageUpload = document.querySelector('chooseImg');
@@ -36,7 +36,7 @@ async function getUserData() {
 }
 getUserData();
 
-//이미지 업로드
+// 이미지 업로드
 async function imageUpload(files) {
     const formData = new FormData();
     formData.append("image", files[0]);
@@ -79,7 +79,7 @@ myId.addEventListener("click", function () {
     warningMsg2.style.display = "none";
 });
 
-//프로필 수정 값 체크 후 서버 전송
+// 프로필 수정 값 체크 후 서버 전송
 async function editProfile() {
     const newUserName = document.querySelector('#user-name').value;
     const intro = document.querySelector('#intro-input').value;
