@@ -169,30 +169,6 @@ movefollowersPage();
 // else
 // 팔로우, 언팔로우 버튼
 
-//공통
-//이미지 클릭 시 모달창 함수
-// function openModal(e) {
-//   const modal = document.querySelector('hidden-menu');
-
-//   const clickImgBtn = document.querySelector('.product-img');
-//   clickImgBtn.addEventListener('click', () => { });
-// }
-
-// // 팔로워 페이지로 이동
-// function movefollowersPage() {
-//   followersNum.addEventListener('click', function () {
-//     location.href = '/follower';
-//   });
-// }
-// movefollowersPage();
-// // 팔로잉 페이지로 이동
-// function movefollowingPage() {
-//   followingsNum.addEventListener('click', function () {
-//     location.href = '/following';
-//   });
-// }
-// movefollowingPage();
-
 async function getIsFollow(accountname) {
   const url = `https://api.mandarin.cf/profile/${accountname}`;
   const token = localStorage.getItem('token');
