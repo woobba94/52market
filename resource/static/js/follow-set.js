@@ -2,7 +2,7 @@ async function setFollowList(accountname, isFollowerPage) {
   let val = '';
   isFollowerPage ? (val = 'follower') : (val = 'following');
   const section = document.querySelector(`.${val}-list`);
-  const url = `https://api.mandarin.cf/profile/${accountname}/${val}?limit=1000`;
+  const url = `https://mandarin.api.weniv.co.kr/profile/${accountname}/${val}?limit=1000`;
   const token = localStorage.getItem('token');
   const res = await fetch(url, {
     method: 'GET',

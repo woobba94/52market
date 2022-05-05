@@ -7,7 +7,7 @@ if (localStorage.getItem('Token')) {
 }
 
 async function getFeed() {
-  const url = 'https://api.mandarin.cf';
+  const url = 'https://mandarin.api.weniv.co.kr';
   const token = localStorage.getItem('Token');
   const res = await fetch(url + '/post/feed', {
     method: 'GET',

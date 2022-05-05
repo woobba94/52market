@@ -2,7 +2,7 @@
   Kang Hyejin
   강혜진 작성파일
 */
-const url = 'https://api.mandarin.cf'; // API url
+const url = 'https://mandarin.api.weniv.co.kr'; // API url
 
 //로그인시 저장된 localStorage
 const token = localStorage.getItem('token');
@@ -39,10 +39,7 @@ if (mainMenu) {
   if (nowUrl.indexOf('/chat') !== -1) {
     // '/chat' 페이지
     mainMenu.querySelector('.btn-chat').closest('li').classList.add('active');
-  } else if (
-    nowUrl.indexOf('/profile/') !== -1 &&
-    nowUrl.split('/profile/')[1] === userId
-  ) {
+  } else if (nowUrl.indexOf('/profile/') !== -1 && nowUrl.split('/profile/')[1] === userId) {
     // '/profile' 페이지
     mainMenu.querySelector('.btn-user').closest('li').classList.add('active');
   } else {
@@ -60,9 +57,7 @@ if (btnBack) {
 function clickBack() {
   if (location.href.includes('/profile/')) location.href = '/';
   else if (document.referrer.includes('/post/')) {
-    let thisUser = document
-      .querySelector('.user-description')
-      .textContent.substr(1);
+    let thisUser = document.querySelector('.user-description').textContent.substr(1);
     location.href = `/profile/${thisUser}`;
   } else history.back().reload();
 }
@@ -246,12 +241,8 @@ function addMenu() {
 
   firstFocus.focus();
   firstFocus.addEventListener('keydown', keyShiftTabEvent);
-  thisParent
-    .querySelector('.close-modal')
-    .addEventListener('keydown', keyTabEvent);
-  thisParent
-    .querySelector('.close-modal')
-    .addEventListener('click', clearModal);
+  thisParent.querySelector('.close-modal').addEventListener('keydown', keyTabEvent);
+  thisParent.querySelector('.close-modal').addEventListener('click', clearModal);
   thisParent.querySelector('.dim').addEventListener('click', clearModal);
 }
 
@@ -286,12 +277,8 @@ function addPop(typeText, buttonText, thisParent, inButton, thisId) {
 
   popModal.querySelector('.cancel').focus();
   popModal.querySelector('.cancel').addEventListener('click', clearModal);
-  popModal
-    .querySelector('.cancel')
-    .addEventListener('keydown', keyShiftTabEvent);
-  popModal
-    .querySelector('button:last-child')
-    .addEventListener('keydown', keyTabEvent);
+  popModal.querySelector('.cancel').addEventListener('keydown', keyShiftTabEvent);
+  popModal.querySelector('button:last-child').addEventListener('keydown', keyTabEvent);
   dim.addEventListener('click', clearModal);
 
   const deleteBtn = popModal.querySelector('.delete');
@@ -352,12 +339,7 @@ function keyTabEvent(e) {
   const targetClass = e.currentTarget.className;
   const firstButton = e.currentTarget.closest('div').querySelector('button');
 
-  if (
-    targetClass === 'close-modal' ||
-    targetClass === 'report' ||
-    targetClass === 'delete' ||
-    targetClass === 'logout'
-  ) {
+  if (targetClass === 'close-modal' || targetClass === 'report' || targetClass === 'delete' || targetClass === 'logout') {
     //tab
     if (!e.shiftKey && e.keyCode === 9) {
       e.preventDefault();
@@ -371,15 +353,8 @@ function keyTabEvent(e) {
 //키보드 Shift+Tab 포커스이동
 function keyShiftTabEvent(e) {
   const targetClass = e.currentTarget.className;
-  const lastButton = e.currentTarget
-    .closest('div')
-    .querySelector('button:last-child');
-  if (
-    targetClass === 'show-pop-report' ||
-    targetClass === 'show-pop-delete' ||
-    targetClass === 'cancel' ||
-    targetClass === 'setting-profile'
-  ) {
+  const lastButton = e.currentTarget.closest('div').querySelector('button:last-child');
+  if (targetClass === 'show-pop-report' || targetClass === 'show-pop-delete' || targetClass === 'cancel' || targetClass === 'setting-profile') {
     if (e.shiftKey && e.keyCode === 9) {
       e.preventDefault();
       window.setTimeout(function () {

@@ -11,7 +11,7 @@ inputBox.addEventListener('input', (event) => {
 async function search(inputVal) {
   // listBox 초기화
   searchListBox.innerHTML = '';
-  const url = `https://api.mandarin.cf/user/searchuser/?keyword=${inputVal}`;
+  const url = `https://mandarin.api.weniv.co.kr/user/searchuser/?keyword=${inputVal}`;
   const res = await fetch(url, {
     method: 'GET',
     headers: {

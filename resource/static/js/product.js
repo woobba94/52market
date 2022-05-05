@@ -55,7 +55,7 @@ function postProductImg() {
     const formData = new FormData();
     formData.append('image', imgInputBtn.files[0]);
 
-    fetch(`https://api.mandarin.cf/image/uploadfile`, {
+    fetch(`https://mandarin.api.weniv.co.kr/image/uploadfile`, {
       method: 'POST',
       body: formData,
     })
@@ -72,7 +72,7 @@ async function postProductData() {
   const productName = document.querySelector('#product-name');
   const productPrice = document.querySelector('#product-price');
   const price = parseInt(productPrice.value.replaceAll(',', ''), 10);
-  const url = `https://api.mandarin.cf/product`;
+  const url = `https://mandarin.api.weniv.co.kr/product`;
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -84,7 +84,7 @@ async function postProductData() {
         itemName: productName.value,
         price: price,
         link: productUrlBox.value,
-        itemImage: `https://api.mandarin.cf/${productImgName}`,
+        itemImage: `https://mandarin.api.weniv.co.kr/${productImgName}`,
       },
     }),
   });
@@ -99,7 +99,7 @@ async function postProductData() {
 // 상품 정보 가져오기
 async function getProductData() {
   const productId = location.href.split('/product/')[1];
-  const response = await fetch(`https://api.mandarin.cf/product/detail/${productId}`, {
+  const response = await fetch(`https://mandarin.api.weniv.co.kr/product/detail/${productId}`, {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     },
@@ -134,7 +134,7 @@ async function editProductData() {
   const productUrl = document.querySelector('#product-url');
   const productImgSrc = document.querySelector('.image-input-field img').src;
   const price = parseInt(productPrice.value.replaceAll(',', ''), 10);
-  const response = await fetch(`https://api.mandarin.cf/product/${location.href.split('/product/')[1]}`, {
+  const response = await fetch(`https://mandarin.api.weniv.co.kr/product/${location.href.split('/product/')[1]}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ async function editProductData() {
 
 // 상품 삭제
 async function deleteProduct(tagetId) {
-  const response = await fetch(`https://api.mandarin.cf/product/${tagetId}`, {
+  const response = await fetch(`https://mandarin.api.weniv.co.kr/product/${tagetId}`, {
     method: 'DELETE',
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
